@@ -1,13 +1,14 @@
 import * as React from "react";
-import type { Calibragem, Competencia, Marcacao, Papel, Redacao, RegraAprendida, SituacaoZero, StatusMarcacao } from "@/domain/types";
-import { CALIBRAGEM_INICIAL, USUARIO_PROFESSOR, redacoesIniciais } from "@/domain/seed";
-import { chaveCalibragem, podeDevolver, regraDaRecusa } from "@/domain/regras";
+import type { Calibragem, Competencia, Marcacao, Papel, Redacao, RegistroExportacao, RegraAprendida, SituacaoZero, StatusMarcacao } from "@/domain/types";
+import { CALIBRAGEM_INICIAL, PROFESSORES, USUARIO_PROFESSOR, redacoesIniciais } from "@/domain/seed";
+import { chaveCalibragem, podeDevolver, podeExportar, regraDaRecusa } from "@/domain/regras";
 
 export interface EstadoApp {
   papel: Papel;
   redacoes: Redacao[];
   calibragem: Calibragem;
   regras: RegraAprendida[];
+  exportacoes: RegistroExportacao[];
 }
 
 type Acao =
@@ -27,7 +28,8 @@ type Acao =
   | { type: "devolver_varias"; redacaoIds: string[] }
   | { type: "iniciar_revisao"; redacaoId: string }
   | { type: "pedir_revisao"; redacaoId: string; competencia?: Competencia; mensagem: string }
-  | { type: "reabrir"; redacaoId: string };
+  | { type: "reabrir"; redacaoId: string }
+  | ({ type: "registrar_exportacao" } & Omit<RegistroExportacao, "id" | "quando">);
 
 const PESO: Record<string, number> = { aprovada: 1, editada: 0.5, recusada: 0 };
 
@@ -129,6 +131,12 @@ function reducer(s: EstadoApp, a: Acao): EstadoApp {
         etapa: "em_revisao",
         pedidosRevisao: (r.pedidosRevisao ?? []).map((p) => ({ ...p, atendido: true })),
       }));
+    case "registrar_exportacao": {
+      const { type: _, ...dados } = a;
+      if (!podeExportar(PROFESSORES.find((p) => p.id === dados.professorId), dados.turmaId)) return s;
+      const quando = new Date().toISOString();
+      return { ...s, exportacoes: [...s.exportacoes, { ...dados, id: `exp-${s.exportacoes.length + 1}-${Date.now()}`, quando }] };
+    }
     case "iniciar_revisao":
       return atualizarRedacao(s, a.redacaoId, (r) => (r.etapa === "enviada" ? { ...r, etapa: "em_revisao" } : r));
   }
@@ -141,7 +149,7 @@ function devolver(r: Redacao): Redacao {
 
 function estadoInicial(): EstadoApp {
   const calibragem = structuredClone(CALIBRAGEM_INICIAL);
-  return { papel: "aluno", redacoes: redacoesIniciais(calibragem), calibragem, regras: [] };
+  return { papel: "aluno", redacoes: redacoesIniciais(calibragem), calibragem, regras: [], exportacoes: [] };
 }
 
 const Ctx = React.createContext<{ estado: EstadoApp; despachar: React.Dispatch<Acao> } | null>(null);

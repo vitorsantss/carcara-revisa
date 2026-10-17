@@ -10,6 +10,9 @@ export default defineConfig({
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },
   },
+  optimizeDeps: {
+    include: ["echarts/core", "echarts/charts", "echarts/components", "echarts/renderers", "xlsx", "html-to-image"],
+  },
   server: { port: 5173, allowedHosts: hostsNgrok },
   preview: { allowedHosts: hostsNgrok },
 });

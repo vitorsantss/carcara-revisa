@@ -41,7 +41,7 @@ export const MENU: GrupoMenu[] = [
       { rota: "/professor/fila", titulo: "Fila de correção", icone: Inbox, testId: "nav-professor-fila" },
       { rota: "/pendente/turmas", titulo: "Minhas turmas", icone: Users, pendente: true, testId: "nav-professor-turmas" },
       { rota: "/pendente/propostas", titulo: "Propostas", icone: BookOpen, pendente: true, testId: "nav-professor-propostas" },
-      { rota: "/pendente/desempenho", titulo: "Desempenho", icone: BarChart3, pendente: true, testId: "nav-professor-desempenho" },
+      { rota: "/professor/desempenho", titulo: "Desempenho", icone: BarChart3, testId: "nav-professor-desempenho" },
     ],
   },
   {

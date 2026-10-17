@@ -29,14 +29,6 @@ export const TELAS_PENDENTES: Record<string, Tela> = {
     campos: ["id", "tema", "motivadores[]", "turmaIds[]", "prazo"],
     exemplo: [`${PROPOSTA.tema} · prazo ${PROPOSTA.prazo}`],
   },
-  desempenho: {
-    titulo: "Desempenho",
-    descricao: "Onde a turma mais trava, por competência e por tipo de erro.",
-    recursos: ["Mapa de erros por competência", "Evolução entre versões da mesma redação", "Sugestão de aula a partir dos erros mais comuns"],
-    entidade: "Indicadores (agregados, sem texto do aluno)",
-    campos: ["turmaId", "competencia", "tipo", "ocorrencias", "periodo"],
-    exemplo: ["C1 · erros de concordância em 38% das redações (exemplo)"],
-  },
   instituicao: {
     titulo: "Visão geral da instituição",
     descricao: "Painel da coordenação com volume de correções e tempo de devolutiva.",

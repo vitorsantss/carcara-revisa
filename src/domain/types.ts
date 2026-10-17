@@ -180,3 +180,14 @@ export interface RegraAprendida {
 }
 
 export type Papel = "aluno" | "professor";
+
+/** Quem exportou dados de alunos, quando e o quê (ADR-0010). Nunca guarda o conteúdo do arquivo. */
+export interface RegistroExportacao {
+  id: string;
+  professorId: string;
+  turmaId: string;
+  visao: "aluno" | "turma";
+  formato: "xlsx" | "pdf";
+  alunoId?: string;
+  quando: string;
+}

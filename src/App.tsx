@@ -8,6 +8,7 @@ import { RedacaoPage } from "@/features/redacao/redacao-page";
 import { BastidoresPage } from "@/features/bastidores/bastidores-page";
 import { PendentePage, TELAS_PENDENTES } from "@/features/pendente/pendente-page";
 import { PrivacidadePage } from "@/features/privacidade/privacidade-page";
+import { DesempenhoPage } from "@/features/desempenho/desempenho-page";
 import type { Papel } from "@/domain/types";
 
 function Rotas() {
@@ -25,6 +26,9 @@ function Rotas() {
   } else if (a === "professor" && b === "fila") {
     titulo = "Fila de correção";
     pagina = <FilaPage />;
+  } else if (a === "professor" && b === "desempenho") {
+    titulo = "Desempenho";
+    pagina = <DesempenhoPage params={rota.params} />;
   } else if (a === "redacoes" && b) {
     const visao = (rota.params.get("visao") === "professor" ? "professor" : "aluno") as Papel;
     titulo = visao === "professor" ? "Revisão" : "Minha redação";

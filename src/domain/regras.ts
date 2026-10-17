@@ -1,4 +1,4 @@
-import type { Calibragem, Competencia, Marcacao, NotasCompetencias, Proposta, Redacao, ResultadoCorrecao, Tipo, TipoAlerta } from "./types";
+import type { Aluno, Calibragem, Competencia, Marcacao, NotasCompetencias, Professor, Proposta, Redacao, ResultadoCorrecao, Tipo, TipoAlerta } from "./types";
 import { COMPETENCIAS } from "./types";
 
 /** Limiar para uma categoria chegar pré-aprovada. */
@@ -163,6 +163,97 @@ export function insightsDeEvolucao(atual: NotasCompetencias, anterior?: NotasCom
   const diferencas = atual.map((v, i) => v - anterior[i]);
   const ganho = Math.max(...diferencas);
   return ganho > 0 ? { avanco: competenciaDoIndice(diferencas.indexOf(ganho)), ganho, foco } : { avanco: null, ganho: 0, foco };
+}
+
+/* ---------- desempenho da turma ---------- */
+export interface DesempenhoAluno {
+  alunoId: string;
+  nome: string;
+  historico: Redacao[];
+  notas: NotasCompetencias;
+  total: number;
+}
+
+/** Última versão devolvida de cada aluno da turma na proposta. Alunos sem devolvida ficam de fora. */
+export function desempenhoDaTurma(
+  redacoes: Redacao[],
+  alunos: Array<Pick<Aluno, "id" | "nome" | "turmaId">>,
+  turmaId: string,
+  propostaId: string,
+): DesempenhoAluno[] {
+  return alunos
+    .filter((a) => a.turmaId === turmaId)
+    .map((a) => ({ aluno: a, historico: historicoDoAluno(redacoes, a.id, propostaId) }))
+    .filter((x) => x.historico.length > 0)
+    .map(({ aluno, historico }) => {
+      const notas = notasPorCompetencia(historico[historico.length - 1]);
+      return { alunoId: aluno.id, nome: aluno.nome, historico, notas, total: somaDasNotas(notas) };
+    });
+}
+
+/** Média arredondada de cada competência. Sem alunos, tudo zero. */
+export function mediaDaTurma(notasDosAlunos: NotasCompetencias[]): NotasCompetencias {
+  return COMPETENCIAS.map((_, i) =>
+    notasDosAlunos.length ? Math.round(notasDosAlunos.reduce((s, n) => s + n[i], 0) / notasDosAlunos.length) : 0,
+  ) as NotasCompetencias;
+}
+
+/** Diferença entre o total da última versão e o da primeira. */
+export function evolucaoTotal(historico: Redacao[]) {
+  if (historico.length < 2) return 0;
+  return notaTotal(historico[historico.length - 1]) - notaTotal(historico[0]);
+}
+
+export const competenciasAbaixoDaMedia = (notas: NotasCompetencias, media: NotasCompetencias) =>
+  COMPETENCIAS.filter((_, i) => notas[i] < media[i]);
+
+/** Alunos com nota até o limite na competência, para o relatório da turma. */
+export const alunosEmRisco = (desempenho: DesempenhoAluno[], c: Competencia, limite = 80) =>
+  desempenho.filter((d) => d.notas[c - 1] <= limite);
+
+/** Aula sugerida para a competência mais fraca da turma. */
+export const SUGESTAO_DE_AULA: Record<Competencia, string> = {
+  1: "aula de revisão de concordância, regência e crase com frases das próprias redações reescritas pela turma",
+  2: "aula sobre repertório legitimado: como escolher um dado, lei ou autor e ligá-lo ao argumento",
+  3: "aula sobre projeto de texto: tese com dois eixos e um parágrafo de argumento com causa, consequência e exemplo",
+  4: "aula sobre conectivos entre parágrafos e dentro deles, com um banco de alternativas para não repetir",
+  5: "aula sobre os 5 elementos da proposta de intervenção: agente, ação, meio, finalidade e detalhamento",
+};
+
+/** Só o professor da turma exporta dados dos alunos dela (ADR-0010). */
+export const podeExportar = (professor: Pick<Professor, "turmaIds"> | undefined, turmaId: string) =>
+  !!professor && professor.turmaIds.includes(turmaId);
+
+export type VisaoDesempenho = "aluno" | "turma";
+
+export type DadosExportacao =
+  | { visao: "aluno"; nome: string; historico: Redacao[] }
+  | { visao: "turma"; turma: string; alunos: DesempenhoAluno[] };
+
+/** Planilha da exportação: só nomes, números e notas, nunca texto de redação. */
+export function linhasExportacao(visao: VisaoDesempenho, dados: DadosExportacao): Array<Array<string | number>> {
+  const competencias = COMPETENCIAS.map((c) => `C${c}`);
+  if (visao === "aluno" && dados.visao === "aluno") {
+    return [
+      ["Aluno", "Versão", ...competencias, "Total"],
+      ...dados.historico.map((r) => [dados.nome, r.versao, ...notasPorCompetencia(r), notaTotal(r)]),
+    ];
+  }
+  if (visao === "turma" && dados.visao === "turma") {
+    return [
+      ["Aluno", "Turma", ...competencias, "Total", "Redações"],
+      ...dados.alunos.map((a) => [a.nome, dados.turma, ...a.notas, a.total, a.historico.length]),
+    ];
+  }
+  return [];
+}
+
+const paraSlug = (s: string) => normalizar(s).replace(/[^a-z0-9]+/g, "");
+
+/** `carcara-<turma>-<aaaa-mm-dd>.xlsx`, com a data local. */
+export function nomeArquivoExportacao(turma: string, data: Date) {
+  const dois = (n: number) => String(n).padStart(2, "0");
+  return `carcara-${paraSlug(turma)}-${data.getFullYear()}-${dois(data.getMonth() + 1)}-${dois(data.getDate())}.xlsx`;
 }
 
 const ORDEM_DESTAQUE: Tipo[] = ["acerto", "erro", "atencao"];
