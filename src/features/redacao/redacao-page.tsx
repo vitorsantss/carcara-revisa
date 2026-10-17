@@ -39,7 +39,7 @@ export function RedacaoPage({ id, visao }: { id: string; visao: Papel }) {
   const idxEtapa = ETAPAS.findIndex((e) => e.id === redacao.etapa);
 
   return (
-    <div className="mx-auto max-w-6xl" data-testid="redacao-page" data-etapa={redacao.etapa} data-visao={visao}>
+    <div className="mx-auto max-w-6xl" data-testid="redacao-page" data-etapa={redacao.etapa} data-visao={visao} data-versao={redacao.versao}>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-4" data-print="hide">
         <div className="min-w-0">
           <h2 className="text-xl font-extrabold tracking-tight" data-testid="redacao-aluno">{aluno.nome}</h2>

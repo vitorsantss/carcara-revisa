@@ -1,4 +1,4 @@
-import type { Calibragem, Competencia, Marcacao, Proposta, Redacao, ResultadoCorrecao, Tipo, TipoAlerta } from "./types";
+import type { Calibragem, Competencia, Marcacao, NotasCompetencias, Proposta, Redacao, ResultadoCorrecao, Tipo, TipoAlerta } from "./types";
 import { COMPETENCIAS } from "./types";
 
 /** Limiar para uma categoria chegar pré-aprovada. */
@@ -116,6 +116,21 @@ export const notaAlteradaPeloProfessor = (r: Redacao, c: Competencia) =>
   !zeroAtivo(r) && r.notasProfessor[c] !== undefined && r.notasProfessor[c] !== r.avaliacaoAutomatica[c].nota;
 export const notaTotal = (r: Redacao) => COMPETENCIAS.reduce((s, c) => s + notaFinal(r, c), 0);
 export const notaAutomaticaTotal = (r: Redacao) => COMPETENCIAS.reduce((s, c) => s + r.avaliacaoAutomatica[c].nota, 0);
+
+/* ---------- versões e histórico ---------- */
+const doAlunoNaProposta = (r: Redacao, alunoId: string, propostaId: string) => r.alunoId === alunoId && r.propostaId === propostaId;
+
+/** Reenvio do mesmo aluno para a mesma proposta é a versão seguinte à maior já enviada. */
+export function proximaVersao(redacoes: Redacao[], alunoId: string, propostaId: string) {
+  return redacoes.filter((r) => doAlunoNaProposta(r, alunoId, propostaId)).reduce((maior, r) => Math.max(maior, r.versao), 0) + 1;
+}
+
+/** Versões devolvidas do aluno na proposta, da primeira para a última. */
+export const historicoDoAluno = (redacoes: Redacao[], alunoId: string, propostaId: string) =>
+  redacoes.filter((r) => doAlunoNaProposta(r, alunoId, propostaId) && r.etapa === "devolvida").sort((a, b) => a.versao - b.versao);
+
+export const notasPorCompetencia = (r: Redacao) => COMPETENCIAS.map((c) => notaFinal(r, c)) as NotasCompetencias;
+export const somaDasNotas = (notas: readonly number[]) => notas.reduce((s, n) => s + n, 0);
 
 /** Quem responde por cada comentário diante do aluno. */
 export type Autoria = "professor" | "editada" | "aprovada" | "pre_aprovada";

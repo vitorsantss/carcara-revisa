@@ -17,7 +17,7 @@ O aluno fotografa a folha manuscrita, confere só as palavras que a leitura não
 4. **Dúvida de leitura não é erro de escrita.** O OCR nunca corrige ortografia do aluno; erro de escrita segue para a correção (C1).
 5. Correções de transcrição nunca geram marcação de C1.
 6. O botão de envio só fica ativo com todas as dúvidas resolvidas.
-7. Ao enviar, a redação entra com `etapa = "enviada"`. Incrementar `versao` em reenvios do mesmo aluno e proposta ainda não está implementado.
+7. Ao enviar, a redação entra com `etapa = "enviada"`. Reenvio do mesmo aluno para a mesma proposta recebe `versao` igual à maior já enviada mais 1 (`proximaVersao`). O histórico usado nos gráficos considera só as versões devolvidas (`historicoDoAluno`).
 8. Antes da foto: dicas de enquadramento e luz, e os textos motivadores ficam visíveis.
 9. Galeria aceita várias imagens (frente e verso). Na conferência, "Adicionar verso ou outra folha" acrescenta imagens e "Ver foto" mostra as fotos ao lado do texto.
 10. Foto quase uniforme (`pareceFolhaEmBranco`) pergunta "Essa foto parece estar em branco" antes de seguir.
@@ -44,6 +44,7 @@ O aluno fotografa a folha manuscrita, confere só as palavras que a leitura não
 - Dado duas imagens, então a conferência mostra 2 folhas. → `05` "frente e verso"
 - Dado o aparelho offline, então o envio avisa e o texto fica. → `05` "sem internet"
 - Dado o envio concluído, então aparecem os próximos passos e a previsão. → `05` "depois de enviar"
+- Dado um aluno com 4 versões devolvidas na proposta, quando ele envia de novo, então a nova redação é a versão 5. → `06` "reenvio para a mesma proposta incrementa a versão"
 
 ## data-testid principais
 

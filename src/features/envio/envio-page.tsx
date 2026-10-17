@@ -8,7 +8,7 @@ import { useApp } from "@/store/app-store";
 import { navegar } from "@/lib/router";
 import { pareceFolhaEmBranco } from "@/lib/imagem";
 import { correcaoSimulada, transcricaoSimulada } from "@/services/correcao";
-import { TEXTO_ALERTA, alertasDoTexto, checagens, frasesCopiadas, linhasDeIdentificacao, montarRedacao, redacaoRepetida, removerLinhas } from "@/domain/regras";
+import { TEXTO_ALERTA, alertasDoTexto, checagens, frasesCopiadas, linhasDeIdentificacao, montarRedacao, proximaVersao, redacaoRepetida, removerLinhas } from "@/domain/regras";
 import { ALUNOS, PROPOSTA, USUARIO_ALUNO } from "@/domain/seed";
 import type { TipoAlerta } from "@/domain/types";
 import { cn } from "@/lib/utils";
@@ -108,7 +108,7 @@ export function EnvioPage() {
     const id = `r-${Date.now()}`;
     const redacao = montarRedacao(
       {
-        id, alunoId: USUARIO_ALUNO, propostaId: PROPOSTA.id, texto: limpo, enviadaEm: new Date().toISOString(), versao: 1, etapa: "enviada",
+        id, alunoId: USUARIO_ALUNO, propostaId: PROPOSTA.id, texto: limpo, enviadaEm: new Date().toISOString(), versao: proximaVersao(estado.redacoes, USUARIO_ALUNO, PROPOSTA.id), etapa: "enviada",
         duvidasDeTranscricao: duvidas.length,
         imagens: urls.filter((u): u is string => !!u),
         alertas: repetida ? ["texto_repetido"] : [],

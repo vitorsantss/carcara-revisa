@@ -3,9 +3,10 @@
  * escritas para este MVP.
  */
 import type {
-  Aluno, AvaliacaoCompetencia, Calibragem, Competencia, Instituicao, Professor, Proposta,
+  Aluno, AvaliacaoCompetencia, Calibragem, Competencia, Instituicao, NotasCompetencias, Professor, Proposta,
   Redacao, ResultadoCorrecao, ResultadoTranscricao, Turma,
 } from "./types";
+import { NOME_COMPETENCIA } from "./types";
 import { montarRedacao } from "./regras";
 
 export const INSTITUICAO: Instituicao = { id: "inst-1", nome: "Colégio Horizonte", cidade: "Natal, RN" };
@@ -27,6 +28,8 @@ export const ALUNOS: Aluno[] = [
   { id: "a-davi", nome: "Davi Rocha", turmaId: "t-3a" },
   { id: "a-carla", nome: "Carla Souza", turmaId: "t-3a" },
   { id: "a-eduardo", nome: "Eduardo Pinto", turmaId: "t-3b" },
+  { id: "a-gabriel", nome: "Gabriel Nunes", turmaId: "t-3a" },
+  { id: "a-isabela", nome: "Isabela Freitas", turmaId: "t-3a" },
 ];
 
 export const PROPOSTA: Proposta = {
@@ -186,20 +189,129 @@ const DAVI: ResultadoCorrecao = {
 };
 const TEXTO_DAVI = "As fake news são um problema muito grande no Brasil hoje em dia. Muitas pessoas acreditam em tudo que veem na internet e compartilham sem pensar. O governo deveria fazer alguma coisa para resolver isso.";
 
+/* ---------- versões já devolvidas no 3º A (histórico para radar e desempenho) ---------- */
+interface ParagrafoHistorico {
+  texto: string;
+  marcacao: ResultadoCorrecao["marcacoes"][number];
+}
+
+const INTRODUCOES: ParagrafoHistorico[] = [
+  {
+    texto: "A Constituição de 1988 assegura o acesso à informação, mas a circulação de boatos nas redes sociais ameaça esse direito no Brasil. Esse problema persiste por causa da falta de leitura crítica e da pressa em compartilhar.",
+    marcacao: { competencia: 2, tipo: "acerto", trecho: "A Constituição de 1988 assegura o acesso à informação", comentario: "Repertório legítimo e ligado ao tema." },
+  },
+  {
+    texto: "No filme “O Show de Truman”, o protagonista vive cercado por uma realidade fabricada. Fora da ficção, muitos brasileiros também consomem notícias falsas como se fossem verdade, o que enfraquece o debate público.",
+    marcacao: { competencia: 2, tipo: "acerto", trecho: "No filme “O Show de Truman”", comentario: "Repertório pertinente, bem ligado ao tema." },
+  },
+  {
+    texto: "Atualmente, a desinformação é um dos maiores problemas da sociedade brasileira. Isso acontece porque as pessoas não verificam o que recebem e porque as plataformas lucram com conteúdos chamativos.",
+    marcacao: { competencia: 3, tipo: "atencao", trecho: "Atualmente, a desinformação é um dos maiores problemas", comentario: "Abertura genérica: comece com um fato ou um repertório." },
+  },
+  {
+    texto: "Segundo o sociólogo Pierre Lévy, a internet criou uma inteligência coletiva. No Brasil, porém, essa rede também espalha mentiras com rapidez, e o combate à desinformação esbarra na baixa educação midiática e na omissão das plataformas.",
+    marcacao: { competencia: 2, tipo: "acerto", trecho: "Segundo o sociólogo Pierre Lévy", comentario: "Repertório reconhecido e ligado ao tema." },
+  },
+];
+
+const DESENVOLVIMENTOS: ParagrafoHistorico[] = [
+  {
+    texto: "Em primeiro lugar, a maioria dos usuários lê apenas a manchete antes de repassar uma mensagem. Sem conferir a fonte, o leitor transforma um boato em verdade e ajuda a espalhá-lo entre amigos e familiares.",
+    marcacao: { competencia: 3, tipo: "acerto", trecho: "Sem conferir a fonte, o leitor transforma um boato em verdade", comentario: "Argumento que explica a causa do problema." },
+  },
+  {
+    texto: "Além disso, os algoritmos mostram mais do que já agrada ao usuário. Dessa forma, as pessoas ficam presas em bolhas e passam a desconfiar de qualquer informação que contrarie suas crenças.",
+    marcacao: { competencia: 4, tipo: "acerto", trecho: "Dessa forma,", comentario: "Conectivo adequado entre causa e consequência." },
+  },
+  {
+    texto: "Outro fator é a falta de aulas sobre checagem nas escolas. Os jovens sabe usar as redes, mas poucos aprendem a avaliar se um site é confiável.",
+    marcacao: { competencia: 1, tipo: "erro", trecho: "Os jovens sabe usar", comentario: "Concordância verbal: sujeito no plural pede verbo no plural.", sugestao: "Os jovens sabem usar" },
+  },
+  {
+    texto: "Ademais, as plataformas digitais demoram a remover conteúdos desmentidos. Isso é muito grave.",
+    marcacao: { competencia: 3, tipo: "erro", trecho: "Isso é muito grave.", comentario: "Afirmação sem desenvolvimento: explique a consequência e traga um exemplo." },
+  },
+];
+
+const CONCLUSOES: ParagrafoHistorico[] = [
+  {
+    texto: "Portanto, cabe ao Ministério da Educação criar oficinas de checagem nas escolas, por meio de aulas semanais com notícias reais, para formar leitores críticos.",
+    marcacao: { competencia: 5, tipo: "acerto", trecho: "por meio de aulas semanais com notícias reais", comentario: "Meio de execução explícito." },
+  },
+  {
+    texto: "Logo, as escolas devem ensinar educação midiática para que a desinformação diminua no país.",
+    marcacao: { competencia: 5, tipo: "atencao", trecho: "as escolas devem ensinar educação midiática", comentario: "Proposta com agente e ação; falta o meio e o detalhamento." },
+  },
+  {
+    texto: "Dessa maneira, o governo precisa fazer campanhas sobre notícias falsas.",
+    marcacao: { competencia: 5, tipo: "erro", trecho: "o governo precisa fazer campanhas", comentario: "Proposta vaga: diga quem faz, como e para quê." },
+  },
+  {
+    texto: "Em suma, é necessário que o Congresso Nacional obrigue as plataformas a sinalizar conteúdos falsos, com avisos nas publicações, a fim de que os usuários reconheçam boatos antes de compartilhá-los.",
+    marcacao: { competencia: 5, tipo: "acerto", trecho: "o Congresso Nacional", comentario: "Agente definido." },
+  },
+];
+
+const NIVEL: Record<number, string> = {
+  200: "Domínio excelente",
+  160: "Bom domínio, com poucos desvios",
+  120: "Domínio mediano",
+  80: "Domínio insuficiente",
+  40: "Domínio precário",
+  0: "Sem domínio",
+};
+
+const PROXIMO_PASSO: Record<Competencia, string> = {
+  1: "Releia o texto procurando desvios de concordância e acentuação.",
+  2: "Use um repertório reconhecido e retome-o nos argumentos.",
+  3: "Desenvolva cada argumento com causa, consequência e exemplo.",
+  4: "Varie os conectivos entre os parágrafos e dentro deles.",
+  5: "Escreva a proposta com agente, ação, meio, finalidade e detalhamento.",
+};
+
+export const HISTORICO_3A: Array<{ alunoId: string; versoes: NotasCompetencias[] }> = [
+  { alunoId: "a-helena", versoes: [[120, 120, 120, 80, 120], [120, 160, 120, 120, 120], [160, 160, 120, 120, 120], [160, 160, 120, 160, 160]] },
+  { alunoId: "a-ana", versoes: [[120, 120, 80, 120, 80], [160, 120, 120, 120, 80]] },
+  { alunoId: "a-gabriel", versoes: [[80, 120, 80, 80, 40], [120, 120, 80, 80, 40]] },
+  { alunoId: "a-davi", versoes: [[120, 120, 120, 120, 80], [120, 160, 120, 120, 120]] },
+  { alunoId: "a-carla", versoes: [[120, 80, 80, 40, 40], [160, 80, 120, 40, 80]] },
+  { alunoId: "a-isabela", versoes: [[160, 120, 120, 160, 120], [160, 160, 160, 160, 120]] },
+];
+
+const diasAtras = (d: number) => new Date(Date.now() - d * 864e5).toISOString();
+
+function redacaoHistorica(alunoId: string, indiceAluno: number, versao: number, totalVersoes: number, notas: NotasCompetencias, cal: Calibragem): Redacao {
+  const k = (indiceAluno + versao) % 4;
+  const paragrafos = [INTRODUCOES[k], DESENVOLVIMENTOS[k], DESENVOLVIMENTOS[(k + 2) % 4], CONCLUSOES[k]];
+  const semanas = totalVersoes - versao + 1;
+  const correcao: ResultadoCorrecao = {
+    motivoZero: null,
+    avaliacao: comps(...notas.map((n, i) => av(n, 0.8, `${NIVEL[n]} em ${NOME_COMPETENCIA[(i + 1) as Competencia].toLowerCase()}.`, PROXIMO_PASSO[(i + 1) as Competencia]))),
+    marcacoes: paragrafos.map((p) => ({ ...p.marcacao, confianca: 0.85 })),
+  };
+  const redacao = montarRedacao(
+    {
+      id: `r-${alunoId.replace("a-", "")}-v${versao}`, alunoId, propostaId: PROPOSTA.id, texto: paragrafos.map((p) => p.texto).join("\n"),
+      enviadaEm: diasAtras(semanas * 7 + 3), versao, etapa: "devolvida", duvidasDeTranscricao: 0, revisorId: USUARIO_PROFESSOR, devolvidaEm: diasAtras(semanas * 7),
+    },
+    correcao,
+    cal,
+  );
+  return { ...redacao, marcacoes: redacao.marcacoes.map((m) => ({ ...m, status: "aprovada" })) };
+}
+
 export function redacoesIniciais(cal: Calibragem): Redacao[] {
   const base = (id: string, alunoId: string, texto: string, horas: number, versao = 1, titulo?: string) => ({
     id, alunoId, propostaId: PROPOSTA.id, texto, titulo, enviadaEm: horasAtras(horas), versao,
     etapa: "em_revisao" as const, duvidasDeTranscricao: 0,
   });
   return [
-    montarRedacao(base("r-ana", "a-ana", TEXTO_ANA, 30, 1, "Educação midiática como antídoto"), ANA, cal),
+    montarRedacao(base("r-ana", "a-ana", TEXTO_ANA, 30, 3, "Educação midiática como antídoto"), ANA, cal),
     montarRedacao(base("r-bruno", "a-bruno", TEXTO_BRUNO, 20, 2), BRUNO, cal),
-    montarRedacao(base("r-davi", "a-davi", TEXTO_DAVI, 6), DAVI, cal),
+    montarRedacao(base("r-davi", "a-davi", TEXTO_DAVI, 6, 3), DAVI, cal),
+    ...HISTORICO_3A.flatMap((h, i) => h.versoes.map((notas, v) => redacaoHistorica(h.alunoId, i, v + 1, h.versoes.length, notas, cal)).reverse()),
   ];
 }
 
 /** Devolvidas antes (só para a lista). */
-export const DEVOLVIDAS_ANTERIORES = [
-  { alunoId: "a-carla", nota: 840, quando: "ontem" },
-  { alunoId: "a-eduardo", nota: 600, quando: "há 2 dias" },
-];
+export const DEVOLVIDAS_ANTERIORES = [{ alunoId: "a-eduardo", nota: 600, quando: "há 2 dias" }];

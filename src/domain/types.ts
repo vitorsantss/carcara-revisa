@@ -36,6 +36,9 @@ export type EtapaRedacao = "enviada" | "em_revisao" | "devolvida";
 
 export const NOTAS_VALIDAS = [0, 40, 80, 120, 160, 200] as const;
 
+/** Notas de C1 a C5, nesta ordem. */
+export type NotasCompetencias = [number, number, number, number, number];
+
 export interface Instituicao {
   id: string;
   nome: string;
