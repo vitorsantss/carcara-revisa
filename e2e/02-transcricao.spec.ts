@@ -53,4 +53,28 @@ test.describe("Importação e conferência da transcrição", () => {
     await page.getByTestId("visao-professor").click();
     await expect(page.locator('[data-testid^="marca-"]').first()).toBeVisible();
   });
+
+  test("conferência abre junto da palavra e fecha com Esc ou tocando fora", async ({ page }) => {
+    await page.goto("/#/aluno/enviar");
+    await page.getByTestId("envio-usar-exemplo").click();
+    const palavra = page.getByTestId("transcricao-duvida-1");
+    await palavra.click();
+    const editor = page.getByTestId("duvida-editor");
+    await expect(editor).toBeInViewport();
+    await expect(editor).toHaveAttribute("data-lado", /acima|abaixo/);
+    const caixa = (await editor.boundingBox())!;
+    const alvo = (await palavra.boundingBox())!;
+    const distancia = (await editor.getAttribute("data-lado")) === "acima"
+      ? alvo.y - (caixa.y + caixa.height)
+      : caixa.y - (alvo.y + alvo.height);
+    expect(distancia).toBeLessThan(24);
+
+    await page.keyboard.press("Escape");
+    await expect(editor).toHaveCount(0);
+
+    await palavra.click();
+    await page.getByTestId("transcricao-resumo").click();
+    await expect(editor).toHaveCount(0);
+    await expect(palavra).toHaveAttribute("data-conferida", "false");
+  });
 });

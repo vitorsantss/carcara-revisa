@@ -64,7 +64,7 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 
 ## `features/envio/envio-page.tsx`
 
-- `duvida-editor`
+- `duvida-editor` (popup; `data-lado` = `acima` | `abaixo`)
 - `duvida-input`
 - `duvida-manter`
 - `duvida-ok`
