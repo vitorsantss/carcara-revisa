@@ -25,7 +25,7 @@ export function EnvioPage() {
   const [etapa, setEtapa] = React.useState<Etapa>("importar");
   const [texto, setTexto] = React.useState("");
   const [duvidas, setDuvidas] = React.useState<Duvida[]>([]);
-  const [aberta, setAberta] = React.useState<number | null>(null);
+  const [aberta, setAberta] = React.useState<{ id: number; ancora: HTMLElement } | null>(null);
   const [origem, setOrigem] = React.useState<"foto" | "texto">("foto");
   const [ocupado, setOcupado] = React.useState<string | null>(null);
   const [erro, setErro] = React.useState<string | null>(null);
@@ -75,7 +75,8 @@ export function EnvioPage() {
   }
 
   const abertas = duvidas.filter((d) => !d.conferida).length;
-  const duvidaAberta = duvidas.find((d) => d.id === aberta);
+  const duvidaAberta = duvidas.find((d) => d.id === aberta?.id);
+  const alternarDuvida = (id: number, ancora: HTMLElement) => setAberta(aberta?.id === id ? null : { id, ancora });
 
   return (
     <div className="mx-auto max-w-xl" data-testid="envio-page">
@@ -133,10 +134,12 @@ export function EnvioPage() {
             <CardContent className="grid gap-3">
               <div className="max-h-[420px] overflow-auto rounded-lg border px-4 py-3 font-serif text-[15.5px] leading-[1.85]" data-testid="transcricao">
                 {texto.split("\n").filter((p) => p.trim()).map((p, pi) => (
-                  <p key={pi} className="mb-2.5">{renderComDuvidas(p, duvidas, (id) => setAberta(aberta === id ? null : id))}</p>
+                  <p key={pi} className="mb-2.5">{renderComDuvidas(p, duvidas, alternarDuvida)}</p>
                 ))}
               </div>
-              {duvidaAberta && <EditorDuvida d={duvidaAberta} onEscolher={(v) => trocar(duvidaAberta, v)} />}
+              {duvidaAberta && aberta && (
+                <EditorDuvida key={duvidaAberta.id} d={duvidaAberta} ancora={aberta.ancora} onEscolher={(v) => trocar(duvidaAberta, v)} onFechar={() => setAberta(null)} />
+              )}
               <div className="flex flex-wrap gap-2">
                 <Button variant="ghost" onClick={() => setEtapa("importar")} data-testid="envio-voltar">Voltar</Button>
                 <Button onClick={enviar} disabled={abertas > 0 || !!ocupado} data-testid="envio-enviar">Enviar para correção</Button>
@@ -153,7 +156,7 @@ export function EnvioPage() {
   );
 }
 
-function renderComDuvidas(paragrafo: string, duvidas: Duvida[], abrir: (id: number) => void) {
+function renderComDuvidas(paragrafo: string, duvidas: Duvida[], abrir: (id: number, ancora: HTMLElement) => void) {
   const out: React.ReactNode[] = [];
   let resto = paragrafo;
   let k = 0;
@@ -173,7 +176,8 @@ function renderComDuvidas(paragrafo: string, duvidas: Duvida[], abrir: (id: numb
       <button
         key={`d${k++}`}
         type="button"
-        onClick={() => abrir(d.id)}
+        onClick={(e) => abrir(d.id, e.currentTarget)}
+        data-duvida
         data-testid={`transcricao-duvida-${d.id}`}
         data-conferida={d.conferida}
         title={d.conferida ? "Conferida" : "A leitura não teve certeza desta palavra"}
@@ -190,10 +194,95 @@ function renderComDuvidas(paragrafo: string, duvidas: Duvida[], abrir: (id: numb
   return out;
 }
 
-function EditorDuvida({ d, onEscolher }: { d: Duvida; onEscolher: (v: string) => void }) {
+const MARGEM_POPUP = 8;
+const DISTANCIA_DA_PALAVRA = 10;
+
+interface PosicaoPopup {
+  x: number;
+  y: number;
+  seta: number;
+  lado: "acima" | "abaixo";
+}
+
+function posicaoJuntoDaPalavra(palavra: DOMRect, largura: number, altura: number): PosicaoPopup {
+  const cabeAcima = palavra.top - DISTANCIA_DA_PALAVRA - altura >= MARGEM_POPUP;
+  const centro = palavra.left + palavra.width / 2;
+  const x = Math.max(MARGEM_POPUP, Math.min(centro - largura / 2, window.innerWidth - largura - MARGEM_POPUP));
+  return {
+    x,
+    y: cabeAcima ? palavra.top - DISTANCIA_DA_PALAVRA - altura : palavra.bottom + DISTANCIA_DA_PALAVRA,
+    seta: Math.max(16, Math.min(centro - x, largura - 16)),
+    lado: cabeAcima ? "acima" : "abaixo",
+  };
+}
+
+function usePosicaoJuntoDaPalavra(ancora: HTMLElement, popup: React.RefObject<HTMLDivElement | null>) {
+  const [posicao, setPosicao] = React.useState<PosicaoPopup | null>(null);
+  React.useLayoutEffect(() => {
+    const atualizar = () => {
+      if (!popup.current) return;
+      const palavra = ancora.getBoundingClientRect();
+      const area = ancora.closest("[data-testid='transcricao']")?.getBoundingClientRect();
+      const palavraVisivel = !area || (palavra.bottom > area.top && palavra.top < area.bottom);
+      setPosicao(palavraVisivel ? posicaoJuntoDaPalavra(palavra, popup.current.offsetWidth, popup.current.offsetHeight) : null);
+    };
+    atualizar();
+    const aoMudarLayout = new ResizeObserver(atualizar);
+    aoMudarLayout.observe(document.body);
+    document.fonts?.ready.then(atualizar);
+    window.addEventListener("scroll", atualizar, true);
+    window.addEventListener("resize", atualizar);
+    return () => {
+      aoMudarLayout.disconnect();
+      window.removeEventListener("scroll", atualizar, true);
+      window.removeEventListener("resize", atualizar);
+    };
+  }, [ancora, popup]);
+  return posicao;
+}
+
+function useFecharAoSair(popup: React.RefObject<HTMLDivElement | null>, onFechar: () => void) {
+  React.useEffect(() => {
+    const aoTocar = (e: PointerEvent) => {
+      const alvo = e.target as Element;
+      if (!popup.current?.contains(alvo) && !alvo.closest("[data-duvida]")) onFechar();
+    };
+    const aoTeclar = (e: KeyboardEvent) => e.key === "Escape" && onFechar();
+    document.addEventListener("pointerdown", aoTocar);
+    document.addEventListener("keydown", aoTeclar);
+    return () => {
+      document.removeEventListener("pointerdown", aoTocar);
+      document.removeEventListener("keydown", aoTeclar);
+    };
+  }, [popup, onFechar]);
+}
+
+function EditorDuvida({ d, ancora, onEscolher, onFechar }: { d: Duvida; ancora: HTMLElement; onEscolher: (v: string) => void; onFechar: () => void }) {
   const [valor, setValor] = React.useState(d.atual);
+  const ref = React.useRef<HTMLDivElement>(null);
+  const posicao = usePosicaoJuntoDaPalavra(ancora, ref);
+  useFecharAoSair(ref, onFechar);
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-muted/50 p-3 text-sm" data-testid="duvida-editor">
+    <div
+      ref={ref}
+      role="dialog"
+      aria-label={`Conferir “${d.lido}”`}
+      data-testid="duvida-editor"
+      data-lado={posicao?.lado}
+      className={cn(
+        "fixed z-50 flex w-[min(22rem,calc(100vw-1rem))] flex-wrap items-center gap-2 rounded-lg border bg-card p-3 text-sm shadow-lg",
+        !posicao && "invisible",
+      )}
+      style={{ left: posicao?.x ?? 0, top: posicao?.y ?? 0 }}
+    >
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute size-3 -translate-x-1/2 rotate-45 border-border bg-card",
+          posicao?.lado === "abaixo" ? "-top-1.5 border-t border-l" : "-bottom-1.5 border-r border-b",
+        )}
+        style={{ left: posicao?.seta }}
+      />
       <span className="text-muted-foreground">Lido como “{d.lido}”. Você escreveu:</span>
       {d.sugestoes.map((s, j) => (
         <Button key={s} size="sm" variant="outline" onClick={() => onEscolher(s)} data-testid={`duvida-sugestao-${j}`}>{s}</Button>
