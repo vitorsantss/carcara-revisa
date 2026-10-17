@@ -1,5 +1,5 @@
 import type { Aluno, Calibragem, Competencia, Marcacao, NotasCompetencias, Professor, Proposta, Redacao, ResultadoCorrecao, Tipo, TipoAlerta } from "./types";
-import { COMPETENCIAS } from "./types";
+import { COMPETENCIAS, NOME_COMPETENCIA } from "./types";
 
 /** Limiar para uma categoria chegar pré-aprovada. */
 export const LIMIAR_CALIBRAGEM = { casos: 30, concordancia: 0.95, confiancaMinima: 0.8 };
@@ -254,6 +254,42 @@ const paraSlug = (s: string) => normalizar(s).replace(/[^a-z0-9]+/g, "");
 export function nomeArquivoExportacao(turma: string, data: Date) {
   const dois = (n: number) => String(n).padStart(2, "0");
   return `carcara-${paraSlug(turma)}-${data.getFullYear()}-${dois(data.getMonth() + 1)}-${dois(data.getDate())}.xlsx`;
+}
+
+/* ---------- stories ---------- */
+export interface MensagemMotivadora {
+  frase: string;
+  selos: string[];
+}
+
+const nomeMinusculo = (c: Competencia) => NOME_COMPETENCIA[c].toLowerCase();
+
+/**
+ * Frase e selos do story "Mensagem", de modelos fixos preenchidos com as notas.
+ * Não usa IA e nunca cita o texto da redação.
+ */
+export function mensagemMotivadora(historico: Redacao[]): MensagemMotivadora {
+  if (!historico.length) return { frase: "Minha primeira redação está a caminho.", selos: [] };
+  const primeira = notasPorCompetencia(historico[0]);
+  const ultima = notasPorCompetencia(historico[historico.length - 1]);
+  const foco = competenciaMaisFraca(ultima);
+  const melhor = melhorCompetencia(ultima);
+  const selos = [
+    ...(historico.length > 1 ? [`${historico.length} redações seguidas`] : []),
+    `C${melhor} nível ${ultima[melhor - 1]}`,
+  ];
+  if (historico.length < 2) return { frase: `Primeira redação corrigida. Agora é treinar ${nomeMinusculo(foco)}.`, selos };
+
+  const diferencas = ultima.map((v, i) => v - primeira[i]);
+  const ganho = Math.max(...diferencas);
+  const avanco = COMPETENCIAS[diferencas.indexOf(ganho)];
+  const proximo = `Agora é afiar ${nomeMinusculo(foco)}.`;
+  if (ganho <= 0) return { frase: `${historico.length} redações entregues e seguindo firme. ${proximo}`, selos };
+  const antes = primeira[avanco - 1];
+  const frase = antes > 0 && ultima[avanco - 1] >= antes * 2
+    ? `Minha nota em ${nomeMinusculo(avanco)} dobrou desde a primeira redação. ${proximo}`
+    : `Subi ${ganho} pontos em ${nomeMinusculo(avanco)} desde a primeira redação. ${proximo}`;
+  return { frase, selos };
 }
 
 const ORDEM_DESTAQUE: Tipo[] = ["acerto", "erro", "atencao"];

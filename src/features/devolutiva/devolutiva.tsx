@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MessageSquare, PenLine, Printer } from "lucide-react";
+import { MessageSquare, PenLine, Printer, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/input";
@@ -17,6 +17,7 @@ import { cn, dataCurta, dataHora } from "@/lib/utils";
 import { imprimir } from "@/lib/impressao";
 import { RadarCard } from "./radar-card";
 import { RelatorioDaVersao } from "./relatorio-da-versao";
+import { StoriesDialog } from "@/features/stories/stories-dialog";
 
 const TIPOS: Tipo[] = ["acerto", "atencao", "erro"];
 
@@ -39,6 +40,8 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
   const professor = PROFESSORES.find((p) => p.id === (redacao.revisorId ?? USUARIO_PROFESSOR))!;
   const zero = zeroAtivo(redacao);
   const anterior = versaoAnterior(estado.redacoes, redacao);
+  const historico = historicoAte(estado.redacoes, redacao);
+  const [compartilhando, setCompartilhando] = React.useState(false);
 
   const posicionar = React.useCallback(() => {
     const margem = margemRef.current;
@@ -139,7 +142,18 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
         </div>
       </div>
 
-      {!zero && <RadarCard redacao={redacao} anterior={anterior} previa={previa} />}
+      {!zero && (
+        <RadarCard
+          redacao={redacao}
+          anterior={anterior}
+          previa={previa}
+          acoes={
+            <Button size="sm" onClick={() => setCompartilhando(true)} data-testid="devolutiva-compartilhar">
+              <Share2 /> Compartilhar
+            </Button>
+          }
+        />
+      )}
 
       <div className="mb-5 grid gap-3">
         {zero && (
@@ -236,8 +250,11 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
           subtitulo={`Versão ${redacao.versao} · corrigida pelo Prof. ${professor.nome}${redacao.devolvidaEm ? ` em ${dataCurta(redacao.devolvidaEm)}` : ""}`}
           redacao={redacao}
           anterior={anterior}
-          historico={historicoAte(estado.redacoes, redacao)}
+          historico={historico}
         />
+      )}
+      {!zero && !previa && (
+        <StoriesDialog open={compartilhando} onOpenChange={setCompartilhando} redacao={redacao} historico={historico} proposta={PROPOSTA} />
       )}
     </div>
   );

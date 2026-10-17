@@ -39,6 +39,10 @@
   --color-erro-bg: var(--erro-bg);
   --color-serie: var(--serie);
   --color-serie-ref: var(--serie-ref);
+  --color-story: var(--story);
+  --color-story-foreground: var(--story-foreground);
+  --color-story-destaque: var(--story-destaque);
+  --color-story-selo: var(--story-selo);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-muted: var(--sidebar-muted);

@@ -81,9 +81,9 @@ export function RadarCompetencias({ series, rotulos = true, tamanho = 260, cores
               name: s.nome ?? NOME_PADRAO[s.variante],
               value: emOrdemHoraria(s.valores),
               symbol: principal ? "circle" : "none",
-              symbolSize: 9,
-              lineStyle: { color: c, width: 2, type: principal ? "solid" : [5, 4] },
-              itemStyle: { color: c, borderColor: cor(cores.contorno), borderWidth: 2 },
+              symbolSize: Math.max(9, tamanho / 30),
+              lineStyle: { color: c, width: Math.max(2, tamanho / 130), type: principal ? "solid" : [5, 4] },
+              itemStyle: { color: c, borderColor: cor(cores.contorno), borderWidth: Math.max(2, tamanho / 130) },
               areaStyle: principal ? { color: c, opacity: 0.16 } : undefined,
             };
           }),
