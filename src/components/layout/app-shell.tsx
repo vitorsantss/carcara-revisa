@@ -88,7 +88,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
               <i className="h-4 w-1.5 rounded-sm bg-atencao" />
               <i className="h-4 w-1.5 rounded-sm bg-erro" />
             </span>
-            Marca-Texto
+            Carcará Revisa
           </a>
           <button className="md:hidden cursor-pointer" aria-label="Fechar menu" onClick={() => setAberto(false)} data-testid="sidebar-fechar">
             <X className="size-5" />

@@ -1,6 +1,6 @@
 ---
 name: teste-e2e
-description: Use ao escrever, corrigir ou gravar testes Playwright do Marca-Texto, inclusive vídeos de demonstração dos fluxos.
+description: Use ao escrever, corrigir ou gravar testes Playwright do Carcará Revisa, inclusive vídeos de demonstração dos fluxos.
 ---
 
 # Testes e2e

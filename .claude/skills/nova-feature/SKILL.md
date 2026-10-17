@@ -1,6 +1,6 @@
 ---
 name: nova-feature
-description: Use ao criar uma tela ou fluxo novo no Marca-Texto, inclusive ao tirar uma tela do estado "Pendente de implementação".
+description: Use ao criar uma tela ou fluxo novo no Carcará Revisa, inclusive ao tirar uma tela do estado "Pendente de implementação".
 ---
 
 # Nova feature

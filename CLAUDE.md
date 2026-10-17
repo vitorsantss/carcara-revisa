@@ -4,7 +4,7 @@ Guia para agentes de IA (Claude Code e similares) trabalharem neste repositório
 
 ## O produto
 
-Marca-Texto: pré-correção de redações do ENEM com o professor no comando. O aluno envia a foto da folha e confere a transcrição. A correção automática marca trechos como acerto, atenção ou erro, por competência (C1 a C5). O professor revisa como num code review e o aluno recebe a folha marcada.
+Carcará Revisa: pré-correção de redações do ENEM com o professor no comando. O aluno envia a foto da folha e confere a transcrição. A correção automática marca trechos como acerto, atenção ou erro, por competência (C1 a C5). O professor revisa como num code review e o aluno recebe a folha marcada.
 
 O diferencial é a **calibragem**: a concordância do professor é contada por competência × tipo. Acima de 95% em 30 casos, aquele tipo chega pré-aprovado. Leia `docs/specs/004-calibragem.md` antes de mexer nisso.
 

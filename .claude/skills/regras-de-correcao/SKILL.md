@@ -1,6 +1,6 @@
 ---
 name: regras-de-correcao
-description: Use ao mexer em notas, competências, marcações, visibilidade para o aluno, calibragem ou regras aprendidas do Marca-Texto.
+description: Use ao mexer em notas, competências, marcações, visibilidade para o aluno, calibragem ou regras aprendidas do Carcará Revisa.
 ---
 
 # Regras de correção

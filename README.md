@@ -1,6 +1,6 @@
-# Marca-Texto
+# Carcará Revisa
 
-Pré-correção de redações do ENEM com o professor no comando. MVP feito para o **Hackathon PotiCode 2026 (Case 1: devolutiva de redação para todos)**.
+Pré-correção de redações do ENEM com o professor no comando. MVP da **equipe Carcará** para o **Hackathon PotiCode 2026 (Case 1: devolutiva de redação para todos)**.
 
 O aluno fotografa a folha, confere a transcrição e envia. Uma correção automática marca trechos como **acerto**, **atenção** ou **erro**, cada um ligado a uma competência (C1 a C5). O professor revisa como num code review: aprova, recusa, edita ou cria as próprias correções. O aluno recebe a folha marcada, com comentários na margem e missões de reescrita.
 

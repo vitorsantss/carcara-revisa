@@ -1,6 +1,6 @@
 ---
 name: tema-da-marca
-description: Use ao ajustar cores, fontes, raios ou a identidade visual do Marca-Texto, ou ao adicionar um novo token de cor.
+description: Use ao ajustar cores, fontes, raios ou a identidade visual do Carcará Revisa, ou ao adicionar um novo token de cor.
 ---
 
 # Tema da marca

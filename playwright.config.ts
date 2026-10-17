@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * E2E do Marca-Texto. Por padrão sobe o Vite em modo dev.
+ * E2E do Carcará Revisa. Por padrão sobe o Vite em modo dev.
  * Para gravar vídeo de demonstração: npm run test:e2e:demo
  */
 export default defineConfig({

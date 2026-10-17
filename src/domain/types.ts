@@ -1,5 +1,5 @@
 /**
- * Modelo de dados do Marca-Texto.
+ * Modelo de dados do Carcará Revisa.
  * Instituição 1─N Turma 1─N Aluno; Professor N─N Turma; Proposta N─N Turma;
  * Redação pertence a um Aluno e a uma Proposta e carrega as marcações.
  */

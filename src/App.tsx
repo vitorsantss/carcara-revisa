@@ -13,7 +13,7 @@ function Rotas() {
   const rota = useRota();
   const [a, b] = rota.segmentos;
 
-  let titulo = "Marca-Texto";
+  let titulo = "Carcará Revisa";
   let pagina: ReactNode;
   if (a === "aluno" && b === "redacoes") {
     titulo = "Minhas redações";
