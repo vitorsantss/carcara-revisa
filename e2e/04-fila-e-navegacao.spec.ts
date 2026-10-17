@@ -28,7 +28,7 @@ test.describe("Fila do professor", () => {
 test.describe("Sidebar e telas pendentes", () => {
   for (const t of TELAS) {
     test(`menu "${t.nav}" abre a tela pendente`, async ({ page, isMobile }) => {
-      await page.goto("/#/aluno/enviar");
+      await page.goto("/#/professor/fila");
       if (isMobile) await page.getByTestId("sidebar-abrir").click();
       await page.getByTestId(t.nav).click();
       await expect(page.getByTestId(`pendente-${t.slug}`)).toBeVisible();
@@ -41,6 +41,34 @@ test.describe("Sidebar e telas pendentes", () => {
     if (isMobile) await page.getByTestId("sidebar-abrir").click();
     await page.getByTestId("papel-professor").click();
     await expect(page.getByTestId("fila-page")).toBeVisible();
+  });
+
+  test("aluno só vê o menu do aluno", async ({ page, isMobile }) => {
+    await page.goto("/#/aluno/enviar");
+    if (isMobile) await page.getByTestId("sidebar-abrir").click();
+    await expect(page.getByTestId("nav-grupo-aluno")).toBeVisible();
+    for (const grupo of ["professor", "instituição", "equipe"]) {
+      await expect(page.getByTestId(`nav-grupo-${grupo}`)).toHaveCount(0);
+    }
+  });
+
+  test("professor só vê os menus de professor, instituição e equipe", async ({ page, isMobile }) => {
+    await page.goto("/#/professor/fila");
+    if (isMobile) await page.getByTestId("sidebar-abrir").click();
+    for (const grupo of ["professor", "instituição", "equipe"]) {
+      await expect(page.getByTestId(`nav-grupo-${grupo}`)).toBeVisible();
+    }
+    await expect(page.getByTestId("nav-grupo-aluno")).toHaveCount(0);
+  });
+
+  test("trocar o papel dentro de uma redação mantém a redação e troca o menu", async ({ page, isMobile }) => {
+    await page.goto("/#/redacoes/r-ana?visao=aluno");
+    if (isMobile) await page.getByTestId("sidebar-abrir").click();
+    await page.getByTestId("papel-professor").click();
+    await expect(page.getByTestId("redacao-page")).toHaveAttribute("data-visao", "professor");
+    if (isMobile) await page.getByTestId("sidebar-abrir").click();
+    await expect(page.getByTestId("nav-grupo-professor")).toBeVisible();
+    await expect(page.getByTestId("nav-grupo-aluno")).toHaveCount(0);
   });
 
   test("bastidores registram a regra aprendida após uma recusa", async ({ page }) => {

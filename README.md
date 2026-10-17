@@ -37,7 +37,7 @@ npm run dev                       # http://localhost:5173
 ```
 src/
   components/ui/        componentes no padrão shadcn (Button, Card, Badge, Input, ToggleGroup…)
-  components/layout/    AppShell: sidebar com grupos Aluno, Professor, Instituição, Equipe
+  components/layout/    AppShell: sidebar filtrada pelo papel (aluno vê Aluno; professor vê Professor, Instituição, Equipe)
   domain/               types.ts (modelo de dados), regras.ts (regras de negócio), seed.ts (dados fictícios)
   services/correcao.ts  transcrição e correção SIMULADAS (troque por chamadas à API)
   store/app-store.tsx   estado global com useReducer
