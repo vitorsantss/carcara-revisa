@@ -31,6 +31,7 @@ export const MENU: GrupoMenu[] = [
     itens: [
       { rota: "/aluno/enviar", titulo: "Enviar redação", icone: FilePen, testId: "nav-aluno-enviar" },
       { rota: "/aluno/redacoes", titulo: "Minhas redações", icone: ClipboardList, testId: "nav-aluno-redacoes" },
+      { rota: "/aluno/desempenho", titulo: "Meu desempenho", icone: BarChart3, testId: "nav-aluno-desempenho" },
       { rota: "/aluno/privacidade", titulo: "Privacidade e uso de IA", icone: ShieldCheck, testId: "nav-aluno-privacidade" },
     ],
   },
@@ -138,7 +139,8 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
               <div className="mb-1 px-2 text-[11px] font-semibold uppercase tracking-wider text-sidebar-muted">{g.titulo}</div>
               <ul className="space-y-0.5">
                 {g.itens.map((it) => {
-                  const ativo = rota.path === it.rota || (it.rota === "/professor/fila" && rota.path.startsWith("/redacoes") && papel === "professor");
+                  const ativo = rota.path === it.rota || (it.rota === "/professor/fila" && rota.path.startsWith("/redacoes") && papel === "professor") ||
+                    (it.rota === "/professor/desempenho" && rota.path.startsWith("/professor/alunos/"));
                   return (
                     <li key={it.rota}>
                       <a

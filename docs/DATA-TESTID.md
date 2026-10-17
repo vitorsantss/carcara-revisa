@@ -2,7 +2,7 @@
 
 Convenção: `tela-elemento[-detalhe]`. Ids com `<...>` recebem o id do registro.
 
-Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `data-situacao`, `data-alterada`, `data-atendido`, `data-previa`, `data-quantidade`, `data-ativa`, `data-versao`, `data-valores`, `data-diferenca`, `data-competencia`, `data-competencias`, `data-nota`, `data-mais-fraca`, `data-aluno`, `data-turma`, `data-modelo`, `data-mostra-nota`, `aria-pressed`.
+Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `data-situacao`, `data-alterada`, `data-atendido`, `data-previa`, `data-quantidade`, `data-ativa`, `data-versao`, `data-valores`, `data-diferenca`, `data-competencia`, `data-competencias`, `data-nota`, `data-mais-fraca`, `data-aluno`, `data-turma`, `data-modelo`, `data-mostra-nota`, `data-valor`, `data-total`, `data-erros`, `data-atencoes`, `aria-pressed`.
 
 Impressão: `data-print="hide"` some na impressão; com `imprimir("resumo")`, `data-print="tela"` some e `data-print="resumo"` aparece.
 
@@ -10,6 +10,7 @@ Impressão: `data-print="hide"` some na impressão; com `imprimir("resumo")`, `d
 
 - `app-shell`
 - `brand`
+- `nav-aluno-desempenho`
 - `nav-aluno-enviar`
 - `nav-aluno-privacidade`
 - `nav-aluno-redacoes`
@@ -45,6 +46,29 @@ Prefixo padrão `grade` (no relatório impresso, `pdf-grade`).
 - `grade-media`
 - `grade-media-c<n>`
 
+## `features/aluno/overview-aluno.tsx` e `overview-aluno-page.tsx`
+
+- `overview-aluno`
+- `overview-nome`
+- `overview-nao-encontrado`
+- `overview-vazio`
+- `overview-ultima-nota`
+- `overview-evolucao-total`
+- `overview-melhor-nota`
+- `overview-devolvidas`
+- `overview-em-andamento`
+- `overview-radar`
+- `overview-serie-ultima`
+- `overview-serie-primeira`
+- `overview-evolucao`
+- `overview-competencia-c<n>`
+- `overview-mais-forte`
+- `overview-avanco`
+- `overview-foco`
+- `overview-versoes`
+- `overview-versao-<redacaoId>`
+- `overview-versao-abrir-<redacaoId>`
+
 ## `features/bastidores/bastidores-page.tsx`
 
 - `bastidores-calibragem`
@@ -64,6 +88,7 @@ Prefixo padrão `grade` (no relatório impresso, `pdf-grade`).
 ## `features/desempenho/desempenho-page.tsx`
 
 - `desempenho-page`
+- `desempenho-abrir-overview`
 - `desempenho-visao`
 - `desempenho-visao-aluno`
 - `desempenho-visao-turma`

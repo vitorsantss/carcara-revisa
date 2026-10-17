@@ -1,4 +1,4 @@
-import { FileDown, Sheet } from "lucide-react";
+import { FileDown, Sheet, UserRound } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -205,6 +205,9 @@ function VisaoAluno({ aluno, media, turma }: { aluno: DesempenhoAluno; media: No
             <span><b>C{foco}</b> {NOME_COMPETENCIA[foco].toLowerCase()}</span>
           </p>
         </div>
+        <Button variant="outline" size="sm" className="justify-self-start" onClick={() => navegar(`/professor/alunos/${aluno.alunoId}`)} data-testid="desempenho-abrir-overview">
+          <UserRound /> Ver overview de {nomeCurto}
+        </Button>
       </div>
     </div>
   );

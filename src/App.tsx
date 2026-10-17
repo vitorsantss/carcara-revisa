@@ -9,17 +9,21 @@ import { BastidoresPage } from "@/features/bastidores/bastidores-page";
 import { PendentePage, TELAS_PENDENTES } from "@/features/pendente/pendente-page";
 import { PrivacidadePage } from "@/features/privacidade/privacidade-page";
 import { DesempenhoPage } from "@/features/desempenho/desempenho-page";
+import { MeuDesempenhoPage, OverviewAlunoProfessorPage } from "@/features/aluno/overview-aluno-page";
 import type { Papel } from "@/domain/types";
 
 function Rotas() {
   const rota = useRota();
-  const [a, b] = rota.segmentos;
+  const [a, b, c] = rota.segmentos;
 
   let titulo = "Carcará Revisa";
   let pagina: ReactNode;
   if (a === "aluno" && b === "redacoes") {
     titulo = "Minhas redações";
     pagina = <MinhasRedacoesPage />;
+  } else if (a === "aluno" && b === "desempenho") {
+    titulo = "Meu desempenho";
+    pagina = <MeuDesempenhoPage />;
   } else if (a === "aluno" && b === "privacidade") {
     titulo = "Privacidade e uso de IA";
     pagina = <PrivacidadePage />;
@@ -29,6 +33,9 @@ function Rotas() {
   } else if (a === "professor" && b === "desempenho") {
     titulo = "Desempenho";
     pagina = <DesempenhoPage params={rota.params} />;
+  } else if (a === "professor" && b === "alunos" && c) {
+    titulo = "Overview do aluno";
+    pagina = <OverviewAlunoProfessorPage key={c} alunoId={c} />;
   } else if (a === "redacoes" && b) {
     const visao = (rota.params.get("visao") === "professor" ? "professor" : "aluno") as Papel;
     titulo = visao === "professor" ? "Revisão" : "Minha redação";

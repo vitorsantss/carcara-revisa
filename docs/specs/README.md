@@ -13,6 +13,7 @@ Comportamento esperado de cada fluxo. A spec vem antes do código: ao criar ou m
 | [007](007-radar-de-competencias.md) | Radar de competências na devolutiva | `06-radar-de-competencias.spec.ts` |
 | [008](008-desempenho-do-professor.md) | Desempenho do professor e exportação | pendente (`07-desempenho.spec.ts`) |
 | [009](009-stories.md) | Stories para Instagram | pendente (`08-stories.spec.ts`) |
+| [010](010-overview-do-aluno.md) | Overview do aluno | `09-overview-do-aluno.spec.ts` |
 
 ## Formato
 

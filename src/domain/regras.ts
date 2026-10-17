@@ -220,6 +220,56 @@ export const SUGESTAO_DE_AULA: Record<Competencia, string> = {
   5: "aula sobre os 5 elementos da proposta de intervenção: agente, ação, meio, finalidade e detalhamento",
 };
 
+/* ---------- overview do aluno ---------- */
+export type ContagemPorCompetencia = Record<Competencia, Record<Exclude<Tipo, "acerto">, number>>;
+
+export interface OverviewAluno {
+  historico: Redacao[];
+  emAndamento: number;
+  ultimas: NotasCompetencias | null;
+  primeiras: NotasCompetencias | null;
+  total: number;
+  melhorTotal: number;
+  evolucao: number;
+  maisForte: Competencia | null;
+  insights: InsightsDeEvolucao | null;
+  pontosDeAtencao: ContagemPorCompetencia;
+}
+
+/** Erros e atenções que o aluno viu, somados por competência em todas as versões. */
+export function pontosPorCompetencia(historico: Redacao[]): ContagemPorCompetencia {
+  const contagem = Object.fromEntries(COMPETENCIAS.map((c) => [c, { erro: 0, atencao: 0 }])) as ContagemPorCompetencia;
+  for (const m of historico.flatMap((r) => r.marcacoes.filter(visivelParaAluno))) {
+    if (m.tipo !== "acerto") contagem[m.competencia][m.tipo]++;
+  }
+  return contagem;
+}
+
+/** Resumo das versões devolvidas do aluno na proposta. Redação ainda não devolvida só conta como em andamento. */
+export function overviewDoAluno(redacoes: Redacao[], alunoId: string, propostaId: string): OverviewAluno {
+  const historico = historicoDoAluno(redacoes, alunoId, propostaId);
+  const emAndamento = redacoes.filter((r) => r.alunoId === alunoId && r.etapa !== "devolvida").length;
+  const ultima = historico.at(-1);
+  const ultimas = ultima ? notasPorCompetencia(ultima) : null;
+  const primeiras = historico.length ? notasPorCompetencia(historico[0]) : null;
+  return {
+    historico,
+    emAndamento,
+    ultimas,
+    primeiras,
+    total: ultima ? notaTotal(ultima) : 0,
+    melhorTotal: historico.reduce((maior, r) => Math.max(maior, notaTotal(r)), 0),
+    evolucao: evolucaoTotal(historico),
+    maisForte: ultimas ? melhorCompetencia(ultimas) : null,
+    insights: ultimas ? insightsDeEvolucao(ultimas, historico.length > 1 ? primeiras : null) : null,
+    pontosDeAtencao: pontosPorCompetencia(historico),
+  };
+}
+
+/** Professor só abre o overview de alunos das próprias turmas. */
+export const podeVerAluno = (professor: Pick<Professor, "turmaIds"> | undefined, aluno: Pick<Aluno, "turmaId"> | undefined) =>
+  !!aluno && podeExportar(professor, aluno.turmaId);
+
 /** Só o professor da turma exporta dados dos alunos dela (ADR-0010). */
 export const podeExportar = (professor: Pick<Professor, "turmaIds"> | undefined, turmaId: string) =>
   !!professor && professor.turmaIds.includes(turmaId);
