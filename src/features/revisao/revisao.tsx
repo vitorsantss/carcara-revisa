@@ -45,7 +45,7 @@ export function Revisao({ redacao, onDevolvida }: { redacao: Redacao; onDevolvid
     const off = selecaoParaOffsets(docRef.current);
     if (!off) return setPopover(null);
     const rect = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
-    setPopover({ x: Math.min(window.innerWidth - 300, rect.left), y: rect.bottom + 8, ...off });
+    setPopover({ ...posicaoDoPopover(rect), ...off });
   };
 
   const criar = (tipo: Tipo, competencia: Competencia) => {
@@ -169,6 +169,20 @@ export function Revisao({ redacao, onDevolvida }: { redacao: Redacao; onDevolvid
       )}
     </div>
   );
+}
+
+const LARGURA_POPOVER = 288;
+const ALTURA_POPOVER = 190;
+const MARGEM_POPOVER = 8;
+
+function posicaoDoPopover(trecho: DOMRect) {
+  const limitar = (valor: number, maximo: number) => Math.max(MARGEM_POPOVER, Math.min(valor, maximo));
+  const cabeAbaixo = trecho.bottom + MARGEM_POPOVER + ALTURA_POPOVER <= window.innerHeight;
+  const y = cabeAbaixo ? trecho.bottom + MARGEM_POPOVER : trecho.top - MARGEM_POPOVER - ALTURA_POPOVER;
+  return {
+    x: limitar(trecho.left, window.innerWidth - LARGURA_POPOVER - MARGEM_POPOVER),
+    y: limitar(y, window.innerHeight - ALTURA_POPOVER - MARGEM_POPOVER),
+  };
 }
 
 function NovaMarcacao({ onCriar, onCancelar }: { onCriar: (t: Tipo, c: Competencia) => void; onCancelar: () => void }) {
