@@ -1,0 +1,205 @@
+{
+  "persona_id": "aluno-02-gabriel",
+  "fase": 1,
+  "executado_em": "2026-10-17T15:09:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Pixel 5 (emulado no Playwright/Chromium, 393x851, pt-BR, America/Sao_Paulo)",
+    "rede": "sem-limitacao",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 1,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Menu, 'Privacidade e uso de IA', pronto. Não treina modelo, só eu e o professor vemos. Isso eu entendi.",
+        "Por quanto tempo guarda? 'Segue as regras da escola.' Isso não é prazo."
+      ],
+      "achados": ["A-004"]
+    },
+    {
+      "id": "M1",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 10,
+      "abandono_em": null,
+      "falas": [
+        "Leu a folha em menos de um segundo e me pediu pra confirmar só três palavras. Bom.",
+        "Do toque em 'Enviar para correção' até a confirmação: 0,6 s. E diz quando volta: até 20/10, três dias. No app do MEC ninguém me diz isso."
+      ],
+      "achados": []
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 5,
+      "interacoes": 12,
+      "abandono_em": null,
+      "falas": [
+        "Mandei a mesma foto de novo e passou liso. Nenhum 'você já enviou esse texto'.",
+        "Em Minhas redações aparecem duas iguais, mesma hora, mesmo começo. Qual é qual?"
+      ],
+      "achados": ["A-002"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 9,
+      "abandono_em": null,
+      "falas": [
+        "Ele pegou as frases copiadas antes de eu enviar. Ponto pra eles.",
+        "Mas a minha proposta de intervenção, com agente e meio que eu escrevi, foi listada inteira como 'igual' ao motivador. Só o final é parecido."
+      ],
+      "achados": ["A-001"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Texto com 'engendra', 'imperioso', 'cabe salientar'... e nada. Nenhum aviso.",
+        "Pelo menos a página de privacidade diz claramente: pode usar IA pra estudar, a redação tem que ser sua, e quem avalia é o professor. Honesto."
+      ],
+      "achados": ["A-003"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Achou meu nome no fim e ofereceu 'Remover a linha'. Melhor que muito corretor por aí.",
+        "Deixei de propósito e ele deixou enviar sem perguntar de novo. Tudo bem, eu sabia o que estava fazendo."
+      ],
+      "achados": ["A-005"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Frase autoral inteira marcada como cópia dos motivadores quando só o trecho final coincide",
+      "o_que_aconteceu": "Na conferência, o aviso 'Algumas frases são iguais às dos textos motivadores' listou a frase 'Portanto, o Ministério da Educação deve incluir a educação midiática no currículo, por meio de oficinas semanais, para que os jovens aprendam a checar a fonte, a data e o autor de uma informação antes de compartilhá-la.' Só o trecho final coincide com o motivador 3; agente, ação e meio são meus. Na fase 3, a correção automática marcou essa frase inteira como Erro C2 'Frase copiada' e sugeriu zero ('sobram até 7 linhas'), contando a frase como linhas copiadas.",
+      "o_que_a_persona_esperava": "Que só o trecho realmente copiado fosse destacado e descontado, e que a frase com elementos próprios contasse como linha minha.",
+      "impacto": "Infla a contagem de linhas copiadas e pode empurrar uma redação para o zero injustamente. A persona passa a desconfiar da detecção que tinha elogiado.",
+      "passos": [
+        "Abrir Enviar redação no celular",
+        "Tocar em 'Colar texto' e colar um texto com 3 frases copiadas e uma proposta própria que termina com o trecho do motivador 3",
+        "Tocar em 'Continuar' e ler o aviso de frases copiadas"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M3-conferencia.png",
+        "capturas/aluno-02/M3-confirmacao.png",
+        "capturas/aluno-02/P-M3-revisao.png"
+      ],
+      "seletor_visivel": "data-testid=envio-frases-copiadas",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-002",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Reenvio do mesmo texto não é sinalizado ao aluno",
+      "o_que_aconteceu": "A mesma foto foi enviada duas vezes como redações novas. Nenhum aviso apareceu na conferência nem na confirmação. Em 'Minhas redações' surgiram dois itens idênticos ('Enviada em 17/10, 15:06', mesmo início de texto), sem indicar que um repete o outro. Na fase 3 vi que só o professor recebe o aviso 'texto repetido'.",
+      "o_que_a_persona_esperava": "Um aviso do tipo 'você já enviou este texto em 17/10; enviar como nova versão?' e uma marcação na lista.",
+      "impacto": "A persona não sabe se o sistema percebeu o teste de consistência e não consegue diferenciar as duas entradas na lista.",
+      "passos": [
+        "Enviar boa-foto-dia.jpg e confirmar as 3 palavras",
+        "Voltar a 'Enviar redação' e enviar boa-foto-dia.jpg de novo",
+        "Abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M2-transcricao.png",
+        "capturas/aluno-02/M2-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "role=button[name='Enviar para correção']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-003",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Texto com marcas típicas de IA passa sem nenhum sinal, e a política de IA não aparece na tela de envio",
+      "o_que_aconteceu": "Colei um texto com estilo típico de IA ('engendra', 'é imperioso analisar', 'cabe salientar'). A conferência e a confirmação não mostraram aviso nenhum. A política existe e é clara, mas só na página 'Privacidade e uso de IA': 'A plataforma não acusa ninguém de usar IA. Quem avalia é o seu professor'. A tela de envio só fala de privacidade, não de IA.",
+      "o_que_a_persona_esperava": "Ver a regra sobre IA no próprio envio (uma linha basta) e, de preferência, um alerta para o professor, sem acusar o aluno.",
+      "impacto": "A persona entende a decisão de não acusar ninguém, mas fica sem saber se o professor terá algum apoio para perceber. A confiança na nota de um texto assim cai.",
+      "passos": [
+        "Abrir 'Enviar redação' e tocar em 'Colar texto'",
+        "Colar o texto com estilo de IA e tocar em 'Continuar'",
+        "Tocar em 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M4-conferencia.png",
+        "capturas/aluno-02/M4-confirmacao.png",
+        "capturas/aluno-02/M6-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=envio-privacidade",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-004",
+      "missao": "M6",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Política de dados não informa prazo de guarda nem como pedir exclusão",
+      "o_que_aconteceu": "A página 'Privacidade e uso de IA' foi achada em 2 toques (menu e item) e também pelo 'Saiba mais' da tela de envio. Ela responde quem vê e se treina modelo. Em 'Por quanto tempo guardamos' diz que na demonstração nada sai do aparelho e que, na versão para escolas, 'o prazo de guarda e a exclusão a pedido seguem as regras definidas pela escola e a LGPD'. Não há prazo, canal de pedido nem link para termos completos.",
+      "o_que_a_persona_esperava": "Um prazo concreto (ou onde a escola o informa) e um caminho para pedir a exclusão da minha foto e do meu texto.",
+      "impacto": "Para quem lê termos, a resposta sobre retenção parece evasiva.",
+      "passos": [
+        "Abrir o menu lateral no celular",
+        "Tocar em 'Privacidade e uso de IA'",
+        "Ler a seção 'Por quanto tempo guardamos'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M6-menu.png",
+        "capturas/aluno-02/M6-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=privacidade-page",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-005",
+      "missao": "M5",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Envio com identificação detectada não pede confirmação extra",
+      "o_que_aconteceu": "O aviso 'Encontramos o que parece ser seu nome ou uma assinatura. No Enem, isso zera a redação.' apareceu com o botão 'Remover a linha'. Sem remover, 'Enviar para correção' continuou habilitado e enviou direto, sem segunda confirmação. A confirmação depois mostrou 'Pontos que o professor vai conferir' com o mesmo aviso.",
+      "o_que_a_persona_esperava": "Uma confirmação curta ('Enviar mesmo assim?') antes de mandar um texto que zera.",
+      "impacto": "Baixo para quem leu o aviso. Um aluno distraído pode enviar e só descobrir o zero na devolutiva.",
+      "passos": [
+        "Tocar em 'Colar texto' e colar uma redação terminando com 'Gabriel Martins'",
+        "Tocar em 'Continuar' e ler o aviso",
+        "Tocar em 'Enviar para correção' sem remover a linha"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M5-conferencia.png",
+        "capturas/aluno-02/M5-confirmacao.png"
+      ],
+      "seletor_visivel": "data-testid=envio-remover-identificacao",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 3,
+    "clareza_da_devolutiva": null,
+    "recomendaria": true
+  },
+  "cenarios_nao_executados": []
+}

@@ -1,17 +1,17 @@
 import * as React from "react";
-import { Check, Eye, GraduationCap } from "lucide-react";
+import { AlertTriangle, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Alert } from "@/components/ui/misc";
-import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useApp, useRedacao } from "@/store/app-store";
-import { navegar } from "@/lib/router";
 import { ALUNOS, PROPOSTA, TURMAS } from "@/domain/seed";
-import type { EtapaRedacao, Papel } from "@/domain/types";
+import { TEXTO_ALERTA, dataPrevistaDevolutiva } from "@/domain/regras";
+import type { EtapaRedacao, Papel, Redacao } from "@/domain/types";
 import { EssayDocument } from "./essay-document";
+import { GlossarioCompetencias } from "./glossario";
 import { Revisao } from "@/features/revisao/revisao";
 import { Devolutiva } from "@/features/devolutiva/devolutiva";
-import { cn, tempoRelativo } from "@/lib/utils";
+import { cn, dataCurta, tempoRelativo } from "@/lib/utils";
 
 const ETAPAS: Array<{ id: EtapaRedacao; rotulo: string }> = [
   { id: "enviada", rotulo: "Enviada" },
@@ -20,15 +20,14 @@ const ETAPAS: Array<{ id: EtapaRedacao; rotulo: string }> = [
 ];
 
 /**
- * Uma redação, duas visões. O toggle alterna entre o que o aluno vê
- * e o que o professor vê, sem sair da redação.
+ * Uma redação, duas visões: a do professor (revisão) e a do aluno (aguardando ou devolutiva).
+ * A visão segue o papel atual; o professor confere o que o aluno vai receber pela prévia da revisão.
  */
 export function RedacaoPage({ id, visao }: { id: string; visao: Papel }) {
   const { despachar } = useApp();
   const redacao = useRedacao(id);
 
   React.useEffect(() => {
-    despachar({ type: "definir_papel", papel: visao });
     if (visao === "professor" && redacao?.etapa === "enviada") despachar({ type: "iniciar_revisao", redacaoId: id });
   }, [visao, id, redacao?.etapa, despachar]);
 
@@ -49,7 +48,7 @@ export function RedacaoPage({ id, visao }: { id: string; visao: Papel }) {
             {redacao.versao > 1 ? ` · reescrita v${redacao.versao}` : ""}
           </p>
         </div>
-        <ol className="flex items-center gap-2 text-xs font-semibold" data-testid="redacao-etapas" aria-label="Andamento">
+        <ol className="flex flex-wrap items-center gap-2 text-xs font-semibold" data-testid="redacao-etapas" aria-label="Andamento">
           {ETAPAS.map((e, i) => (
             <li key={e.id} className="flex items-center gap-2" data-testid={`etapa-${e.id}`} data-state={i < idxEtapa ? "feita" : i === idxEtapa ? "atual" : "futura"}>
               <span className={cn("grid size-6 place-items-center rounded-full border", i <= idxEtapa ? "border-primary bg-primary text-primary-foreground" : "text-muted-foreground")}>
@@ -60,40 +59,54 @@ export function RedacaoPage({ id, visao }: { id: string; visao: Papel }) {
             </li>
           ))}
         </ol>
-        <ToggleGroup
-          type="single"
-          aria-label="Visão"
-          data-testid="visao-toggle"
-          value={visao}
-          onValueChange={(v) => navegar(`/redacoes/${id}?visao=${v}`)}
-          items={[
-            { value: "aluno", label: <><Eye className="size-4" /> Visão do aluno</>, testId: "visao-aluno" },
-            { value: "professor", label: <><GraduationCap className="size-4" /> Visão do professor</>, testId: "visao-professor" },
-          ]}
-        />
       </div>
 
       {visao === "professor" ? (
-        <Revisao redacao={redacao} onDevolvida={() => navegar(`/redacoes/${id}?visao=aluno`)} />
+        <Revisao redacao={redacao} />
       ) : redacao.etapa === "devolvida" ? (
         <Devolutiva redacao={redacao} />
       ) : (
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]" data-testid="aluno-aguardando">
-          <EssayDocument testId="aluno-folha" tema={PROPOSTA.tema} titulo={redacao.titulo} texto={redacao.texto} marcacoes={[]} />
-          <Card className="h-fit p-5">
-            <Badge variant="highlight" data-testid="aluno-status">{redacao.etapa === "enviada" ? "Aguardando professor" : "Em revisão"}</Badge>
-            <h3 className="mt-3 text-base font-bold">Sua redação chegou</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              O professor está corrigindo. Você recebe a devolutiva com os trechos marcados assim que ele terminar.
-            </p>
-            {redacao.duvidasDeTranscricao > 0 && (
-              <p className="mt-3 text-xs text-muted-foreground" data-testid="aluno-duvidas">
-                {redacao.duvidasDeTranscricao} palavras da foto foram conferidas por você antes do envio.
-              </p>
-            )}
-          </Card>
-        </div>
+        <AlunoAguardando redacao={redacao} />
       )}
+    </div>
+  );
+}
+
+function AlunoAguardando({ redacao }: { redacao: Redacao }) {
+  const previsao = dataPrevistaDevolutiva(redacao, PROPOSTA);
+  const alertas = (redacao.alertas ?? []).filter((a) => a !== "texto_repetido");
+  return (
+    <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]" data-testid="aluno-aguardando">
+      <EssayDocument testId="aluno-folha" tema={PROPOSTA.tema} titulo={redacao.titulo} texto={redacao.texto} marcacoes={[]} />
+      <div className="grid h-fit gap-4">
+        <Card className="p-5">
+          <Badge variant="highlight" data-testid="aluno-status">{redacao.etapa === "enviada" ? "Aguardando professor" : "Em revisão"}</Badge>
+          <h3 className="mt-3 text-base font-bold">Sua redação chegou ao professor</h3>
+          <ol className="mt-2 grid gap-1.5 text-sm text-muted-foreground" data-testid="aluno-proximos-passos">
+            <li><b className="text-foreground">1.</b> Uma correção automática faz a primeira leitura.</li>
+            <li><b className="text-foreground">2.</b> Seu professor revisa, ajusta e assina a correção.</li>
+            <li><b className="text-foreground">3.</b> Você recebe a folha marcada aqui, em <a href="#/aluno/redacoes" className="font-semibold text-primary underline underline-offset-2">Minhas redações</a>.</li>
+          </ol>
+          <p className="mt-3 text-sm" data-testid="aluno-previsao">
+            Previsão de devolutiva: <b>até {dataCurta(previsao)}</b> ({PROPOSTA.diasParaDevolutiva} dias combinados pela turma).
+          </p>
+          {redacao.duvidasDeTranscricao > 0 && (
+            <p className="mt-3 text-xs text-muted-foreground" data-testid="aluno-duvidas">
+              Você conferiu as {redacao.duvidasDeTranscricao} palavras em que a leitura da sua letra teve dúvida. Se o resto do texto ficou diferente do que você escreveu, avise seu professor.
+            </p>
+          )}
+        </Card>
+        <GlossarioCompetencias testId="aluno-glossario" />
+        {alertas.length > 0 && (
+          <Card className="grid gap-2 p-5" data-testid="aluno-alertas">
+            <h3 className="flex items-center gap-2 text-sm font-bold"><AlertTriangle className="size-4 text-atencao" /> Pontos que o professor vai conferir</h3>
+            <ul className="grid gap-1.5 text-sm">
+              {alertas.map((a) => <li key={a} data-testid={`aluno-alerta-${a}`}>{TEXTO_ALERTA[a].aluno}</li>)}
+            </ul>
+            <p className="text-xs text-muted-foreground">Quem decide a nota é o professor. Se algum desses pontos se confirmar, a devolutiva explica o que fazer na próxima.</p>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }

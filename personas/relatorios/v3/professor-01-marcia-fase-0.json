@@ -1,0 +1,101 @@
+{
+  "persona_id": "professor-01-marcia",
+  "fase": 0,
+  "executado_em": "2026-10-17T15:09:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome (Chromium via Playwright) 1366x768, pt-BR, America/Sao_Paulo",
+    "rede": "wifi-domestico",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 60,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "Prof. Marina Costa? Eu sou a Márcia. De quem é essa conta?",
+        "Minhas turmas: 'em breve'. Então eu não tenho turma, só tenho fila.",
+        "Colégio Horizonte. E a estadual? E a municipal? Não tem onde trocar de escola."
+      ],
+      "achados": ["A-001", "A-002", "A-003"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Sem turmas próprias e sem como ter duas escolas na mesma conta",
+      "o_que_aconteceu": "A conta mostra uma única escola (Colégio Horizonte) no rodapé da barra lateral. Clicar no nome não abre nada. 'Minhas turmas' está marcada 'em breve' e abre uma tela 'Pendente de implementação', com o exemplo '3º A · 4 alunos / 3º B · 2 alunos'. As turmas só aparecem como opções do filtro da fila (3º A, 3º B). Não há seletor de escola.",
+      "o_que_a_persona_esperava": "Ver as turmas da escola estadual, separadas da municipal, e saber sempre em qual escola está trabalhando.",
+      "impacto": "A professora não sabe se a plataforma serve para quem dá aula em duas redes. Para o teste, pode até passar. Para 180 alunos em cinco turmas, não serve.",
+      "passos": [
+        "Entrar como Professor na barra lateral",
+        "Clicar no nome no rodapé da barra lateral",
+        "Clicar em 'Minhas turmas'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-fila-inicial.png",
+        "capturas/professor-01/M1-usuario-clicado.png",
+        "capturas/professor-01/M1-minhas-turmas.png"
+      ],
+      "seletor_visivel": "role=link[name='Minhas turmas']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "A conta está com o nome de outra professora e não há perfil para corrigir",
+      "o_que_aconteceu": "A barra lateral mostra 'Prof. Marina Costa, Colégio Horizonte'. Não há tela de perfil nem como mudar o nome. O tratamento é 'Prof.' no masculino.",
+      "o_que_a_persona_esperava": "Entrar com o próprio nome, porque a correção vai assinada.",
+      "impacto": "Já na entrada fica a dúvida sobre quem assina a correção. Na fase 2 isso se confirma: a devolutiva sai como 'Prof. Marina Costa'.",
+      "passos": [
+        "Entrar como Professor",
+        "Ler o rodapé da barra lateral",
+        "Clicar no nome"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-fila-inicial.png",
+        "capturas/professor-01/M1-usuario-clicado.png"
+      ],
+      "seletor_visivel": "text='Prof. Marina Costa'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-003",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Menu cheio de itens 'em breve' e uma área 'Bastidores' que não é para professor",
+      "o_que_aconteceu": "Sete dos nove itens do menu do professor e da instituição estão marcados 'em breve'. O item 'Bastidores' fica visível e, ao abrir, diz que é para a equipe e fala em modelo, calibragem e confiança. As telas pendentes têm 'Detalhes técnicos (para a equipe)'.",
+      "o_que_a_persona_esperava": "Ver só o que ela pode usar hoje.",
+      "impacto": "Passa a impressão de produto inacabado e traz vocabulário técnico para uma professora sem formação em IA.",
+      "passos": [
+        "Entrar como Professor",
+        "Ler o menu lateral",
+        "Abrir 'Visão geral'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-fila-inicial.png",
+        "capturas/professor-01/M1-visao-geral.png"
+      ],
+      "seletor_visivel": "role=link[name='Bastidores']",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": null
+  },
+  "cenarios_nao_executados": []
+}

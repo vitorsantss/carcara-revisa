@@ -1,0 +1,328 @@
+{
+  "persona_id": "aluno-03-josiane",
+  "fase": 1,
+  "executado_em": "2026-10-17T15:06:33-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Galaxy S8",
+    "rede": "4g-oscilando",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 12,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Demorou pra abrir... deixa eu ver se é aqui... acho que é.",
+        "Helena Campos? Colégio Horizonte? Eu não sou a Helena, e meu cursinho não chama assim. Será que a professora mandou o link errado?",
+        "Não pediu pra criar conta nem nada. Já entrou direto.",
+        "Textos motivadores? Motivar o quê? Ah, é pra ler antes de escrever."
+      ],
+      "achados": ["A-001", "A-002", "A-010"]
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 10,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Ele leu tudo errado minha letra, ficou outra coisa. Eu nunca escrevi sobre esse Umberto Eco.",
+        "Aqui do lado aparece minha folha certinho, e embaixo um texto que não é meu.",
+        "Pediu pra tocar nas palavras amarelas, eu toquei. Aí falou 'Tudo conferido'. Mas e o resto?",
+        "Pra arrumar teria que apagar tudo e digitar a redação inteira no celular. Não dá, já é meia-noite.",
+        "Mandei assim mesmo. A nota vai ser de quê, do que eu escrevi ou do que ele leu?"
+      ],
+      "achados": ["A-003", "A-004", "A-005"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 9,
+      "interacoes": 12,
+      "abandono_em": null,
+      "falas": [
+        "Que bom, apareceu 'Adicionar verso ou outra folha'. Coloquei o verso.",
+        "Diz 2 folhas, mas o texto é o mesmo de antes. Cadê o que eu escrevi atrás da folha?"
+      ],
+      "achados": ["A-006"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 8,
+      "abandono_em": null,
+      "falas": [
+        "'Você já enviou este mesmo texto'? Não enviei não, essa é outra redação. Será que apertei errado?",
+        "Voltei e colei o texto que eu tinha passado pro bloco de notas.",
+        "'Seu texto não fala do tema pedido... zera a redação.' Nossa. Mas eu falei de celular, rede social não é celular? Não entendi o que faltou."
+      ],
+      "achados": ["A-007", "A-008"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 8,
+      "abandono_em": null,
+      "falas": [
+        "De novo o texto do Umberto Eco e de novo 'você já enviou'.",
+        "Colei minha história. Aí avisou que eu contei uma experiência pessoal e que tem que defender uma opinião. Pelo menos avisou antes.",
+        "Mandei mesmo assim, pra ver o que a professora acha."
+      ],
+      "achados": ["A-007"]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 7,
+      "interacoes": 10,
+      "abandono_em": null,
+      "falas": [
+        "Com a letra grande, os quadrados de 'Tirar foto' ficam cortados do lado e a tela mexe pro lado.",
+        "A tela de conferir o texto e a lista de redações ficaram boas com a letra grande."
+      ],
+      "achados": ["A-009"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Link abre direto na conta de outra aluna, sem cadastro nem turma do cursinho",
+      "o_que_aconteceu": "A URL entregue como link da professora abriu direto na tela 'Enviar redação', já identificada como 'Helena Campos, Colégio Horizonte'. Não houve criação de conta, login, nem menção à turma do cursinho comunitário.",
+      "o_que_a_persona_esperava": "Uma tela dizendo 'Você foi convidada para a turma de redação do cursinho' e pedindo o nome dela para criar a conta.",
+      "impacto": "A persona não sabe se está no lugar certo nem se a redação vai chegar à professora dela; acha que pode estar mandando no nome de outra pessoa.",
+      "passos": [
+        "Abrir http://localhost:5173/ como se fosse o link do WhatsApp",
+        "Tocar no menu (três linhas)",
+        "Ler o nome no rodapé do menu"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M1-01-link-whatsapp.png",
+        "capturas/aluno-03/M1-02-menu.png"
+      ],
+      "seletor_visivel": "data-testid=usuario-atual",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Aluna vê 'Entrar como Professor' e abre a fila com redações de outros alunos",
+      "o_que_aconteceu": "O menu da aluna mostra 'ENTRAR COMO Aluno / Professor'. Um toque em 'Professor' abre 'Redações para corrigir' com nomes (Davi Rocha, Ana Luiza, Bruno Melo), turmas e trechos das redações de outros alunos.",
+      "o_que_a_persona_esperava": "Ver só as coisas dela. Ficou com medo de ter apertado algo proibido.",
+      "impacto": "Exposição de dados de outros alunos e risco de a aluna mexer na correção; aumenta o medo de 'apertar errado'.",
+      "passos": [
+        "Abrir o link",
+        "Tocar no menu",
+        "Tocar em 'Professor' abaixo de 'ENTRAR COMO'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M1-02-menu.png",
+        "capturas/aluno-03/M1-04-entrar-como-professor.png"
+      ],
+      "seletor_visivel": "data-testid=papel-professor",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-003",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Texto 'lido da sua foto' não tem relação com o que está escrito na folha",
+      "o_que_aconteceu": "A foto cursiva-dificil.jpg traz um texto sobre educação de jovens e adultos. A tela 'Confira o texto lido da sua foto' mostrou um texto completamente diferente ('O escritor italiano Umberto Eco afirmou...'). O mesmo texto apareceu para todas as fotos enviadas (cursiva, duas folhas, fuga ao tema, narrativo). Com 'Ver foto' aberto, a folha real fica logo acima do texto errado.",
+      "o_que_a_persona_esperava": "Ver as palavras que ela escreveu, talvez com uma ou outra errada.",
+      "impacto": "A redação enviada e corrigida não é a da aluna: a nota final (720) foi dada a um texto que ela não escreveu. Nota injusta.",
+      "passos": [
+        "Na tela Enviar redação, tocar em 'Tirar foto da folha'",
+        "Selecionar cursiva-dificil.jpg",
+        "Tocar em 'Ver foto' e comparar com o texto mostrado"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M2-01-texto-lido.png",
+        "capturas/aluno-03/M2-02-ver-foto.png",
+        "capturas/aluno-03/M4-01-texto-lido-foto.png",
+        "capturas/aluno-03/M5-01-texto-lido-foto.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-004",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Confirmar só as 3 palavras amarelas libera o envio e mostra 'Tudo conferido'",
+      "o_que_aconteceu": "O botão 'Enviar para correção' fica desabilitado até tocar nas 3 palavras amarelas. Depois disso a tela diz 'Tudo conferido' e, após enviar, 'Você conferiu as 3 palavras em que a leitura da sua letra teve dúvida. Se o resto do texto ficou diferente do que você escreveu, avise seu professor.' O resto do texto estava inteiro errado.",
+      "o_que_a_persona_esperava": "Que a plataforma pedisse para conferir o texto todo, ou que não dissesse 'tudo conferido' com o texto errado.",
+      "impacto": "Quem segue instruções ao pé da letra envia achando que conferiu; o aviso para falar com o professor só aparece depois do envio.",
+      "passos": [
+        "Enviar cursiva-dificil.jpg",
+        "Tocar em cada palavra amarela e em 'OK'",
+        "Ler a mensagem no topo e tocar em 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M2-03-popup-palavra.png",
+        "capturas/aluno-03/M2-04-corrigir-texto.png",
+        "capturas/aluno-03/M2-06-depois-enviar.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao-resumo",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-005",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 3,
+      "titulo": "Corrigir a leitura exige reescrever o texto inteiro numa caixa no celular",
+      "o_que_aconteceu": "Fora das 3 palavras amarelas, a única forma de corrigir é 'A leitura errou outras palavras? Corrigir o texto', que abre uma caixa com o texto inteiro (1003 caracteres) para editar à mão.",
+      "o_que_a_persona_esperava": "Tocar na palavra errada e trocar só ela, como nas amarelas, ou poder mandar a foto de novo.",
+      "impacto": "Quando a leitura erra o texto todo, a aluna teria de digitar a redação inteira no celular. É exatamente o que a faz desistir; ela enviou sem corrigir.",
+      "passos": [
+        "Enviar cursiva-dificil.jpg",
+        "Tocar em 'Corrigir o texto'",
+        "Ver a caixa com o texto inteiro"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M2-04-corrigir-texto.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao-editar",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-006",
+      "missao": "M3",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Com duas folhas, o texto do verso não aparece e não há separação por folha",
+      "o_que_aconteceu": "Depois de tirar a foto da frente apareceu 'Adicionar verso ou outra folha' e a tela passou a dizer '2 folhas'. O texto mostrado continuou o mesmo da foto anterior; nada do verso (conclusão com transporte gratuito) apareceu, e não há indicação de onde termina uma folha e começa a outra.",
+      "o_que_a_persona_esperava": "Ver o texto da frente seguido do texto do verso.",
+      "impacto": "A aluna não consegue saber se o verso foi lido; a conclusão pode ficar de fora da correção sem ela perceber.",
+      "passos": [
+        "Tocar em 'Tirar foto da folha' e escolher duas-paginas.jpg",
+        "Tocar em 'Adicionar verso ou outra folha' e escolher duas-paginas-2.jpg",
+        "Ler o texto mostrado"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M3-01-uma-folha.png",
+        "capturas/aluno-03/M3-02-duas-folhas.png",
+        "capturas/aluno-03/M3-03-ver-fotos.png"
+      ],
+      "seletor_visivel": "data-testid=envio-folhas",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-007",
+      "missao": "M4",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Foto de redação nova recebe aviso 'Você já enviou este mesmo texto'",
+      "o_que_aconteceu": "Ao tirar foto de fuga-ao-tema.jpg (e depois de narrativo.jpg), apareceu em amarelo: 'Você já enviou este mesmo texto. Enviar de novo cria outra correção do mesmo texto.' Eram redações diferentes; o aviso vem do texto lido errado.",
+      "o_que_a_persona_esperava": "Ver o texto da nova redação.",
+      "impacto": "A persona acha que apertou algo errado ou que mandou a mesma coisa duas vezes; perde confiança e pensa em parar.",
+      "passos": [
+        "Já ter enviado uma redação por foto",
+        "Tocar em 'Tirar foto da folha' e escolher fuga-ao-tema.jpg",
+        "Ler o aviso acima de 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M4-01-texto-lido-foto.png",
+        "capturas/aluno-03/M5-01-texto-lido-foto.png"
+      ],
+      "seletor_visivel": "data-testid=envio-avisos",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-008",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Aviso de fuga ao tema antes do envio não explica o que faltou",
+      "o_que_aconteceu": "Com o texto colado sobre uso do celular, apareceu: 'Seu texto não fala do tema pedido. No Enem, escrever sobre outro assunto zera a redação.' Não diz qual parte do tema faltou (desinformação), nem dá caminho além de 'Voltar' ou 'Enviar para correção'.",
+      "o_que_a_persona_esperava": "Uma frase dizendo o que o tema pede e uma dica de como ajustar.",
+      "impacto": "A persona fica assustada com 'zera' e envia sem entender; o aviso cumpre o papel de alertar, mas não ensina.",
+      "passos": [
+        "Tocar em 'Colar texto já digitado'",
+        "Colar o texto sobre celular e tocar em 'Continuar'",
+        "Ler o aviso"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M4-03-avisos.png",
+        "capturas/aluno-03/M4-04-enviada.png"
+      ],
+      "seletor_visivel": "data-testid=envio-aviso-fuga_ao_tema",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-009",
+      "missao": "M6",
+      "etapa_proposta": "transversal",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "Com fonte em 150%, a tela Enviar redação ganha rolagem horizontal e corta os cartões",
+      "o_que_aconteceu": "Com a fonte em 150%, a página tem 364 px de largura numa tela de 360 px. A borda direita de 'Textos motivadores', 'Tirar foto', 'Imagens', 'Colar texto', a dica da foto e 'Usar folha de exemplo' fica cortada e a tela desliza para o lado. As telas de conferência, colar texto, Minhas redações e devolutiva não tiveram rolagem horizontal.",
+      "o_que_a_persona_esperava": "Os cartões inteiros dentro da tela.",
+      "impacto": "Visual quebrado na primeira tela; a persona estranha, mas consegue tocar nos botões.",
+      "passos": [
+        "Fonte em 150%",
+        "Abrir o menu e tocar em 'Enviar redação'",
+        "Observar a borda direita dos cartões"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M6-02-envio-150.png",
+        "capturas/aluno-03/M6-03-envio-150-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=envio-importar-camera",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-010",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Termos sem explicação no envio: textos motivadores, folha de exemplo, treinar modelos",
+      "o_que_aconteceu": "A tela de envio usa 'Textos motivadores', 'Usar folha de exemplo' e, no rodapé, 'não são usados para treinar modelos'. Depois do envio aparece 'Uma correção automática faz a primeira leitura' e 'assina a correção'. Nenhum desses termos tem explicação ao lado. 'Textos motivadores' se explica ao abrir; os outros não.",
+      "o_que_a_persona_esperava": "Palavras do dia a dia ou uma explicação curta ao lado.",
+      "impacto": "Aumenta a insegurança; 'Usar folha de exemplo' parece uma opção que ela deveria usar.",
+      "passos": [
+        "Abrir o link",
+        "Ler a tela Enviar redação e o rodapé",
+        "Enviar e ler 'Sua redação chegou ao professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M1-01-link-whatsapp.png",
+        "capturas/aluno-03/M1-03-textos-motivadores.png",
+        "capturas/aluno-03/M2-06-depois-enviar.png"
+      ],
+      "seletor_visivel": "data-testid=envio-usar-exemplo",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    { "missao": "M1", "motivo": "Parte 'criar a conta e chegar à turma' não executável: não existe link de convite nem tela de cadastro; a URL raiz entra direto como aluna fictícia (ver A-001)." },
+    { "missao": "M4", "motivo": "O conteúdo de fuga-ao-tema.jpg não foi lido pelo app (ver A-003); a fuga ao tema foi avaliada colando o texto da aluna em 'Colar texto'." },
+    { "missao": "M5", "motivo": "O conteúdo de narrativo.jpg não foi lido pelo app (ver A-003); o relato pessoal foi avaliado colando o texto da aluna em 'Colar texto'." }
+  ]
+}

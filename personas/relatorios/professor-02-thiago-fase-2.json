@@ -1,0 +1,478 @@
+{
+  "persona_id": "professor-02-thiago",
+  "fase": 2,
+  "executado_em": "2026-10-17T12:49:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome 1920x1080",
+    "rede": "sem-limitacao",
+    "build": "94c047f-dirty"
+  },
+  "dados_mockados": {
+    "observacao": "As redações do Gabriel foram preparadas pelo orquestrador na mesma sessão, pelo papel 'Aluno', antes da fase 2. A persona só entrou a partir da fila do professor. O app atribuiu todas ao aluno fixo 'Helena Campos (3º A)', não ao Gabriel.",
+    "redacoes": {
+      "r-1792251603017": "caminho feliz (Usar folha de exemplo, 3 dúvidas de leitura corrigidas)",
+      "r-1792251615560": "caminho feliz reenviado idêntico (duplicidade)",
+      "r-1792251685024": "cópia dos textos motivadores (texto colado; motivadores inventados pelo orquestrador porque o app não mostra nenhum)",
+      "r-1792251739500": "assinatura 'Gabriel Souza' no rodapé (texto colado)",
+      "r-1792251740221": "texto com marcas de escrita por IA (texto colado)"
+    }
+  },
+  "missoes": [
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 120,
+      "interacoes": 35,
+      "abandono_em": null,
+      "falas": [
+        "Tem 'A revisar', 'Devolvidas', turma e ordenação por 'Menor confiança'. Ótimo. Mas cadê a seleção múltipla?",
+        "O Davi tem selo 'risco de nota zero' e nota 0. Para confirmar o zero eu tenho que abrir a redação. Não.",
+        "Duas linhas idênticas, 800 e 800, e nenhum aviso de duplicada."
+      ],
+      "achados": ["A-201", "A-202"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 90,
+      "interacoes": 10,
+      "abandono_em": null,
+      "falas": [
+        "Pelo menos o critério foi o mesmo: 160 em todas as cinco, 800 nas duas, as mesmas 10 marcações.",
+        "Quero ver o histórico dessas duas redações iguais. Não tem."
+      ],
+      "achados": ["A-202"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 420,
+      "interacoes": 26,
+      "abandono_em": null,
+      "falas": [
+        "Cópia dos motivadores com C2 'Acerto, repertório identificado'? Isso eu zerava.",
+        "O nome do aluno está lá no rodapé, e a tela de envio prometeu remover linhas com nome.",
+        "Texto de IA de manual, 720 e nenhuma marcação. Ele gostou mais disso do que da redação assinada.",
+        "Quero zerar e escrever o motivo. Só tem cinco selects de nota, sem campo de justificativa."
+      ],
+      "achados": ["A-203", "A-204", "A-205", "A-206", "A-209"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 210,
+      "interacoes": 95,
+      "abandono_em": null,
+      "falas": [
+        "30 Tabs até o primeiro Aprovar. Cadê atalho?",
+        "Aprovar com Enter funciona e o próximo Tab já cai no próximo card. Isso é bom.",
+        "Devolver sem modal de confirmação, perfeito. Mas aí me joga na visão do aluno e não na próxima redação."
+      ],
+      "achados": ["A-207", "A-208", "A-215"]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 180,
+      "interacoes": 8,
+      "abandono_em": null,
+      "falas": [
+        "'Dessarte' marcado como atenção em C4? É conectivo correto. Recusei como 'Comentário impreciso'.",
+        "Recusei a C2 da cópia como 'Não procede' e a regra aprendida virou 'construções aceitas pela norma não devem ser apontadas'. Não foi isso que eu disse."
+      ],
+      "achados": ["A-209", "A-210", "A-218"]
+    },
+    {
+      "id": "M7",
+      "status": "nao_concluida",
+      "duracao_segundos": 90,
+      "interacoes": 8,
+      "abandono_em": "Editor do card: só textarea 'Comentário para o aluno', sem banco nem autocompletar",
+      "falas": [
+        "Escrevi o comentário do conectivo repetido. No próximo card de C4 tenho que digitar tudo de novo."
+      ],
+      "achados": ["A-212"]
+    },
+    {
+      "id": "M8",
+      "status": "parcial",
+      "duracao_segundos": 150,
+      "interacoes": 27,
+      "abandono_em": "Fila: duas redações 'pronta para devolver' sem ação em lote; publiquei uma a uma",
+      "falas": [
+        "'Pronta para devolver' na fila, mas tenho que abrir cada uma para clicar em Devolver.",
+        "Cliquei em 'Visão do aluno' antes de publicar e só vejo 'Sua redação chegou'. Prévia do que ele vai receber, nada."
+      ],
+      "achados": ["A-213", "A-216"]
+    },
+    {
+      "id": "M9",
+      "status": "nao_concluida",
+      "duracao_segundos": 75,
+      "interacoes": 8,
+      "abandono_em": "Desempenho e Visão geral: 'Pendente de implementação'",
+      "falas": [
+        "Desempenho 'em breve'. Exportar? Só 'Exportar PDF' de uma redação, que abre a impressão. Planilha, nada."
+      ],
+      "achados": ["A-214"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-201",
+      "missao": "M2",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Fila sem ações em lote e sem filtro por risco de zero ou duplicidade",
+      "o_que_aconteceu": "A fila tem filtros 'A revisar · N', 'Devolvidas', 'Todas', turma e ordem (Prioridade, Mais antigas, Menor confiança). Não há caixas de seleção nem ações em lote. O selo 'risco de nota zero' (Davi Rocha, 0) só aparece na linha; para confirmar o zero é preciso abrir a redação.",
+      "o_que_a_persona_esperava": "Filtrar 'risco de zero', selecionar várias linhas e confirmar os zeros óbvios de uma vez.",
+      "impacto": "Em pico de 250 redações por semana, cada zero óbvio custa abrir, revisar e devolver uma a uma.",
+      "passos": [
+        "Abrir #/professor/fila",
+        "Percorrer filtros 'A revisar', 'Devolvidas', 'Todas' e o select de ordenação",
+        "Procurar seleção múltipla na lista"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M2-fila-com-novas.png",
+        "capturas/professor-02/M2-ordem-menor-confianca.png"
+      ],
+      "seletor_visivel": "role=link[name*='Davi Rocha']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-202",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Mesmo texto enviado duas vezes não é sinalizado como duplicado",
+      "o_que_aconteceu": "As duas redações idênticas (r-1792251603017 e r-1792251615560) aparecem como linhas independentes 'Helena Campos nova', ambas com 800. Ponto positivo: as notas sugeridas foram iguais (C1 a C5 = 160) e as 10 marcações automáticas idênticas. Nenhum aviso de duplicidade, nem link entre as duas.",
+      "o_que_a_persona_esperava": "Um selo 'possível duplicata' na fila, com link para a outra redação e o histórico.",
+      "impacto": "Corrige-se duas vezes o mesmo texto; um aluno pode reenviar para tentar outra nota sem o professor perceber.",
+      "passos": [
+        "Como Aluno, enviar a folha de exemplo duas vezes, idêntica",
+        "Como Professor, abrir a fila",
+        "Abrir as duas redações e comparar notas"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M2-fila-com-novas.png",
+        "capturas/professor-02/M3-r-1792251603017.png",
+        "capturas/professor-02/M3-r-1792251615560.png"
+      ],
+      "seletor_visivel": "role=link[name*='Helena Campos nova']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-203",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Cópia dos textos motivadores não é detectada e recebe 560 com repertório marcado como acerto",
+      "o_que_aconteceu": "Redação montada só com frases de motivadores (inventados pelo orquestrador, pois o app não tem motivadores cadastrados) recebeu C1 160, C2 160, C3 120, C4 120, C5 0 = 560. O Filtro não marcou nada; o Avaliador marcou C2 'Acerto · Repertório identificado' no dado copiado e C3 'Tese apresentada' numa frase do motivador.",
+      "o_que_a_persona_esperava": "Aviso de cópia dos motivadores, linhas copiadas desconsideradas e, no caso, sugestão de zero por texto insuficiente.",
+      "impacto": "Nota sugerida injusta; o professor que confiar na pré-correção devolve 560 para um texto que no Enem seria zerado ou muito descontado.",
+      "passos": [
+        "Como Aluno, 'Colar texto' com a redação feita de motivadores e enviar",
+        "Como Professor, abrir a redação r-1792251685024 na fila",
+        "Filtrar 'Todas' as marcações"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M4-copia.png",
+        "capturas/professor-02/M2-fila-com-novas.png"
+      ],
+      "seletor_visivel": "role=link[name*='Helena Campos nova']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-204",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Nome assinado no rodapé não é removido nem sinalizado como identificação",
+      "o_que_aconteceu": "A tela de envio diz 'Linhas com nome, e-mail ou telefone são removidas antes do envio'. A linha 'Gabriel Souza' no rodapé permaneceu na transcrição, na tela do professor e na visão do aluno. O Filtro não marcou identificação e o Avaliador deu 600 (C1 160, C2 120, C3 120, C4 120, C5 80).",
+      "o_que_a_persona_esperava": "Linha removida conforme prometido ou, no mínimo, um alerta 'identificação do participante', que no Enem anula a redação.",
+      "impacto": "Promessa de privacidade descumprida e nota sugerida para um caso que o Enem zera.",
+      "passos": [
+        "Como Aluno, 'Colar texto' terminando com a linha 'Gabriel Souza' e enviar",
+        "Como Professor, abrir a redação r-1792251739500",
+        "Ler o fim da folha e as marcações"
+      ],
+      "evidencias": [
+        "capturas/professor-02/prep-assinatura-transcricao.png",
+        "capturas/professor-02/M4-assinatura.png",
+        "capturas/professor-02/M8-preview-visao-aluno.png"
+      ],
+      "seletor_visivel": "data-testid=revisao-folha",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-205",
+      "missao": "M4",
+      "etapa_proposta": "avaliador",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Texto com marcas típicas de IA é pontuado normalmente (720) sem nenhum sinal",
+      "o_que_aconteceu": "Redação colada com fórmulas genéricas ('Na contemporaneidade', 'multifacetado', 'urge que') recebeu C1 160, C2 120, C3 120, C4 160, C5 160 = 720, só com 5 marcações de acerto. Nenhum aviso de possível texto gerado.",
+      "o_que_a_persona_esperava": "Ao menos um alerta de baixa autoria ou de repertório ausente para o professor checar.",
+      "impacto": "Texto sem repertório nem autoria fica acima de redações autênticas; o professor não tem onde registrar a suspeita.",
+      "passos": [
+        "Como Aluno, 'Colar texto' com a redação de estilo IA e enviar",
+        "Como Professor, abrir a redação r-1792251740221"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M4-ia.png"
+      ],
+      "seletor_visivel": "data-testid=revisao-cards",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-206",
+      "missao": "M4",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há como zerar ou anular a redação registrando o motivo",
+      "o_que_aconteceu": "Para zerar só há os cinco selects de nota (C1 a C5), sem campo de justificativa. A recusa de marcação tem quatro motivos fixos ('Não procede', 'Competência errada', 'Tipo errado', 'Comentário impreciso'), sem 'cópia', 'identificação' ou 'fuga ao tema'. Consegui só criar uma marcação 'Erro C2' com comentário livre.",
+      "o_que_a_persona_esperava": "Um botão 'Anular redação' com motivos do Enem (cópia, identificação, fuga, texto insuficiente) que zere tudo de uma vez e registre o motivo.",
+      "impacto": "Cinco interações para zerar, sem rastro estruturado do motivo para o aluno nem para a calibragem.",
+      "passos": [
+        "Abrir a redação de cópia r-1792251685024",
+        "Clicar em 'Recusar' no card C2 e abrir o select de motivo",
+        "Mudar o select C1 para 0 e procurar campo de motivo"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M4-copia-recusa.png",
+        "capturas/professor-02/M4-copia-nota-c1-zero.png",
+        "capturas/professor-02/M4-copia-marcacao-professor.png"
+      ],
+      "seletor_visivel": "role=combobox[name='Motivo da recusa']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-207",
+      "missao": "M5",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "friccao",
+      "severidade": 3,
+      "titulo": "Sem atalhos de teclado: 86 teclas para revisar e devolver uma redação",
+      "o_que_aconteceu": "Ao abrir a redação o foco fica no body. São 30 Tabs até o primeiro botão de card (passando por visão, 5 notas e 10 trechos), cerca de 20 até o select de C2 e 18 até 'Devolver ao aluno'. Teclas j, k, seta, '?' e '/' não fazem nada. Ao aprovar com Enter, o próximo Tab vai ao próximo card (2 teclas por card, bom). Depois de devolver, o app abre a visão do aluno da mesma redação; não há 'próxima redação'.",
+      "o_que_a_persona_esperava": "Atalhos tipo A/R/E para aprovar, recusar e editar, J/K para navegar entre cards e um atalho para devolver e ir à próxima.",
+      "impacto": "Revisar sem mouse é possível, mas lento; em 250 redações por semana a navegação vira o gargalo.",
+      "passos": [
+        "Na fila, Tab até a redação r-1792251603017 e Enter (9 teclas)",
+        "Tab até 'Recusar' do card 'Dessarte' (30 Tabs)",
+        "Aprovar os 5 cards restantes com Tab+Enter",
+        "Tab até o select de C2, seta para cima, Tab até 'Devolver ao aluno' e Enter"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M5-foco-revisao.png",
+        "capturas/professor-02/M5-antes-devolver.png",
+        "capturas/professor-02/M5-apos-devolver.png"
+      ],
+      "seletor_visivel": "role=button[name='Devolver ao aluno']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-208",
+      "missao": "M5",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Ajuste de nota não pede nem mostra justificativa ao aluno",
+      "o_que_aconteceu": "Baixei C2 de 160 para 120 pelo select. Nenhum campo de motivo apareceu. Na devolutiva, o aluno vê 'C2 120' e a única marcação de C2 é 'Acerto · Repertório legitimado e pertinente ao tema'.",
+      "o_que_a_persona_esperava": "Ao mudar a nota, um campo curto 'por quê' (ou exigir uma marcação na competência) que vá para o aluno e para a calibragem.",
+      "impacto": "Devolutiva contraditória para o aluno; minha discordância com o Avaliador na nota não fica registrada de forma estruturada.",
+      "passos": [
+        "Abrir r-1792251603017, mudar o select C2 para 120",
+        "Clicar em 'Devolver ao aluno'",
+        "Ler a devolutiva na visão do aluno"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M5-antes-devolver.png",
+        "capturas/professor-02/M5-devolutiva-aluno.png"
+      ],
+      "seletor_visivel": "role=combobox[name='Nota C2']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-209",
+      "missao": "M6",
+      "etapa_proposta": "avaliador",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Justificativas que não sustentam a nota e C5 subavaliada na redação assinada",
+      "o_que_aconteceu": "Caminho feliz: 6 justificativas corretas (#2, #3, #4, #8, #9, #10), 3 parcialmente corretas (#1 cita só 'Umberto Eco afirmou' sem mostrar uso produtivo; #5 'Além disso, a escola' inclui palavra que não é conectivo; #6 paralelismo é aceitável) e 1 incorreta (#7 'Dessarte' marcado como atenção em C4, embora correto). Na redação assinada, o card C5 'Agente definido' cita 'a escola' num trecho em que a escola não é agente, e a C5 veio 80 apesar de a proposta ter agente, ação, meio e finalidade.",
+      "o_que_a_persona_esperava": "Trechos que realmente sustentem a nota e C5 de pelo menos 160 para uma proposta com quatro elementos.",
+      "impacto": "Professor precisa auditar cada card; nota sugerida injusta na C5 se não for revisada.",
+      "passos": [
+        "Abrir r-1792251603017 e ler os 10 cards em 'Todas'",
+        "Abrir r-1792251739500 e ler o card C5 '“a escola” · Agente definido' e a nota C5"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M3-dup2-todas.png",
+        "capturas/professor-02/M4-assinatura.png"
+      ],
+      "seletor_visivel": "data-testid=revisao-cards",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-210",
+      "missao": "M6",
+      "etapa_proposta": "avaliador",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Regra aprendida não reflete o motivo real da recusa e a calibragem só aparece em 'Bastidores'",
+      "o_que_aconteceu": "Recusar com motivo funciona e alimenta 'Regras aprendidas'. Mas minha recusa 'Não procede' do repertório copiado (C2) virou a regra 'Na C2, só marque com evidência clara; construções aceitas pela norma não devem ser apontadas'. A tabela de calibragem por competência × tipo está em 'Bastidores', que diz 'Alunos e professores não veem esta tela'; no fluxo do professor só aparece 'Pré-aprovada pela sua calibragem (97% em 46 casos)' no card.",
+      "o_que_a_persona_esperava": "Motivo de recusa com texto livre curto e um painel meu mostrando onde o Avaliador erra mais.",
+      "impacto": "O sistema aprende a lição errada; o professor não sabe onde concentrar atenção.",
+      "passos": [
+        "Recusar card C2 da cópia com 'Não procede' e card 'Dessarte' com 'Comentário impreciso'",
+        "Abrir 'Bastidores' no menu Equipe"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M6-bastidores.png",
+        "capturas/professor-02/M5-recusa-dessarte-teclado.png"
+      ],
+      "seletor_visivel": "role=link[name='Bastidores']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-212",
+      "missao": "M7",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Sem banco de comentários reutilizáveis",
+      "o_que_aconteceu": "O editor do card tem só a textarea 'Comentário para o aluno' e selects de tipo e competência. Editei o comentário de conectivo repetido (C4); no card seguinte de C4 não há lista, autocompletar nem opção de salvar como padrão.",
+      "o_que_a_persona_esperava": "Banco próprio por competência, inserido com um clique ou atalho.",
+      "impacto": "Comentários recorrentes são redigitados em cada redação; economia zero.",
+      "passos": [
+        "Abrir r-1792251739500, clicar 'Editar' no card C4 'Conectivo repetido', reescrever e salvar",
+        "Clicar 'Editar' no card C4 'Dessa forma' e começar a digitar"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M7-editar-c4.png",
+        "capturas/professor-02/M7-reuso-tentativa.png"
+      ],
+      "seletor_visivel": "role=textbox[name='Comentário para o aluno']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-213",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Sem publicação em lote e sem prévia da devolutiva antes de publicar",
+      "o_que_aconteceu": "Duas redações apareceram na fila como 'pronta para devolver', mas não há seleção nem 'devolver todas'; publiquei abrindo cada uma. Antes de devolver, 'Visão do aluno' mostra só o texto e 'Em revisão · Sua redação chegou', sem as marcações e notas que o aluno vai receber.",
+      "o_que_a_persona_esperava": "Selecionar as prontas e publicar de uma vez, com prévia por aluno.",
+      "impacto": "Fim do dia com dezenas de prontas vira dezenas de cliques; risco de publicar algo sem conferir o que o aluno vê.",
+      "passos": [
+        "Aprovar todos os cards de r-1792251739500 e r-1792251740221",
+        "Voltar à fila e procurar ação em lote",
+        "Em uma delas, clicar 'Visão do aluno' antes de 'Devolver ao aluno'"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M8-fila-sem-lote.png",
+        "capturas/professor-02/M8-preview-visao-aluno.png",
+        "capturas/professor-02/M8-devolvidas.png"
+      ],
+      "seletor_visivel": "role=button[name='Devolver ao aluno']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-214",
+      "missao": "M9",
+      "etapa_proposta": "transversal",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Sem visão da turma por competência e sem exportação de notas",
+      "o_que_aconteceu": "'Desempenho' e 'Visão geral' estão 'Pendente de implementação'. A única exportação é 'Exportar PDF' na devolutiva de uma redação, que abre a janela de impressão do navegador. Não há CSV ou planilha de notas.",
+      "o_que_a_persona_esperava": "Painel por competência da turma e exportação das notas para planilha.",
+      "impacto": "Sem dado para preparar a próxima aula; notas precisam ser copiadas à mão.",
+      "passos": [
+        "Clicar em 'Desempenho' (em breve) e em 'Visão geral' (em breve)",
+        "Abrir uma redação devolvida, 'Visão do aluno', clicar 'Exportar PDF'"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M9-desempenho.png",
+        "capturas/professor-02/M9-visao-geral.png",
+        "capturas/professor-02/M9-exportar-pdf.png"
+      ],
+      "seletor_visivel": "role=button[name='Exportar PDF']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-215",
+      "missao": "M5",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Devolutiva rotula como 'Correção automática' os comentários aprovados pelo professor",
+      "o_que_aconteceu": "Na visão do aluno, todos os nove comentários que aprovei aparecem com o rótulo 'Correção automática'.",
+      "o_que_a_persona_esperava": "Indicação de que o professor revisou e aprovou, ou nenhum rótulo de origem.",
+      "impacto": "O cursinho vende 'correção com feedback detalhado'; o aluno lê que foi a máquina e desvaloriza a revisão.",
+      "passos": [
+        "Devolver r-1792251603017",
+        "Ler a margem da devolutiva na visão do aluno"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M5-devolutiva-aluno.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-margem",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-216",
+      "missao": "M8",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Identidades confusas: aluno e professor com o mesmo nome e 'Visão do aluno' troca o papel global",
+      "o_que_aconteceu": "As redações do Gabriel chegaram como 'Helena Campos nova', o mesmo nome do usuário professor no rodapé do menu. Ao clicar 'Visão do aluno' numa redação, o seletor 'Entrar como' muda para 'Aluno'.",
+      "o_que_a_persona_esperava": "Nome do aluno real na fila e a prévia sem trocar o meu papel.",
+      "impacto": "Difícil saber de quem é cada redação e em que papel estou.",
+      "passos": [
+        "Abrir a fila e ver as linhas 'Helena Campos nova'",
+        "Abrir uma delas e clicar 'Visão do aluno'"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M2-fila-com-novas.png",
+        "capturas/professor-02/M8-preview-visao-aluno.png"
+      ],
+      "seletor_visivel": "role=button[name='Visão do aluno']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-218",
+      "missao": "M6",
+      "etapa_proposta": "avaliador",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Nota sugerida tende a achatar no 160 e a premiar texto genérico",
+      "o_que_aconteceu": "O caminho feliz veio com 160 nas cinco competências (800). O texto genérico de IA teve 720, acima da redação assinada (600), que tem proposta mais completa. A cópia levou C1 e C2 160.",
+      "o_que_a_persona_esperava": "Notas mais espalhadas, que separem texto autoral de texto vazio.",
+      "impacto": "Reforça o ceticismo do corretor: preciso revisar toda nota, o que reduz o ganho de tempo.",
+      "passos": [
+        "Abrir as cinco redações do Gabriel e anotar os selects C1 a C5"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M3-r-1792251603017.png",
+        "capturas/professor-02/M4-ia.png",
+        "capturas/professor-02/M4-assinatura.png"
+      ],
+      "seletor_visivel": "data-testid=revisao-notas",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 3,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

@@ -6,6 +6,7 @@
 @theme inline {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -21,6 +22,7 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -39,7 +41,11 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-muted: var(--sidebar-muted);
   --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-strong: var(--sidebar-strong);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-border: var(--sidebar-border);
   --color-paper: var(--paper);
+  --color-overlay: var(--overlay);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -60,6 +66,21 @@
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    accent-color: var(--primary);
+    caret-color: var(--primary);
+    scrollbar-color: var(--input) transparent;
+  }
+  ::selection {
+    background: var(--selection);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
@@ -74,8 +95,9 @@
 .mark[data-tipo="atencao"] { background: var(--atencao-bg); box-shadow: inset 0 -2px 0 var(--atencao); }
 .mark[data-tipo="erro"] { background: var(--erro-bg); box-shadow: inset 0 -2px 0 var(--erro); }
 .mark[data-origem="professor"] {
-  background-image: repeating-linear-gradient(135deg, transparent 0 5px, rgb(127 127 127 / 0.12) 5px 7px);
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, var(--hatch) 5px 7px);
 }
+.mark:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .mark[data-status="recusada"] { background: transparent; box-shadow: inset 0 -1px 0 var(--muted-foreground); color: var(--muted-foreground); }
 .mark[data-active="true"] { outline: 2px solid var(--ring); outline-offset: 2px; }
 .mark sup { font-size: 9px; font-weight: 700; margin-left: 1px; user-select: none; color: var(--muted-foreground); }

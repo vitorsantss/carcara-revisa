@@ -12,3 +12,4 @@ Cada ADR registra uma decisão, o contexto e o que ela custa. Para criar um novo
 | [0006](0006-hash-router-proprio.md) | Roteamento por hash, sem biblioteca | Aceito |
 | [0007](0007-data-testid-como-contrato-de-teste.md) | data-testid como contrato de teste | Aceito |
 | [0008](0008-cores-por-resultado-e-tokens-de-tema.md) | Cores por resultado e tokens de tema | Aceito |
+| [0009](0009-zero-decidido-pelo-professor-e-servicos-com-proposta.md) | Zero decidido pelo professor e serviços que recebem a proposta | Proposto |

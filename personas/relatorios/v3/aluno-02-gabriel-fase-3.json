@@ -1,0 +1,207 @@
+{
+  "persona_id": "aluno-02-gabriel",
+  "fase": 3,
+  "executado_em": "2026-10-17T15:10:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome aproximado: mesma página do Pixel 5 redimensionada para 1366x768 (UA e toque continuam de celular), pt-BR, America/Sao_Paulo",
+    "rede": "sem-limitacao",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 2,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "C1 e C4 têm trecho marcado e dizem exatamente o que trocar. Isso é o que eu queria.",
+        "C3 com 160 porque 'o 3º parágrafo afirma sem exemplo', mas não tem nada marcado no 3º parágrafo. Mostra onde!",
+        "Os comentários dizem 'aprovada pelo professor' ou 'aceita automaticamente'. E a nota? Quem decidiu o 160, a IA ou a professora?"
+      ],
+      "achados": ["A-006", "A-007", "A-009"]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 1,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Mesmo texto: uma deu 800, a outra 840. C3 foi de 160 para 200.",
+        "Numa diz que o 3º parágrafo não tem exemplo; na outra, que o exemplo é suficiente. Qual das duas eu levo para o Enem?",
+        "Pelo menos aparece '(nota definida pelo professor)' na de 200."
+      ],
+      "achados": ["A-008"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "'Não concordo: pedir revisão desta nota' embaixo de cada competência. Três passos e recebi confirmação com data.",
+        "Só não diz em quanto tempo ela responde, e na lista nem aparece que eu pedi."
+      ],
+      "achados": ["A-011"]
+    },
+    {
+      "id": "M10",
+      "status": "concluida",
+      "duracao_segundos": 0,
+      "interacoes": 0,
+      "abandono_em": null,
+      "falas": [
+        "Minhas redações é só uma lista com a nota total. Cadê C1 a C5 ao longo do tempo?",
+        "Cinco itens com a mesma data e hora. Pra decidir o que estudar, isso não serve."
+      ],
+      "achados": ["A-010"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-006",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Nota por competência não diz se veio da correção automática ou do professor",
+      "o_que_aconteceu": "Na devolutiva de M1, cada comentário da margem tem rótulo de origem ('Sugestão aprovada pelo professor' ou 'Sugestão aceita automaticamente'). Já o bloco 'Por que 160' das cinco competências repete, palavra por palavra, a 'Sugestão automática' que o professor via na revisão, sem nenhum rótulo. Só a nota alterada em M2 leva '(nota definida pelo professor)'. O topo diz 'Corrigida e assinada por Prof. Marina Costa'.",
+      "o_que_a_persona_esperava": "Um rótulo também nas notas: 'sugestão automática confirmada pelo professor' ou 'nota do professor'.",
+      "impacto": "A persona não sabe se a professora avaliou cada competência ou só aceitou a sugestão. Isso afeta quanto ela confia no 160.",
+      "passos": [
+        "Entrar como Aluno no notebook",
+        "Abrir 'Minhas redações' e a devolutiva de M1 (nota 800)",
+        "Comparar a margem com 'Sua nota, competência por competência'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-devolutiva-M1.png",
+        "capturas/aluno-02/P-M1-revisao.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-justificativa-c3",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-007",
+      "missao": "M7",
+      "etapa_proposta": "avaliador",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Desconto em C2 e C3 sem trecho marcado que o sustente",
+      "o_que_aconteceu": "C3 = 160 com 'o 3º parágrafo afirma sem exemplo que comprove', mas as marcas de C3 na folha (#2 e #4) são acertos e o 3º parágrafo não tem nenhuma marca de C3. C2 = 160 com 'citado só na introdução', e só há a marca de acerto #1. C1 (#3, #6), C4 (#7) e C5 (#10) têm o trecho do desconto marcado.",
+      "o_que_a_persona_esperava": "Uma marca de Atenção no trecho que perdeu os 40 pontos, como acontece em C1, C4 e C5.",
+      "impacto": "Em 2 de 5 competências a nota fica sem trecho que a sustente, que é justamente o que faz a persona desistir.",
+      "passos": [
+        "Abrir a devolutiva de M1",
+        "Filtrar ou ler as marcas de C3 na folha",
+        "Ler 'Por que 160' de C3"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-devolutiva-M1.png",
+        "capturas/aluno-02/M7-marca-clicada.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-competencia-c3",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-008",
+      "missao": "M8",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Mesmo texto recebe notas e justificativas contraditórias, e o aluno não vê que são a mesma redação",
+      "o_que_aconteceu": "As sugestões automáticas para M1 e M2 foram idênticas (800, 160 em todas). O professor simulado aprovou M1 como veio e, em M2, subiu C3 para 200 com justificativa própria. O aluno recebeu 800 e 840. C3 diz 'o 3º parágrafo afirma sem exemplo que comprove' numa e 'o 3º parágrafo traz exemplo suficiente' na outra. A de 200 tem '(nota definida pelo professor)', mas nada no lado do aluno liga as duas devolutivas nem explica a divergência. A revisão do professor mostrou o alerta 'Este aluno já enviou este mesmo texto antes... Notas iguais por competência', e o professor seguiu mesmo assim.",
+      "o_que_a_persona_esperava": "Se a nota mudou entre envios do mesmo texto, uma indicação na devolutiva ('este texto já foi corrigido em 17/10 com C3 160; o professor revisou para 200') ou que a anterior fosse atualizada.",
+      "impacto": "Quebra a promessa de 'mesmo critério para todas as redações' aos olhos do aluno. Inconsistência entre envios é motivo de desistência desta persona.",
+      "passos": [
+        "Enviar boa-foto-dia.jpg duas vezes (fase 1)",
+        "Como professor: devolver M1 aprovando tudo; em M2, mudar C3 para 200 com justificativa e devolver",
+        "Como aluno: abrir as devolutivas de M1 e M2 e comparar C3"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-devolutiva-M1.png",
+        "capturas/aluno-02/M8-devolutiva-M2.png",
+        "capturas/aluno-02/P-M2-revisao.png",
+        "capturas/aluno-02/P-M2-ajuste-c3.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-justificativa-c3",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-009",
+      "missao": "M4",
+      "etapa_proposta": "avaliador",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Justificativas genéricas e incoerentes nas redações fora do exemplo",
+      "o_que_aconteceu": "A devolutiva de M1 (texto de exemplo) é específica. A de M4 (meu texto colado), com as sugestões aprovadas sem ajuste pelo professor simulado, traz: C1 160 'Nenhum desvio recorrente encontrado; a nota máxima exige revisão cuidadosa' (nenhum desvio e mesmo assim 160), C4 '5 conectivos diferentes encontrados', C3 'os argumentos são pouco desenvolvidos' sem trecho, e C5 'Para chegar a 160: Acrescente: o que faz (ação)', sendo que a ação ('implementar a disciplina') está no texto. A marca #4 diz 'Agente definido' sobre 'nas escolas', mas o agente da proposta é 'o Ministério da Educação'. As redações M5 e M3 recebem os mesmos comentários padrão ('Conectivo bem empregado', 'Você trouxe um repertório. Para valer mais...').",
+      "o_que_a_persona_esperava": "O mesmo nível de especificidade de M1: o trecho exato e o que mudar nele.",
+      "impacto": "Parece devolutiva copiada de outro aluno, que é motivo de desistência. A justificativa de C5 manda acrescentar algo que já está lá.",
+      "passos": [
+        "Enviar o texto com estilo de IA por 'Colar texto' (M4, fase 1)",
+        "Como professor: aprovar as sugestões e devolver",
+        "Como aluno: abrir a devolutiva de nota 720 e ler 'Por que' e 'Para chegar a' de cada competência"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/F3-devolutiva-M4.png",
+        "capturas/aluno-02/P-M4-revisao.png",
+        "capturas/aluno-02/F3-devolutiva-M5.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-proximo-nivel-c5",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-010",
+      "missao": "M10",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Sem histórico de notas por competência ao longo do tempo",
+      "o_que_aconteceu": "'Minhas redações' lista cada envio com data, início do texto e só a nota total (800, 840, 0, 720, 0). Não há C1 a C5 por envio, gráfico ou comparação. Os cinco itens mostram 'Enviada em 17/10, 15:09', e M1 e M2 têm o mesmo início de texto.",
+      "o_que_a_persona_esperava": "Uma tabela ou gráfico de C1 a C5 por redação, mostrando em que competência estou travado.",
+      "impacto": "Não ajuda a decidir o que estudar, e é preciso abrir cada devolutiva para comparar.",
+      "passos": [
+        "Entrar como Aluno",
+        "Abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M10-historico.png",
+        "capturas/aluno-02/M10-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "data-testid=minhas-redacoes-page",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-011",
+      "missao": "M9",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Pedido de revisão sem prazo de resposta e invisível na lista",
+      "o_que_aconteceu": "Em C3 de M1: 'Não concordo: pedir revisão desta nota', depois o texto e 'Enviar ao professor'. A confirmação foi 'Pedido de revisão enviado em 17/10, 15:10. Seu professor vai responder por aqui.' Na lista 'Minhas redações' o item continua só 'Devolutiva pronta... Nota 800', sem sinal de pedido pendente. Na fila do professor apareceu 'pedido de revisão'.",
+      "o_que_a_persona_esperava": "Um prazo de resposta e um selo 'revisão pedida' na lista.",
+      "impacto": "Baixo. O caminho funciona, mas o aluno precisa lembrar de reabrir a devolutiva para conferir.",
+      "passos": [
+        "Abrir a devolutiva de M1",
+        "Tocar em 'Não concordo: pedir revisão desta nota' em C3",
+        "Escrever o motivo e tocar em 'Enviar ao professor'",
+        "Voltar a 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M9-pedido-aberto.png",
+        "capturas/aluno-02/M9-pedido-confirmacao.png",
+        "capturas/aluno-02/M10-historico.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-pedir-c3",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 3,
+    "clareza_da_devolutiva": 4,
+    "recomendaria": true
+  },
+  "cenarios_nao_executados": []
+}

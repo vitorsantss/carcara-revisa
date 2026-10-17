@@ -2,13 +2,14 @@
 
 Convenção: `tela-elemento[-detalhe]`. Ids com `<...>` recebem o id do registro.
 
-Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `aria-pressed`.
+Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `data-situacao`, `data-alterada`, `data-atendido`, `data-previa`, `data-quantidade`, `data-ativa`, `aria-pressed`.
 
 ## `components/layout/app-shell.tsx`
 
 - `app-shell`
 - `brand`
 - `nav-aluno-enviar`
+- `nav-aluno-privacidade`
 - `nav-aluno-redacoes`
 - `nav-bastidores`
 - `nav-grupo-<grupo>`
@@ -50,15 +51,37 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 - `comentario-<id>`
 - `comentario-autor`
 - `devolutiva`
+- `devolutiva-assinatura`
+- `devolutiva-competencia-c<c>`
+- `devolutiva-competencias`
 - `devolutiva-exportar`
 - `devolutiva-filtro`
+- `devolutiva-filtro-<t>`
 - `devolutiva-folha`
+- `devolutiva-glossario`
+- `devolutiva-justificativa-c<c>`
 - `devolutiva-margem`
 - `devolutiva-margem-vazia`
 - `devolutiva-missoes`
 - `devolutiva-nota-c<c>`
 - `devolutiva-nota-total`
 - `devolutiva-notas`
+- `devolutiva-pedido-c<c>`
+- `devolutiva-pedido-confirmacao-c<c>`
+- `devolutiva-pedido-confirmacao-zero`
+- `devolutiva-pedido-enviar-c<c>`
+- `devolutiva-pedido-enviar-zero`
+- `devolutiva-pedido-texto-c<c>`
+- `devolutiva-pedido-texto-zero`
+- `devolutiva-pedido-zero`
+- `devolutiva-pedir-c<c>`
+- `devolutiva-pedir-zero`
+- `devolutiva-proxima`
+- `devolutiva-proximo-nivel-c<c>`
+- `devolutiva-recado`
+- `devolutiva-zero`
+- `devolutiva-zero-como-evitar`
+- `devolutiva-zero-motivo`
 - `marca-<card>`
 - `missao-c<c>`
 
@@ -69,39 +92,68 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 - `duvida-manter`
 - `duvida-ok`
 - `duvida-sugestao-<j>`
+- `envio-adicionar-folha`
+- `envio-aviso-<tipo>`
+- `envio-avisos`
+- `envio-branco-continuar`
+- `envio-branco-trocar`
 - `envio-colar-continuar`
 - `envio-colar-textarea`
+- `envio-dicas-foto`
 - `envio-enviar`
+- `envio-folha-em-branco`
+- `envio-folhas`
+- `envio-fotos`
+- `envio-frases-copiadas`
 - `envio-importar-camera`
 - `envio-importar-colar`
 - `envio-importar-galeria`
 - `envio-input-camera`
 - `envio-input-galeria`
+- `envio-input-mais-folhas`
+- `envio-link-privacidade`
+- `envio-motivadores`
 - `envio-page`
+- `envio-privacidade`
+- `envio-remover-identificacao`
 - `envio-status`
 - `envio-tema`
 - `envio-usar-exemplo`
+- `envio-ver-foto`
 - `envio-voltar`
 - `transcricao`
 - `transcricao-duvida-<id>`
+- `transcricao-editar`
+- `transcricao-editor`
+- `transcricao-editor-concluir`
+- `transcricao-editor-texto`
 - `transcricao-resumo`
 
 ## `features/fila/fila-page.tsx`
 
 - `fila-anterior-<alunoId>`
+- `fila-devolver-prontas`
 - `fila-devolvida-<id>`
+- `fila-exportar`
 - `fila-filtro-devolvidas`
 - `fila-filtro-revisar`
 - `fila-filtro-status`
 - `fila-filtro-todas`
 - `fila-filtro-turma`
+- `fila-filtro-zero`
 - `fila-item-<id>`
+- `fila-item-alertas`
+- `fila-item-inicio`
 - `fila-item-nome`
 - `fila-item-nota`
+- `fila-item-pedido`
 - `fila-item-pendentes`
 - `fila-item-pre`
+- `fila-item-repetida`
 - `fila-item-risco-zero`
 - `fila-lista`
+- `fila-lote-confirmacao`
+- `fila-lote-confirmar`
 - `fila-ordem`
 - `fila-page`
 - `fila-proposta`
@@ -109,6 +161,7 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 - `fila-vazia`
 - `minha-redacao-<id>`
 - `minha-redacao-etapa`
+- `minha-redacao-explicacao`
 - `minhas-redacoes-page`
 - `minhas-redacoes-vazio`
 
@@ -118,7 +171,13 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 - `pendente-badge`
 - `pendente-campos`
 - `pendente-desconhecida`
+- `pendente-detalhes-tecnicos`
 - `pendente-titulo`
+
+## `features/privacidade/privacidade-page.tsx`
+
+- `privacidade-<id>`
+- `privacidade-page`
 
 ## `features/redacao/essay-document.tsx`
 
@@ -129,17 +188,19 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 ## `features/redacao/redacao-page.tsx`
 
 - `aluno-aguardando`
+- `aluno-alerta-<tipo>`
+- `aluno-alertas`
 - `aluno-duvidas`
 - `aluno-folha`
+- `aluno-glossario`
+- `aluno-previsao`
+- `aluno-proximos-passos`
 - `aluno-status`
 - `etapa-<id>`
 - `redacao-aluno`
 - `redacao-etapas`
 - `redacao-nao-encontrada`
 - `redacao-page`
-- `visao-aluno`
-- `visao-professor`
-- `visao-toggle`
 
 ## `features/revisao/revisao.tsx`
 
@@ -167,15 +228,49 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-conferida
 - `nova-marcacao-<t>`
 - `nova-marcacao-cancelar`
 - `nova-marcacao-competencia`
+- `popover-conflito`
 - `popover-nova-marcacao`
 - `revisao`
+- `revisao-abrir-repetida`
+- `revisao-alerta-<tipo>`
+- `revisao-alertas`
+- `revisao-atalhos`
 - `revisao-cards`
 - `revisao-cards-vazio`
+- `revisao-comparacao-repetida`
+- `revisao-confirmacao`
 - `revisao-devolver`
+- `revisao-devolver-cancelar`
+- `revisao-devolver-confirmar`
 - `revisao-filtro`
 - `revisao-filtro-pendentes`
 - `revisao-filtro-professor`
 - `revisao-filtro-todas`
 - `revisao-folha`
+- `revisao-foto`
+- `revisao-foto-zoom`
+- `revisao-fotos`
+- `revisao-justificativa-c<c>`
+- `revisao-legenda-certeza`
+- `revisao-nota-alterada-c<c>`
+- `revisao-nota-detalhe-c<c>`
 - `revisao-notas`
+- `revisao-notas-detalhe`
+- `revisao-pedido-<id>`
+- `revisao-pedidos`
+- `revisao-previa`
+- `revisao-previa-conteudo`
+- `revisao-previa-fechar`
+- `revisao-proxima`
+- `revisao-reabrir`
+- `revisao-recado`
+- `revisao-recado-texto`
 - `revisao-resumo`
+- `revisao-rodape`
+- `revisao-sem-foto`
+- `revisao-ver-foto`
+- `revisao-zero`
+- `revisao-zero-anular`
+- `revisao-zero-confirmar`
+- `revisao-zero-justificativa`
+- `revisao-zero-motivo`

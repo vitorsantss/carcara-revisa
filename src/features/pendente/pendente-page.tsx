@@ -93,12 +93,15 @@ export function PendentePage({ slug }: { slug: string }) {
             </CardContent>
           </CardHeader>
           <CardHeader className="p-0">
-            <CardTitle className="text-sm">Entidade: {t.entidade}</CardTitle>
-            <CardDescription className="mt-2 flex flex-wrap gap-1.5" data-testid="pendente-campos">
-              {t.campos.map((c) => <code key={c} className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{c}</code>)}
-            </CardDescription>
-            <div className="mt-3 text-xs text-muted-foreground">Dados de exemplo:</div>
-            <ul className="text-sm">{t.exemplo.map((e) => <li key={e}>{e}</li>)}</ul>
+            <CardTitle className="text-sm">Exemplo do que vai aparecer</CardTitle>
+            <ul className="mt-2 text-sm">{t.exemplo.map((e) => <li key={e}>{e}</li>)}</ul>
+            <details className="mt-3 text-xs text-muted-foreground" data-testid="pendente-detalhes-tecnicos">
+              <summary className="cursor-pointer">Detalhes técnicos (para a equipe)</summary>
+              <div className="mt-2">Entidade: {t.entidade}</div>
+              <CardDescription className="mt-1 flex flex-wrap gap-1.5" data-testid="pendente-campos">
+                {t.campos.map((c) => <code key={c} className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{c}</code>)}
+              </CardDescription>
+            </details>
           </CardHeader>
         </div>
       </Card>

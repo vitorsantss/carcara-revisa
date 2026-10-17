@@ -1,0 +1,540 @@
+{
+  "persona_id": "professor-01-marcia",
+  "fase": 2,
+  "executado_em": "2026-10-17T12:49:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome (Chromium via Playwright), viewport 1366x768, pt-BR, America/Sao_Paulo",
+    "rede": "wifi-domestico (localhost, sem limitação de banda)",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 273,
+      "interacoes": 9,
+      "abandono_em": null,
+      "falas": [
+        "'A revisar · 7'. Pelo menos sei quantas faltam.",
+        "Quatro 'Helena Campos', todas 'agora'. Qual é qual?",
+        "'Risco de nota zero' e do lado 520. É zero ou é 520?",
+        "Onde está escrito o que é Filtro e o que é Avaliador? Para mim é tudo a mesma lista."
+      ],
+      "achados": [
+        "A-101",
+        "A-102",
+        "A-103"
+      ]
+    },
+    {
+      "id": "M3",
+      "status": "parcial",
+      "duracao_segundos": 366,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Risco de nota zero por quê? Me mostra onde.",
+        "Essa menina escreveu tudo, a foto que saiu ruim. Só que eu não tenho a foto para provar.",
+        "O texto termina em 'que' e a máquina chama de 'Tese apresentada na introdução'. Tese de quê?",
+        "Mudei as cinco notas e o selo vermelho continua lá na fila."
+      ],
+      "achados": [
+        "A-102",
+        "A-105",
+        "A-106",
+        "A-107",
+        "A-108"
+      ]
+    },
+    {
+      "id": "M4",
+      "status": "falhou",
+      "duracao_segundos": 230,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Seis linhas é zero pelo edital. Por que a nota sugerida está em 520?",
+        "Aprovei os dois comentários, cliquei em devolver e foi 520 para a aluna. Ninguém me avisou.",
+        "Para deixar um recado de incentivo tenho que marcar um trecho e dizer se é acerto, atenção ou erro. Recado não é acerto."
+      ],
+      "achados": [
+        "A-104",
+        "A-105",
+        "A-117"
+      ]
+    },
+    {
+      "id": "M5",
+      "status": "parcial",
+      "duracao_segundos": 152,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "Antes de olhar as notas, quero a foto. Não tem foto.",
+        "Ela escreveu sobre Umberto Eco? Eu não tenho como saber se foi isso que ela escreveu.",
+        "160 em tudo. Cento e sessenta por quê? Os comentários estão nos trechos, mas a nota não tem justificativa.",
+        "'Pré-aprovada pela sua calibragem, 97% em 46 casos'. Eu nunca corrigi 46 casos aqui."
+      ],
+      "achados": [
+        "A-106",
+        "A-109",
+        "A-110",
+        "A-111"
+      ]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 178,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Mudei C4 e C5 e o total ficou igual, 800. Certo, uma sobe, outra desce. Mas nada mostra que fui eu.",
+        "Reescrevi o comentário inteiro e continua escrito 'Automática 85%'. Isso aqui foi a máquina que escreveu ou fui eu?"
+      ],
+      "achados": [
+        "A-112",
+        "A-113"
+      ]
+    },
+    {
+      "id": "M7",
+      "status": "falhou",
+      "duracao_segundos": 66,
+      "interacoes": 9,
+      "abandono_em": "Ao voltar, a tela mostrou 'Redação não encontrada.' e a fila voltou ao estado inicial",
+      "falas": [
+        "Fui atender minha filha e quando voltei sumiu tudo. Não só a nota: sumiram as redações.",
+        "Perdi uma vez, não volto."
+      ],
+      "achados": [
+        "A-114"
+      ]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 550,
+      "interacoes": 15,
+      "abandono_em": null,
+      "falas": [
+        "Cliquei em 'Visão do aluno' para ver como vai ficar e aparece 'O professor está corrigindo'. Não é prévia.",
+        "Devolveu na hora, sem perguntar se eu tinha certeza.",
+        "Onde está o meu nome? Todos os comentários dizem 'Correção automática', inclusive o que eu escrevi."
+      ],
+      "achados": [
+        "A-112",
+        "A-115",
+        "A-116"
+      ]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 60,
+      "interacoes": 0,
+      "abandono_em": null,
+      "falas": [
+        "A redação completa da Josiane levou uns 7 minutos estimados (ler, revisar, mudar notas, reescrever, aprovar, devolver). No papel, 10 a 15.",
+        "Só que o tempo caiu porque eu pulei a parte de comparar com a foto, que não existe. Se a transcrição errar, eu não vejo, e aí não economizei nada, assinei sem conferir.",
+        "Os zeros foram o contrário: tive que descobrir sozinha por que eram zero, e um deles saiu com 520."
+      ],
+      "achados": [
+        "A-104",
+        "A-106",
+        "A-109"
+      ]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-101",
+      "missao": "M2",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Fila só identifica a redação pelo nome do aluno; redações do mesmo aluno ficam indistinguíveis",
+      "o_que_aconteceu": "As quatro redações enviadas aparecem como 'Helena Campos · nova · 3º A · agora', diferenciadas só pela nota sugerida e pela contagem 'para revisar'. Não há trecho inicial, número de linhas, origem (foto ou texto) nem número de folhas. Observação: todas foram atribuídas à mesma aluna por limitação do protótipo.",
+      "o_que_a_persona_esperava": "Algum sinal do conteúdo (primeira linha, se veio por foto, quantas folhas) para escolher por onde começar.",
+      "impacto": "A professora abre redação por redação para descobrir qual é qual.",
+      "passos": [
+        "Entrar como Professor",
+        "Abrir 'Fila de correção' com várias redações do mesmo aluno"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M2-01-fila.png"
+      ],
+      "seletor_visivel": "text='Helena Campos'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-102",
+      "missao": "M2",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Selo 'risco de nota zero' sem motivo, ao lado de uma nota sugerida diferente de zero, e sem distinguir Filtro de Avaliador",
+      "o_que_aconteceu": "Na fila, três itens têm o selo vermelho 'risco de nota zero'. Dois mostram 520 ao lado do selo e um mostra 0. O selo não explica o motivo, e a fila não separa 'nota zero do filtro' de 'pré-correção da avaliação automática': tudo é uma lista só, ordenada por 'Prioridade'.",
+      "o_que_a_persona_esperava": "Ver separado o que é zero do filtro, com o motivo em uma linha ('6 linhas: abaixo do mínimo de 7'), e o que é pré-correção.",
+      "impacto": "A professora não sabe se a máquina deu zero ou 520 e não consegue priorizar os zeros possivelmente injustos.",
+      "passos": [
+        "Entrar como Professor",
+        "Abrir 'Fila de correção'",
+        "Ler os itens com o selo 'risco de nota zero'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M2-01-fila.png",
+        "capturas/professor-01/M2-03-ordem-menor-confianca.png"
+      ],
+      "seletor_visivel": "text='risco de nota zero'",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-103",
+      "missao": "M2",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Números e termos sem explicação: '≈ 4 min por redação', 'Menor confiança', 'pré-aprovadas', 'Automática 70%', 'Listrado = correção do professor'",
+      "o_que_aconteceu": "A fila mostra '≈ 4 min por redação' sem dizer de onde vem a estimativa (sem dica ao passar o mouse), uma ordenação 'Menor confiança' e o selo 'N pré-aprovadas'. Na revisão, cada cartão traz 'Automática 55%', '85%' etc., sem legenda na tela. A legenda do topo diz 'Listrado = correção do professor'. Os nomes das competências (Norma culta, Coesão...) só aparecem como dica ao passar o mouse sobre C1 a C5.",
+      "o_que_a_persona_esperava": "Uma frase curta explicando cada número, sem jargão de tecnologia.",
+      "impacto": "Desconfiança: 'número sem explicação' é exatamente o que a persona rejeita.",
+      "passos": [
+        "Abrir 'Fila de correção'",
+        "Abrir o seletor de ordenação",
+        "Abrir uma redação e ler os cartões"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M2-01-fila.png",
+        "capturas/professor-01/M2-03-ordem-menor-confianca.png",
+        "capturas/professor-01/M5-02-josiane-cursiva-completa.png"
+      ],
+      "seletor_visivel": "text='≈ 4 min por redação'",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-104",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Redação de 6 linhas, marcada 'risco de nota zero', sugerida e devolvida com 520 pontos",
+      "o_que_aconteceu": "A redação de seis linhas abriu com notas sugeridas C1 160, C2 120, C3 120, C4 120, C5 0 (total 520). A tela de revisão não menciona zero. A professora aprovou os dois comentários automáticos e o botão 'Devolver ao aluno' ficou ativo. Ao clicar, a devolutiva foi publicada com '520 / 1000', sem alerta nem confirmação. A mesma nota 520 com selo de zero apareceu na redação 'foto cortada'.",
+      "o_que_a_persona_esperava": "Notas já zeradas (ou o zero explícito para confirmar com um clique), e um bloqueio ou aviso antes de devolver uma redação com risco de zero sem decisão.",
+      "impacto": "Nota injusta e contrária ao edital chega à aluna em nome da professora. Para confirmar o zero, ela teria de baixar manualmente cinco seletores para 0.",
+      "passos": [
+        "Na fila, abrir a redação de 6 linhas (selo 'risco de nota zero')",
+        "Clicar em 'Aprovar' nos dois cartões",
+        "Clicar em 'Devolver ao aluno'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M4-01-ana-seis-revisao.png",
+        "capturas/professor-01/M4-03-ana-seis-pronta.png",
+        "capturas/professor-01/M4-04-ana-seis-devolvida.png"
+      ],
+      "seletor_visivel": "role=button[name='Devolver ao aluno']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-105",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Motivo do zero não aparece na tela de revisão",
+      "o_que_aconteceu": "Nas redações com selo 'risco de nota zero', a tela de revisão não tem nenhuma menção a zero, linhas ou edital. O selo existe só na fila, sem texto de motivo.",
+      "o_que_a_persona_esperava": "Um aviso objetivo no topo da revisão, por exemplo 'Texto com até 7 linhas: pelo edital, nota zero', com o que foi contado.",
+      "impacto": "A professora não consegue avaliar se o zero é justo nem explicar a decisão ao aluno.",
+      "passos": [
+        "Na fila, clicar numa redação com 'risco de nota zero'",
+        "Procurar o motivo na tela de revisão"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M3-01-ana-cortada-revisao.png",
+        "capturas/professor-01/M4-01-ana-seis-revisao.png"
+      ],
+      "seletor_visivel": "text='Revisão'",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-106",
+      "missao": "M3",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Foto original da folha não aparece em nenhuma tela da professora",
+      "o_que_aconteceu": "Na revisão, na 'Visão do aluno' e na devolutiva não há nenhuma imagem (0 elementos de imagem na área principal), nem para a redação enviada por foto (Josiane, cursiva). Só aparece o texto transcrito.",
+      "o_que_a_persona_esperava": "A foto ao lado do texto, para conferir se o corte foi da câmera e se a transcrição bate com a letra.",
+      "impacto": "Impede as missões M3 e M5. A professora não distingue foto ruim de texto curto e não consegue conferir a transcrição. Pela persona, esse é um motivo de desistência.",
+      "passos": [
+        "Abrir a redação enviada por foto (Josiane, cursiva)",
+        "Procurar a foto na revisão",
+        "Clicar em 'Visão do aluno'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M3-01-ana-cortada-revisao.png",
+        "capturas/professor-01/M3-03-visao-aluno-sem-foto.png",
+        "capturas/professor-01/M5-01-josiane-cursiva-topo.png",
+        "capturas/professor-01/M5-02-josiane-cursiva-completa.png"
+      ],
+      "seletor_visivel": "role=button[name='Visão do aluno']",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-107",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há ação para reverter o zero e mandar à avaliação normal; o selo continua depois das notas alteradas",
+      "o_que_aconteceu": "Não existe botão do tipo 'não é zero' ou 'enviar para avaliação normal'. A professora só pode mudar os cinco seletores de nota (5 interações). Depois de levar a redação 'foto cortada' para 560, a fila continuou mostrando 'risco de nota zero' nela.",
+      "o_que_a_persona_esperava": "Um botão 'Reverter zero' com campo de motivo, que remove o selo e libera a pré-correção completa.",
+      "impacto": "A decisão da professora não fica registrada, o selo engana quem olha a fila depois e não há trilha do zero revertido.",
+      "passos": [
+        "Abrir a redação 'foto cortada' (selo 'risco de nota zero')",
+        "Mudar C1 a C5 nos seletores de nota",
+        "Voltar à 'Fila de correção'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M3-04-notas-revertidas.png",
+        "capturas/professor-01/M3-05-fila-apos-reverter.png"
+      ],
+      "seletor_visivel": "role=combobox[name='Nota C1']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-108",
+      "missao": "M3",
+      "etapa_proposta": "avaliador",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Texto interrompido no meio (foto cortada, folha 2 ausente) não gera alerta, e a correção automática elogia o trecho cortado",
+      "o_que_aconteceu": "A redação 'foto cortada' termina em '...das plataformas, que' e a 'só folha 1' termina em '...a identificar a fonte de uma notícia, a'. Nenhum aviso de texto interrompido ou de folha faltando. O cartão automático marca '...das plataformas, que' como 'Acerto · Tese apresentada na introdução'. Na 'só folha 1', as notas sugeridas somam 520, sem nenhuma menção à falta de conclusão.",
+      "o_que_a_persona_esperava": "Um alerta 'o texto parece interrompido: confira se faltou parte da foto ou uma folha', antes de qualquer nota.",
+      "impacto": "Risco de zerar ou de dar nota baixa por causa da câmera. A professora só percebe se ler até a última palavra.",
+      "passos": [
+        "Abrir a redação 'foto cortada'",
+        "Ler o fim do texto e o cartão '#2'",
+        "Abrir a redação 'só folha 1'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M3-01-ana-cortada-revisao.png",
+        "capturas/professor-01/M3-06-josiane-folha1.png"
+      ],
+      "seletor_visivel": "text='Tese apresentada na introdução.'",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-109",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Transcrição da foto cursiva não corresponde ao que está na folha, e a nota é sugerida e devolvida sobre esse texto",
+      "o_que_aconteceu": "A folha cursiva enviada (gerada pelo orquestrador) começa com 'Na obra \"1984\", de George Orwell...'. A transcrição exibida, corrigida e devolvida trata de 'O escritor italiano Umberto Eco afirmou...', com quatro parágrafos que não estão na folha. A mesma transcrição apareceu para a foto torta da Ana Clara. A redação recebeu 800 sugeridos e foi devolvida. Sem a foto na tela (A-106), a professora não tem como perceber. Observação: a transcrição é simulada no estado atual do produto.",
+      "o_que_a_persona_esperava": "Uma transcrição fiel à letra, e a foto ao lado para conferir antes de confiar na nota.",
+      "impacto": "A professora assina nota e comentários sobre um texto que a aluna não escreveu. O repertório elogiado ('Umberto Eco') não é o da aluna ('1984').",
+      "passos": [
+        "Como aluno, enviar uma foto em letra cursiva por 'Imagem da galeria'",
+        "Confirmar as 3 palavras em amarelo e enviar",
+        "Como professor, abrir a redação na fila"
+      ],
+      "evidencias": [
+        "capturas/professor-01/PREP-00-foto-cursiva-enviada.png",
+        "capturas/professor-01/PREP-02-transcricao-cursiva.png",
+        "capturas/professor-01/PREP-00-foto-torta-enviada.png",
+        "capturas/professor-01/PREP-01-transcricao-foto-torta.png",
+        "capturas/professor-01/M5-02-josiane-cursiva-completa.png",
+        "capturas/professor-01/M8-03-devolvida.png"
+      ],
+      "seletor_visivel": "text='Confira a transcrição'",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-110",
+      "missao": "M5",
+      "etapa_proposta": "avaliador",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Notas sugeridas por competência sem justificativa própria",
+      "o_que_aconteceu": "As notas aparecem como seletores 'C1 160 · C2 160 · C3 160 · C4 160 · C5 160' no topo, sem texto que explique cada valor. As justificativas existem só nos cartões por trecho, e nem toda competência tem cartão que explique a nota (por exemplo, nada justifica C4 = 160).",
+      "o_que_a_persona_esperava": "Para cada competência, uma linha 'por que 160', com os trechos que sustentam a nota.",
+      "impacto": "A professora não consegue concordar ou discordar com base no texto e tende a reler tudo.",
+      "passos": [
+        "Abrir a redação Josiane (cursiva) na fila",
+        "Ler a barra de notas C1 a C5 e os cartões"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M5-01-josiane-cursiva-topo.png",
+        "capturas/professor-01/M5-03-todas-marcacoes.png"
+      ],
+      "seletor_visivel": "role=combobox[name='Nota C4']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-111",
+      "missao": "M5",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Marcações pré-aprovadas ficam fora da aba 'Pendentes' e citam uma calibragem que a professora não fez",
+      "o_que_aconteceu": "A aba 'Pendentes · 6' esconde 4 marcações que chegam ao aluno. Elas só aparecem em 'Todas', com o texto 'Pré-aprovada pela sua calibragem (97% em 46 casos)'. A professora nunca corrigiu nesse sistema.",
+      "o_que_a_persona_esperava": "Ver tudo o que vai para o aluno numa lista só, com o que já está aprovado claramente separado, e números verdadeiros sobre ela.",
+      "impacto": "Coisas vão para o aluno sem que ela tenha lido, e com um número que ela sabe que não é dela.",
+      "passos": [
+        "Abrir a redação Josiane (cursiva)",
+        "Clicar na aba 'Todas'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M5-03-todas-marcacoes.png"
+      ],
+      "seletor_visivel": "role=button[name='Todas']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-112",
+      "missao": "M6",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Comentário reescrito pela professora continua rotulado como 'Automática' / 'Correção automática'",
+      "o_que_aconteceu": "Depois de apagar o comentário 'Repertório legitimado e pertinente ao tema.' e escrever um novo inteiro, o cartão continuou com 'Automática 85%' (só ganhou o botão 'Desfazer'). Na devolutiva, vista como professora e como aluna, o comentário aparece com o rótulo 'Correção automática'.",
+      "o_que_a_persona_esperava": "O comentário reescrito marcado como da professora, na revisão e para o aluno.",
+      "impacto": "O aluno atribui à máquina o que a professora escreveu, e o contrário também pode acontecer. Atinge diretamente a autoria.",
+      "passos": [
+        "Abrir a redação Josiane (cursiva)",
+        "No cartão C2 '#1', clicar em 'Editar'",
+        "Substituir o texto e clicar em 'Salvar'",
+        "Devolver e abrir a devolutiva como aluna"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M6-02-editor-reescrevendo.png",
+        "capturas/professor-01/M6-03-card-editado.png",
+        "capturas/professor-01/M8-03-devolvida.png",
+        "capturas/professor-01/M8-04-devolutiva-lado-aluno.png"
+      ],
+      "seletor_visivel": "text='Correção automática'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-113",
+      "missao": "M6",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Nota alterada pela professora não fica registrada como alteração dela",
+      "o_que_aconteceu": "Ao mudar C4 de 160 para 200 e C5 de 160 para 120, os seletores só mostram o novo valor. Não há marca de 'alterada por você' nem a nota original da máquina. O aluno vê só a nota final, sem autoria.",
+      "o_que_a_persona_esperava": "Um sinal 'nota da professora' e, para ela, o valor sugerido original ao lado, para lembrar o que mudou.",
+      "impacto": "A professora não sabe depois o que mudou e não tem como mostrar à coordenação que a nota é dela.",
+      "passos": [
+        "Abrir a redação Josiane (cursiva)",
+        "Mudar o seletor C4 para 200 e o C5 para 120"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M6-01-nota-alterada.png"
+      ],
+      "seletor_visivel": "role=combobox[name='Nota C5']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-114",
+      "missao": "M7",
+      "etapa_proposta": "transversal",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Fechar a aba apaga todo o trabalho e as próprias redações recebidas, sem aviso",
+      "o_que_aconteceu": "Com duas notas alteradas e um comentário em edição na redação 'só folha 1', a aba foi fechada. Não houve aviso. Ao voltar 30 minutos depois pela mesma URL, a tela mostrou 'Redação não encontrada.'. A fila voltou a 'A revisar · 3' só com as redações de exemplo: as quatro redações das alunas e as duas devolutivas já publicadas sumiram. Em nenhum momento a interface indica se o trabalho está salvo.",
+      "o_que_a_persona_esperava": "Salvamento automático com indicação ('salvo há 1 minuto') e o trabalho de volta onde parou.",
+      "impacto": "Perda de dados da professora e das alunas. É o gatilho de desistência declarado pela persona.",
+      "passos": [
+        "Abrir uma redação em correção",
+        "Mudar os seletores C2 e C3 e começar a editar um comentário",
+        "Fechar a aba",
+        "Abrir de novo a mesma URL 30 minutos depois"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M7-01-antes-de-fechar.png",
+        "capturas/professor-01/M7-02-voltou-mesma-url.png",
+        "capturas/professor-01/M7-03-fila-ao-voltar.png"
+      ],
+      "seletor_visivel": "text='Redação não encontrada.'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-115",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Sem prévia do que o aluno verá e sem confirmação antes de devolver",
+      "o_que_aconteceu": "Antes de devolver, 'Visão do aluno' mostra apenas o texto com 'Em revisão · Sua redação chegou · O professor está corrigindo', sem notas nem comentários. 'Devolver ao aluno' publica imediatamente e troca a tela para a devolutiva, sem pergunta de confirmação.",
+      "o_que_a_persona_esperava": "Uma prévia fiel da devolutiva (nota, marcas, comentários, missões) e um 'Confirmar envio'.",
+      "impacto": "A professora publica sem ver o resultado final. Foi assim que a redação de 6 linhas saiu com 520 (A-104).",
+      "passos": [
+        "Abrir a redação Josiane (cursiva)",
+        "Clicar em 'Visão do aluno'",
+        "Voltar a 'Visão do professor', aprovar os pendentes e clicar em 'Devolver ao aluno'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M8-01-previa-visao-aluno.png",
+        "capturas/professor-01/M8-02-pronto-devolver.png",
+        "capturas/professor-01/M8-03-devolvida.png"
+      ],
+      "seletor_visivel": "role=button[name='Devolver ao aluno']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-116",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Devolutiva sem assinatura da professora; missões de reescrita entram sem ela ter visto",
+      "o_que_aconteceu": "A devolutiva não mostra nome de professor em lugar nenhum. Cada comentário diz 'Correção automática' ou, quando criado por ela, só 'Professor'. O bloco 'Para a reescrita', com três missões (por exemplo, 'Retome a ideia de Umberto Eco no 2º parágrafo'), aparece para o aluno sem nunca ter sido mostrado nem ficar editável na tela de revisão.",
+      "o_que_a_persona_esperava": "'Corrigida por Profª Márcia Andrade' com data, e só conteúdo que ela revisou.",
+      "impacto": "Ao aluno, parece que a máquina corrigiu e a professora só carimbou. É o contrário do objetivo de manter a autoria.",
+      "passos": [
+        "Devolver uma redação",
+        "Ler a devolutiva como professora e como aluna"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M8-03-devolvida.png",
+        "capturas/professor-01/M8-04-devolutiva-lado-aluno.png",
+        "capturas/professor-01/M4-07-davi-devolvida-incentivo.png"
+      ],
+      "seletor_visivel": "text='Para a reescrita'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-117",
+      "missao": "M4",
+      "etapa_proposta": "devolutiva",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Recado de incentivo só pode ser deixado como 'correção' presa a um trecho e classificada",
+      "o_que_aconteceu": "Não há campo de mensagem geral. A professora precisa selecionar um trecho do texto sem cor, escolher 'Acerto', 'Atenção' ou 'Erro' e uma competência, e então escrever. O recado aparece para o aluno como 'Acerto · #3 · Professor' na margem de um trecho.",
+      "o_que_a_persona_esperava": "Um campo 'Recado para o aluno' no fim da devolutiva.",
+      "impacto": "O incentivo vira uma marcação de acerto num trecho qualquer, e o recado perde o sentido.",
+      "passos": [
+        "Abrir uma redação com risco de zero",
+        "Arrastar o mouse sobre um trecho sem cor",
+        "Escolher 'Acerto', escrever o recado e salvar",
+        "Devolver"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M4-05-selecao-popover-davi.png",
+        "capturas/professor-01/M4-06-incentivo-criado-davi.png",
+        "capturas/professor-01/M4-07-davi-devolvida-incentivo.png"
+      ],
+      "seletor_visivel": "text='Marcar este trecho como'",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 1,
+    "clareza_da_devolutiva": 2,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

@@ -1,12 +1,13 @@
 import { expect, test } from "@playwright/test";
-import { alunoEnviaFolhaExemplo, professorAprovaPendentes } from "./helpers";
+import { alunoEnviaFolhaExemplo, devolver, professorAprovaPendentes, trocarPapel } from "./helpers";
 
 test.describe("Devolutiva do aluno", () => {
   test.beforeEach(async ({ page }) => {
     await alunoEnviaFolhaExemplo(page);
-    await page.getByTestId("visao-professor").click();
+    await trocarPapel(page, "professor");
     await professorAprovaPendentes(page);
-    await page.getByTestId("revisao-devolver").click();
+    await devolver(page);
+    await trocarPapel(page, "aluno");
     await expect(page.getByTestId("devolutiva")).toBeVisible();
   });
 

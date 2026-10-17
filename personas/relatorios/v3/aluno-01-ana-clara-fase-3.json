@@ -1,0 +1,157 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 3,
+  "executado_em": "2026-10-17T15:16:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 41,
+      "interacoes": 7,
+      "abandono_em": null,
+      "falas": [
+        "800! Pera... 'Retome a ideia de Umberto Eco'? Eu nunca citei Umberto Eco.",
+        "Pelo menos diz 'Corrigida e assinada por Prof. Marina Costa' e tem o recado dela.",
+        "Cada competência tem 'Por que 160' e 'Para chegar a 200'. Isso eu entendi sem Google.",
+        "Toquei no trecho vermelho e só ficou com uma borda. A explicação tava lá embaixo.",
+        "'Sugestão aceita automaticamente: o professor confia neste tipo de correção'... então ela não leu essa parte?"
+      ],
+      "achados": ["A-301", "A-302", "A-303", "A-304"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 12,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "'Por que a nota foi zero: texto com até 7 linhas.' Ok, entendi o motivo.",
+        "Tem 'Como evitar na próxima' e o recado da professora. Doeu, mas ficou claro.",
+        "Um fala 8 linhas, a professora fala 20. Vou escrever 20 pra garantir.",
+        "E ainda dá pra pedir revisão do zero se a foto tiver cortado. Gostei disso."
+      ],
+      "achados": ["A-305"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-301",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Devolutiva e nota 800 são de um texto que a aluna não escreveu",
+      "o_que_aconteceu": "A devolutiva da redação da M2 mostra nota 800/1000 e a folha marcada com a redação lida errado ('O escritor italiano Umberto Eco afirmou...'). As orientações citam esse texto: 'Retome a ideia de Umberto Eco no 2º parágrafo', 'Troque compartilhar-las por compartilhá-las'. A professora (revisão simulada pelo orquestrador) aprovou tudo sem ver que não batia com a foto. Consequência direta de A-103 da fase 1.",
+      "o_que_a_persona_esperava": "Correção da redação que eu escrevi, com os meus erros.",
+      "impacto": "Nota injusta e conselhos que não servem pra mim. Não sei mais quanto eu tiraria de verdade.",
+      "passos": [
+        "Entrar como Aluno",
+        "Abrir 'Minhas redações'",
+        "Tocar na redação 'O escritor italiano Umberto Eco...' com 'Nota 800'",
+        "Rolar até 'Sua nota, competência por competência'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-01-minhas-redacoes.png",
+        "capturas/aluno-01/M8-02-devolutiva-topo.png",
+        "capturas/aluno-01/M8-07-competencia-c5.png",
+        "capturas/aluno-01/M8-08-reescrita.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-folha",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-302",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Tocar no trecho marcado não mostra o comentário na tela do celular",
+      "o_que_aconteceu": "Ao tocar em 'compartilhar-las' (marcado em vermelho) só apareceu uma borda azul. O comentário correspondente ficou cerca de 1.180 px abaixo, fora da tela (altura 640 px). A ligação é pelo número sobrescrito pequeno (³), que precisa ser procurado na lista lá embaixo.",
+      "o_que_a_persona_esperava": "Um balãozinho com a explicação ao tocar, como no WhatsApp.",
+      "impacto": "Fico subindo e descendo pra casar número com comentário; cansa no celular.",
+      "passos": [
+        "Abrir a devolutiva da M2",
+        "Rolar até a folha",
+        "Tocar em 'compartilhar-las'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-05-toque-marca.png",
+        "capturas/aluno-01/M8-06-comentario-erro.png"
+      ],
+      "seletor_visivel": "data-testid=marca-r-1792260637361-a2",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-303",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "'Sugestão aceita automaticamente' faz duvidar se a professora leu",
+      "o_que_aconteceu": "4 dos 10 comentários dizem 'Sugestão aceita automaticamente: o professor confia neste tipo de correção', inclusive o único erro marcado (C1, 'compartilhar-las'). Os outros dizem 'Sugestão aprovada pelo professor'.",
+      "o_que_a_persona_esperava": "Saber que a professora olhou tudo, já que no topo diz 'Corrigida e assinada por Prof. Marina Costa'.",
+      "impacto": "Fica a dúvida se parte da correção foi só da máquina. Diminui a confiança na assinatura.",
+      "passos": [
+        "Abrir a devolutiva da M2",
+        "Ler os comentários da margem"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-06-comentario-erro.png",
+        "capturas/aluno-01/M8-03-devolutiva-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=comentario-autor",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-304",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Etapa 'Devolvida' aparece com o número 3, sem o check das outras",
+      "o_que_aconteceu": "Na redação já devolvida, 'Enviada' e 'Em revisão' têm check e 'Devolvida' segue com o círculo '3'. A linha de etapas quebra em duas linhas no celular.",
+      "o_que_a_persona_esperava": "Os três com check, pra eu ver que acabou.",
+      "impacto": "Pequena dúvida se terminou mesmo.",
+      "passos": [
+        "Abrir uma redação devolvida em 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-02-devolutiva-topo.png"
+      ],
+      "seletor_visivel": "data-testid=etapa-devolvida",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-305",
+      "missao": "M9",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Mínimo de linhas diferente em 'Como evitar' e no recado",
+      "o_que_aconteceu": "'Como evitar na próxima: Escreva pelo menos 8 linhas próprias; o ideal é entre 20 e 30' aparece logo abaixo da justificativa da professora, que diz 'Escreva pelo menos 20 linhas'.",
+      "o_que_a_persona_esperava": "Um número só.",
+      "impacto": "Leve confusão; nada grave.",
+      "passos": [
+        "Abrir a devolutiva da redação de 6 linhas",
+        "Ler o bloco 'Por que a nota foi zero'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M9-03-motivo-zero.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-zero-como-evitar",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 4,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

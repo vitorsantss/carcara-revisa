@@ -1,0 +1,147 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 3,
+  "executado_em": "2026-10-17T13:00:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "800! Mas esse texto do Umberto Eco nem é meu.",
+        "C1, C2, C3... o que é cada uma? Tenho que procurar no Google.",
+        "Tá tudo escrito 'Correção automática'. A professora viu ou foi só a máquina?",
+        "A parte 'Para a reescrita' eu entendi, é bem direto."
+      ],
+      "achados": ["B-001", "B-002", "B-003", "B-004"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "Zero? Mas eu escrevi tudo, como assim?",
+        "Diz que tenho 2 acertos e tirei zero. Não faz sentido.",
+        "Não fala o motivo nem o que fazer pra não zerar de novo."
+      ],
+      "achados": ["B-005"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "B-001",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Devolutiva não mostra que a professora revisou; todo comentário diz 'Correção automática'",
+      "o_que_aconteceu": "A professora (simulada pelo orquestrador) aprovou todas as marcações antes de devolver. Na devolutiva da aluna, os 10 comentários têm o rótulo 'Correção automática' e não aparece nome nem assinatura da professora em nenhum lugar.",
+      "o_que_a_persona_esperava": "Ver 'corrigida pela professora fulana' ou algo que mostre que uma pessoa leu.",
+      "impacto": "A aluna desconfia da nota e acha que foi só a máquina.",
+      "passos": [
+        "Abrir 'Minhas redações'",
+        "Tocar na redação com 'Devolutiva pronta'",
+        "Rolar até os comentários"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-02-devolutiva-topo.png",
+        "capturas/aluno-01/M8-03-devolutiva-inteira.png"
+      ],
+      "seletor_visivel": "[data-testid=comentario-autor]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "B-002",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Competências aparecem só como C1 a C5, sem explicação visível no celular",
+      "o_que_aconteceu": "As notas aparecem como 'C1 160', 'C2 160'... O significado ('Norma culta' no C1) só está num texto que aparece ao passar o mouse, que não existe no celular. Tocar em 'C1' não mostrou nada. Os comentários usam 'repertório', 'conectivo', 'paralelismo', 'agente' e 'finalidade' sem explicar.",
+      "o_que_a_persona_esperava": "Ver o nome de cada competência em palavras simples, tipo 'C5: proposta para resolver o problema'.",
+      "impacto": "A aluna não entende de onde vem a nota sem pesquisar fora.",
+      "passos": ["Abrir a devolutiva", "Tocar no chip 'C1 160'"],
+      "evidencias": [
+        "capturas/aluno-01/M8-02-devolutiva-topo.png",
+        "capturas/aluno-01/M8-05-toque-em-C1.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-nota-c1]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-003",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "No celular, os comentários ficam longe dos trechos marcados",
+      "o_que_aconteceu": "A página cabe na largura (sem zoom nem rolagem lateral). Mas os trechos marcados ficam no texto, ligados por números pequenos sobrescritos, e os comentários vêm todos depois do texto inteiro. Para entender o trecho 1, é preciso rolar até o fim e voltar. O rótulo 'Correção automática' tem 11 px; os filtros Acertos/Atenção/Erros e 'Visão do aluno/professor' têm 32 px de altura.",
+      "o_que_a_persona_esperava": "Tocar no trecho e ver o comentário ali do lado.",
+      "impacto": "Leitura cansativa e fácil de se perder no celular.",
+      "passos": ["Abrir a devolutiva", "Tocar num trecho marcado", "Rolar até a lista de comentários"],
+      "evidencias": [
+        "capturas/aluno-01/M8-03-devolutiva-inteira.png",
+        "capturas/aluno-01/M8-04-toque-na-marca.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-margem]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-004",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Devolutiva dá nota 800 a um texto que a aluna não escreveu",
+      "o_que_aconteceu": "A devolutiva da redação enviada por foto em M2 mostra 800/1000 e corrige o texto 'O escritor italiano Umberto Eco afirmou...', que foi a transcrição errada da foto (ver A-003 da fase 1). A redação real da aluna não aparece em lugar nenhum.",
+      "o_que_a_persona_esperava": "A correção do texto que ela escreveu à mão.",
+      "impacto": "Nota injusta, para cima: a aluna acha que está no padrão Enem sem estar, ou desconfia de tudo.",
+      "passos": ["Abrir 'Minhas redações'", "Tocar na redação de M2 com 'Devolutiva pronta'"],
+      "evidencias": ["capturas/aluno-01/M8-02-devolutiva-topo.png"],
+      "seletor_visivel": "[data-testid=devolutiva-nota-total]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "B-005",
+      "missao": "M9",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Nota zero sem motivo e contraditória com 'Acertos 2'",
+      "o_que_aconteceu": "A devolutiva da redação de seis linhas mostra '0 / 1000', C1 a C5 = 0, mas também 'Acertos 2' com trechos verdes e comentários de acerto ('Tese apresentada na introdução', 'Conectivo bem empregado'). Não há nenhuma frase com o motivo do zero (texto insuficiente) nem orientação de quantas linhas escrever. A seção 'Para a reescrita' não aparece. Observação do orquestrador: na tela de revisão, a correção automática sugeria 560 para esse texto e não havia campo para o professor escrever o motivo do zero; o zero foi dado mudando as cinco notas.",
+      "o_que_a_persona_esperava": "'Sua redação teve nota zero porque tem menos de 7 linhas. Na próxima, escreva pelo menos X linhas.'",
+      "impacto": "É exatamente o que faz a persona desistir: zero sem explicação, sem saber como evitar no Enem.",
+      "passos": [
+        "Professor (simulado) zera C1 a C5 e devolve",
+        "Aluna abre 'Minhas redações' e toca na redação de seis linhas"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M9-01-devolutiva-zero-topo.png",
+        "capturas/aluno-01/M9-02-devolutiva-zero-inteira.png",
+        "capturas/aluno-01/ORQ-02-M5-pronto-para-devolver.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-nota-total]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 2,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    { "missao": "M8", "motivo": "A revisão do professor não foi feita por uma pessoa: o orquestrador usou 'Entrar como Professor' na mesma sessão, aprovou todas as marcações pendentes da redação de M2 sem editar e devolveu. A persona não fez essa parte." },
+    { "missao": "M9", "motivo": "O zero foi aplicado pelo orquestrador simulando a professora (C1 a C5 = 0, marcações aprovadas, sem comentário próprio), já que a correção automática não zerou o texto de seis linhas (sugeria 560)." },
+    { "missao": "transversal", "motivo": "'Exportar PDF' não foi testado, para não abrir o diálogo de impressão no navegador automatizado." }
+  ]
+}

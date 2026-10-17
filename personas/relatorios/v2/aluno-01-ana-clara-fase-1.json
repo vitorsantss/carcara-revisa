@@ -1,0 +1,338 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 1,
+  "executado_em": "2026-10-17T21:10:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 74,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Pera, carregou ou não carregou? Tá tudo branco faz um minuto.",
+        "Cadê pra criar a conta? Já entrou sozinho... e quem é Helena Campos?",
+        "Só achei sobre responsável lá no fim da página de privacidade."
+      ],
+      "achados": ["A-101", "A-102", "A-112"]
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 13,
+      "interacoes": 15,
+      "abandono_em": null,
+      "falas": [
+        "Gostei da dica de luz branca, mas eu só tenho a lâmpada amarela.",
+        "Umberto Eco? Eu não escrevi isso! Eu falei do Orwell e do Bauman.",
+        "Pra arrumar eu ia ter que digitar a redação inteira de novo."
+      ],
+      "achados": ["A-103", "A-104", "A-105"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 33,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "A foto saiu torta e cortou o fim, e ele nem reclamou.",
+        "Mostrou o mesmo texto que não é meu de novo."
+      ],
+      "achados": ["A-106"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 15,
+      "interacoes": 13,
+      "abandono_em": null,
+      "falas": [
+        "Ah, avisou que caiu a internet e que meu texto continua aqui. Ufa.",
+        "A internet voltou e o aviso continuou lá, tive que tocar de novo."
+      ],
+      "achados": ["A-107"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 38,
+      "interacoes": 9,
+      "abandono_em": null,
+      "falas": [
+        "Em branco? Eu escrevi seis linhas!",
+        "Quando colei o texto ele avisou que até 7 linhas é zero. Isso foi bom.",
+        "Depois que mandei, só diz 'Aguardando professor', igual a outra."
+      ],
+      "achados": ["A-108", "A-109"]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Perguntou se eu fotografei o lado certo. Boa, eu tinha pegado o verso."
+      ],
+      "achados": []
+    },
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 5,
+      "abandono_em": null,
+      "falas": [
+        "Diz que chegou ao professor e que fica pronta até 20/10. Entendi.",
+        "A redação de seis linhas aparece igual às outras, nada de risco de zero."
+      ],
+      "achados": ["A-109"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-101",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há cadastro nem verificação de idade; consentimento do responsável só aparece num texto",
+      "o_que_aconteceu": "O app abriu direto na tela 'Enviar redação', já logado. Não havia criação de conta, campo de data de nascimento, e-mail ou telefone (0 campos encontrados). A única menção a menores está no fim da página 'Privacidade e uso de IA': 'Quem tem menos de 18 anos precisa do consentimento de um responsável. Na versão para escolas, isso entra no cadastro da turma, e você pode começar a usar e completar depois.'",
+      "o_que_a_persona_esperava": "Criar a conta, informar a idade e ser avisada, em palavras simples, de que precisa de um responsável e que pode completar depois.",
+      "impacto": "Não foi possível verificar se a plataforma percebe que a aluna é menor nem o que acontece sem os dados do responsável. A explicação existe, mas a aluna só a encontra se abrir a página de privacidade.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Procurar opção de criar conta ou informar data de nascimento",
+        "Abrir o menu e tocar em 'Privacidade e uso de IA'",
+        "Rolar até 'Menores de 18 anos'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-01-primeira-tela.png",
+        "capturas/aluno-01/M1-02-menu.png",
+        "capturas/aluno-01/M1-03-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=privacidade-page",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-102",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "friccao",
+      "severidade": 3,
+      "titulo": "Primeira abertura leva cerca de 70 s de tela branca no 3G",
+      "o_que_aconteceu": "Com 3G emulado (400 kbps, 400 ms), a primeira tela levou 70,4 s para aparecer (repetido: 68,7 s). Foram cerca de 3,4 MB em 44 requisições. Aos 3, 10 e 30 s a página estava totalmente branca, sem logo, texto ou indicador de carregamento.",
+      "o_que_a_persona_esperava": "Ver alguma coisa em poucos segundos: logo, 'carregando' ou a tela de envio.",
+      "impacto": "A aluna acha que travou, toca de novo ou fecha, e gasta dados do pré-pago. Limitação: o servidor testado é o de desenvolvimento (sem build de produção), o que pode aumentar o peso, mas foi isso que apareceu na tela.",
+      "passos": [
+        "Ativar 3G lento",
+        "Abrir http://localhost:5173/",
+        "Esperar a primeira tela"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-00-carregando-3s.png",
+        "capturas/aluno-01/M1-00-carregando-10s.png",
+        "capturas/aluno-01/M1-00-carregando-30s.png",
+        "capturas/aluno-01/M1-01-primeira-tela.png"
+      ],
+      "seletor_visivel": "data-testid=app-shell",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-103",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "A transcrição mostra uma redação que a aluna não escreveu",
+      "o_que_aconteceu": "A foto tinha a redação dela (título 'Desinformação: um vírus que se espalha pelas telas', com Orwell e Bauman). A tela 'Confira o texto lido da sua foto' mostrou outro texto ('O escritor italiano Umberto Eco afirmou...') e marcou só 3 palavras em amarelo. Com 'Ver foto' aberto, a foto e o texto aparecem lado a lado e não batem em nada. O mesmo texto apareceu para as outras fotos (torta, seis linhas, branco). Tudo indica que a leitura é simulada e ignora a imagem.",
+      "o_que_a_persona_esperava": "Ver o próprio texto, com só algumas palavras duvidosas para conferir.",
+      "impacto": "Para corrigir, ela teria de digitar a redação inteira em 'Corrigir o texto'. Se enviar como está, recebe nota de um texto que não é dela (ver fase 3), o que é uma nota injusta.",
+      "passos": [
+        "Abrir 'Enviar redação'",
+        "Tocar em 'Imagens' e escolher foto-noite-luz-amarela.jpg",
+        "Ler o texto em 'Confira o texto lido da sua foto'",
+        "Tocar em 'Ver foto' e comparar"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M2-03-transcricao.png",
+        "capturas/aluno-01/M2-04-ver-foto.png",
+        "capturas/aluno-01/M2-08-enviada.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-104",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Na conferência, a caixa de texto vaza da tela e o link 'Corrigir o texto' é um alvo pequeno",
+      "o_que_aconteceu": "Na tela de conferência, a caixa do texto passa da borda direita do cartão. Com o popup de dúvida aberto, a página fica com 372 px de largura numa tela de 360 px, o que permite rolar para o lado. O link 'A leitura errou outras palavras? Corrigir o texto' tem 20 px de altura e as palavras amarelas, 31 px.",
+      "o_que_a_persona_esperava": "Tudo cabendo na largura do celular e botões fáceis de tocar.",
+      "impacto": "Toques errados e rolagem para o lado num celular pequeno.",
+      "passos": [
+        "Enviar foto pela galeria",
+        "Tocar na primeira palavra em amarelo"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M2-03-transcricao.png",
+        "capturas/aluno-01/M2-05-popup-duvida.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao-editar",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-105",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "'Enviar para correção' fica cinza sem dizer na hora que faltam as palavras amarelas",
+      "o_que_aconteceu": "O botão fica desabilitado até todas as palavras amarelas serem confirmadas. O motivo só aparece no texto do topo ('3 palavras em amarelo... Toque para confirmar'), longe do botão.",
+      "o_que_a_persona_esperava": "Um aviso perto do botão, como 'confirme as 3 palavras amarelas'.",
+      "impacto": "Pequeno: o contador do topo diminui a cada palavra e no fim mostra 'Tudo conferido'.",
+      "passos": [
+        "Enviar foto",
+        "Tentar tocar em 'Enviar para correção' antes de confirmar as palavras"
+      ],
+      "evidencias": ["capturas/aluno-01/M2-03-transcricao.png"],
+      "seletor_visivel": "data-testid=envio-enviar",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-106",
+      "missao": "M3",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Foto torta e cortada foi aceita sem aviso de texto faltando",
+      "o_que_aconteceu": "A foto inclinada, com a parte de baixo da folha cortada (sem a conclusão), foi aceita sem nenhum aviso (área de avisos ausente). A tela mostrou o texto completo de sempre, com conclusão.",
+      "o_que_a_persona_esperava": "Um aviso como 'parece que a folha saiu cortada, tire outra foto', porque a proposta de intervenção fica no fim.",
+      "impacto": "Uma redação cortada pode perder a conclusão ou cair em texto insuficiente sem a aluna saber.",
+      "passos": [
+        "Abrir 'Enviar redação'",
+        "Escolher foto-torta-cortada.jpg em 'Imagens'",
+        "Procurar algum aviso na tela de conferência"
+      ],
+      "evidencias": ["capturas/aluno-01/M3-01-transcricao.png"],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-107",
+      "missao": "M4",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 1,
+      "titulo": "Quando a internet volta, o aviso de 'sem internet' continua e é preciso tocar de novo",
+      "o_que_aconteceu": "Sem rede, ao tocar em 'Enviar para correção' apareceu 'Sem internet agora. Seu texto continua aqui: tente enviar de novo quando a conexão voltar.' O texto e as conferências foram mantidos. O toque duplo não gerou envio duplicado. Quando a rede voltou, o aviso seguiu na tela e não houve reenvio automático. Com um novo toque, a redação foi enviada uma vez só (1 item em Minhas redações). Limitação: a leitura da foto terminou mesmo offline, porque nesta demonstração ela acontece no aparelho.",
+      "o_que_a_persona_esperava": "Que o envio continuasse sozinho quando a internet voltasse, ou que o aviso mudasse para 'conexão de volta, toque para enviar'.",
+      "impacto": "Pequeno: nada se perdeu e não houve duplicata.",
+      "passos": [
+        "Escolher a foto e confirmar as palavras",
+        "Desligar a rede e tocar duas vezes em 'Enviar para correção'",
+        "Religar a rede e observar",
+        "Tocar de novo e abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M4-03-enviando-offline.png",
+        "capturas/aluno-01/M4-04-apos-offline.png",
+        "capturas/aluno-01/M4-06-reenvio-ok.png",
+        "capturas/aluno-01/M4-07-minhas-redacoes-apos-reenvio.png"
+      ],
+      "seletor_visivel": "data-testid=envio-status",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-108",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Foto de seis linhas tratada como 'em branco'; ao continuar, aparece um texto completo e o aviso de zero some",
+      "o_que_aconteceu": "A foto com seis linhas escritas mostrou 'Essa foto parece estar em branco. Não encontramos texto na imagem.' Ao tocar em 'Continuar com esta', apareceu a redação completa do Umberto Eco, sem nenhum aviso de texto curto. O aviso 'Seu texto tem até 7 linhas. No Enem, redações com até 7 linhas recebem nota zero.' só apareceu quando ela digitou o texto em 'Colar texto'.",
+      "o_que_a_persona_esperava": "Ver as suas seis linhas e o aviso de risco de zero também pelo caminho da foto.",
+      "impacto": "Pelo caminho que ela realmente usa (foto), o risco de zero não aparece e a redação recebe um texto que não é dela.",
+      "passos": [
+        "Escolher seis-linhas.jpg em 'Imagens'",
+        "Ler o aviso 'Essa foto parece estar em branco'",
+        "Tocar em 'Continuar com esta'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-01-seis-linhas-foto.png",
+        "capturas/aluno-01/M5-02-continuar-com-esta.png",
+        "capturas/aluno-01/M5-03-aviso-texto-curto.png"
+      ],
+      "seletor_visivel": "data-testid=envio-folha-em-branco",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-109",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Depois do envio, a redação curta aparece como qualquer outra, sem lembrar o risco de zero",
+      "o_que_aconteceu": "Antes de enviar houve o aviso de 7 linhas. Depois do envio, a página da redação e 'Minhas redações' mostram só 'Aguardando professor / Chegou ao professor. A correção ainda não começou. Previsão: até 20/10.', igual às outras.",
+      "o_que_a_persona_esperava": "Um lembrete como 'seu professor vai conferir se vale zero' ou a opção de reescrever antes da correção.",
+      "impacto": "Ela passa até 3 dias sem saber se vai levar zero.",
+      "passos": [
+        "Enviar seis linhas por 'Colar texto'",
+        "Ver a tela após o envio",
+        "Abrir 'Minhas redações' uma hora depois"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-04-pos-envio.png",
+        "capturas/aluno-01/M7-01-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "data-testid=aluno-status",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-112",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "O app mostra o nome de outra aluna (Helena Campos) como se fosse ela",
+      "o_que_aconteceu": "O menu e a página da redação enviada mostram 'Helena Campos, Colégio Horizonte, 3º A'. Não há onde informar o próprio nome nem sair.",
+      "o_que_a_persona_esperava": "Ver o próprio nome, ou entender que é uma conta de demonstração.",
+      "impacto": "A aluna desconfia: 'minha redação foi para a conta de outra pessoa?'.",
+      "passos": [
+        "Abrir o app",
+        "Abrir o menu",
+        "Enviar uma redação e ver o topo da página"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-02-menu.png",
+        "capturas/aluno-01/M2-08-enviada.png"
+      ],
+      "seletor_visivel": "data-testid=usuario-atual",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    {
+      "missao": "M1",
+      "motivo": "Criação de conta, data de nascimento e vínculo do responsável não existem na interface (o app abre já logado). Só deu para ler o texto da página de privacidade."
+    },
+    {
+      "missao": "M4",
+      "motivo": "Parcial: a queda durante o upload da foto não pôde ser testada de verdade, porque a leitura da foto acontece no aparelho e terminou mesmo offline. A queda foi testada no toque em 'Enviar para correção'."
+    }
+  ]
+}

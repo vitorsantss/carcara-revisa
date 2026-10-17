@@ -13,6 +13,12 @@ export function tempoRelativo(iso: string, agora: Date = new Date()): string {
   return `há ${d} dia${d > 1 ? "s" : ""}`;
 }
 
+export const dataCurta = (data: Date | string) =>
+  new Date(data).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+
+export const dataHora = (data: Date | string) =>
+  new Date(data).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+
 export function iniciais(nome: string): string {
   return nome
     .split(/\s+/)

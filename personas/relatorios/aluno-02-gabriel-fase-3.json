@@ -1,0 +1,214 @@
+{
+  "persona_id": "aluno-02-gabriel",
+  "fase": 3,
+  "executado_em": "2026-10-17T12:45:39-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome (aproximação: mesma página Pixel 5 com viewport trocado para 1366x768; user agent e touch do Pixel 5 mantidos)",
+    "rede": "sem-limitacao",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "800 com 160 em tudo. Por que 160 e não 200 em C2? Não diz.",
+        "Tudo assinado 'Correção automática'. Quem corrigiu isso, a IA ou o professor?"
+      ],
+      "achados": [
+        "A-011",
+        "A-012",
+        "A-013"
+      ]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 2,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Mesma nota, mesmos comentários, palavra por palavra. Consistente, ok. Mas parece carimbo."
+      ],
+      "achados": [
+        "A-014"
+      ]
+    },
+    {
+      "id": "M9",
+      "status": "nao_concluida",
+      "duracao_segundos": 1,
+      "interacoes": 2,
+      "abandono_em": "devolutiva sem caminho para contestar",
+      "falas": [
+        "Cadê o botão de discordar? Cliquei no comentário, na nota... nada."
+      ],
+      "achados": [
+        "A-015"
+      ]
+    },
+    {
+      "id": "M10",
+      "status": "nao_concluida",
+      "duracao_segundos": 1,
+      "interacoes": 1,
+      "abandono_em": "lista sem notas nem histórico",
+      "falas": [
+        "Uma lista com o mesmo título cinco vezes e nenhuma nota. Isso não é evolução."
+      ],
+      "achados": [
+        "A-016"
+      ]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-011",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Devolutiva não mostra o que o professor revisou",
+      "o_que_aconteceu": "Os 10 comentários da devolutiva de M1 são assinados 'Correção automática'. Nada mostra que o professor aprovou, editou ou escreveu algo; a legenda 'listrado = correção do professor' só aparece na visão do professor.",
+      "o_que_a_persona_esperava": "Saber, por comentário, se veio do sistema ou do professor, e se o professor confirmou.",
+      "impacto": "Não sei quanto peso dar a cada nota; parece só IA.",
+      "passos": [
+        "Abrir 'Minhas redações'",
+        "Abrir a redação de M1 ('Devolutiva pronta')",
+        "Ler o autor de cada comentário"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-02-devolutiva-M1-topo.png",
+        "capturas/aluno-02/M7-03-devolutiva-M1-inteira.png",
+        "capturas/aluno-02/SIM-M1-revisado.png"
+      ],
+      "seletor_visivel": "[data-testid=comentario-autor]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-012",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Nota por competência sem justificativa do nível nem do que falta para 200",
+      "o_que_aconteceu": "C1 a C5 aparecem como 160. Tocar na nota não abre nada. Não há texto dizendo por que é 160 e não 200. 'Para a reescrita' traz só C1, C2 e C3; C4 e C5 não têm orientação.",
+      "o_que_a_persona_esperava": "Para cada competência, o motivo do nível e o que levaria a 200.",
+      "impacto": "Não consigo mirar no 900+; é o motivo principal de eu usar a plataforma.",
+      "passos": [
+        "Abrir a devolutiva de M1",
+        "Tocar na nota C3",
+        "Rolar até 'Para a reescrita'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-04-clique-nota-c3.png",
+        "capturas/aluno-02/M7-06-para-a-reescrita.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-notas]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-013",
+      "missao": "M7",
+      "etapa_proposta": "avaliador",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Comentários de acerto genéricos, ao contrário dos de erro",
+      "o_que_aconteceu": "Os trechos ficam destacados, o que é bom. C1 é específico ('compartilhar-las' -> 'compartilhá-las'). Mas C4/C5 dizem só 'Conectivo adequado entre parágrafos', 'Agente definido', 'Meio de execução explícito'. Minha classificação: C1 específica; C2 e C3 parcialmente específicas; C4 e C5 genéricas.",
+      "o_que_a_persona_esperava": "Comentário que explique o efeito do trecho no texto.",
+      "impacto": "Comentários de acerto não me ensinam nada.",
+      "passos": [
+        "Abrir a devolutiva de M1",
+        "Ler os comentários na margem"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-03-devolutiva-M1-inteira.png",
+        "capturas/aluno-02/M7-05-clique-marca.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-margem]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-014",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Envios repetidos têm devolutivas idênticas, sem indicação de que são o mesmo texto",
+      "o_que_aconteceu": "M1 e M2 tiveram 800 (160 em tudo) e os mesmos 10 comentários. É consistente. Mas nada indica que eram o mesmo texto ou que o professor olhou cada uma; as duas aparecem como 'Correção automática'.",
+      "o_que_a_persona_esperava": "Mesma nota (ok) e alguma marca de que o sistema reconheceu o reenvio.",
+      "impacto": "Bom para consistência; ruim para a sensação de devolutiva feita para mim.",
+      "passos": [
+        "Abrir a devolutiva de M1",
+        "Abrir a devolutiva de M2",
+        "Comparar notas e comentários"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M7-02-devolutiva-M1-topo.png",
+        "capturas/aluno-02/M8-01-devolutiva-M2-topo.png",
+        "capturas/aluno-02/M8-02-devolutiva-M2-inteira.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva-notas]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-015",
+      "missao": "M9",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não existe caminho para contestar ou pedir revisão",
+      "o_que_aconteceu": "Na devolutiva os únicos botões são os filtros (Acertos/Atenção/Erros), 'Exportar PDF' e a troca de visão. Clicar num comentário ou na nota C1 não oferece opção de discordar.",
+      "o_que_a_persona_esperava": "Botão 'Discordar' ou 'Pedir revisão' por comentário ou competência, com confirmação.",
+      "impacto": "Discordo e não tenho o que fazer: é um dos meus motivos para desistir.",
+      "passos": [
+        "Abrir a devolutiva",
+        "Clicar num comentário",
+        "Clicar na nota C1",
+        "Procurar opção de contestar"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M9-01-clique-comentario-sem-opcao.png",
+        "capturas/aluno-02/M9-02-clique-nota-c1.png"
+      ],
+      "seletor_visivel": "[data-testid=devolutiva]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-016",
+      "missao": "M10",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Sem histórico de notas por competência",
+      "o_que_aconteceu": "'Minhas redações' lista cinco itens com o mesmo título, 'Enviada agora' e o status ('Em revisão' ou 'Devolutiva pronta'). Não mostra nota, data ou evolução por competência.",
+      "o_que_a_persona_esperava": "Lista com nota total e C1 a C5 por envio, e um gráfico de evolução.",
+      "impacto": "Não consigo decidir o que estudar a partir da plataforma.",
+      "passos": [
+        "Abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M10-01-historico.png",
+        "capturas/aluno-02/M7-01-minhas-redacoes-desktop.png"
+      ],
+      "seletor_visivel": "[data-testid=minhas-redacoes-page]",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 3,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [],
+  "observacoes_do_executor": [
+    "A revisão do professor foi SIMULADA pelo orquestrador na mesma sessão: papel 'Professor', Fila de correção, aprovação de todas as marcações pendentes (6 em M1, 6 em M2) sem editar, e 'Devolver ao aluno'. A persona não fez essa parte. Notas sugeridas antes da revisão: M1 800 e M2 800.",
+    "Apenas M1 e M2 foram devolvidas; M3, M4 e M5 ficaram na fila.",
+    "Troca de celular para notebook por page.setViewportSize(1366x768) na mesma página, para não perder o estado em memória.",
+    "O que funcionou: trechos destacados na folha ligados a comentários numerados, filtro por tipo e notas idênticas para o mesmo texto."
+  ]
+}

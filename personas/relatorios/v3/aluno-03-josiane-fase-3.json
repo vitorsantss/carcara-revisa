@@ -1,0 +1,234 @@
+{
+  "persona_id": "aluno-03-josiane",
+  "fase": 3,
+  "executado_em": "2026-10-17T15:07:24-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Galaxy S8",
+    "rede": "4g-oscilando",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Tirei 720! ... Mas espera, essa redação do Umberto Eco não é a minha. Eu escrevi sobre a EJA.",
+        "Gostei que cada competência diz o que é, 'por que 160' e 'para chegar a 200'. Isso eu entendi.",
+        "'Acrescente: o que faz (ação), um detalhamento.' Não entendi essa frase.",
+        "E ainda está escrito Helena Campos em cima. Será que essa nota é dela?"
+      ],
+      "achados": ["A-011", "A-016", "A-018"]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 5,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Zero. 'Possível fuga total ao tema.' Possível? Então zerou ou não zerou?",
+        "Aqui diz 5 acertos e 0 erros, e a nota é zero. Fiquei perdida.",
+        "Na da minha história, a professora escreveu que a história é bonita e que vamos treinar juntas. Isso me deu ânimo.",
+        "Mas o motivo fala de tema de novo; quem explica que eu não podia contar minha vida é o quadradinho da C2 e a professora."
+      ],
+      "achados": ["A-012", "A-013", "A-014", "A-015"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 8,
+      "abandono_em": null,
+      "falas": [
+        "No menu não tem ajuda. Deixa eu ver se é aqui... achei lá embaixo: 'O que são as 5 competências?'.",
+        "A explicação é boa, com palavras simples. Mas eu queria ter lido isso antes de escrever, não só depois."
+      ],
+      "achados": ["A-017"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-011",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Devolutiva e nota 720 assinadas pela professora são sobre um texto que a aluna não escreveu",
+      "o_que_aconteceu": "A devolutiva da redação de M2 mostra 720/1000, 'Corrigida e assinada por Prof. Marina Costa', e marca trechos do texto 'O escritor italiano Umberto Eco...'. A folha real da aluna falava de educação de jovens e adultos. Todo o retorno (notas, 'Por que 160', 'Para a reescrita') se refere ao texto errado. A revisão da professora foi simulada pelo orquestrador aprovando as sugestões; a tela da professora não apontou diferença entre foto e texto.",
+      "o_que_a_persona_esperava": "Ver a própria redação marcada.",
+      "impacto": "Nota e orientações não valem para o que ela escreveu; ela não sabe se está melhorando. Nota injusta.",
+      "passos": [
+        "Fase 1: enviar cursiva-dificil.jpg e conferir as 3 palavras amarelas",
+        "Professor (simulado) aprova as marcações e devolve",
+        "Como aluna, abrir Minhas redações e tocar na redação"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M7-01-minhas-redacoes.png",
+        "capturas/aluno-03/M7-02-devolutiva-topo.png",
+        "capturas/aluno-03/M7-03-devolutiva-inteira.png",
+        "capturas/aluno-03/M2-02-ver-foto.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-folha",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-012",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Motivo do zero já decidido aparece como 'Possível fuga total ao tema'",
+      "o_que_aconteceu": "Em 'Por que a nota foi zero', nas duas redações zeradas (M4 e M5), o motivo é 'Possível fuga total ao tema: o texto não trata do assunto pedido.' A nota já foi confirmada e assinada pela professora.",
+      "o_que_a_persona_esperava": "Uma frase firme: 'Sua redação zerou porque...'.",
+      "impacto": "A palavra 'possível' faz a aluna duvidar se o zero é definitivo e enfraquece a confiança na correção.",
+      "passos": [
+        "Professor (simulado) confirma o zero sugerido e devolve",
+        "Como aluna, abrir a redação sobre celular em Minhas redações",
+        "Ler 'Por que a nota foi zero'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-02-zero-fuga-inteira.png",
+        "capturas/aluno-03/M8-04-zero-narrativo-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-zero-motivo",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-013",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Zero do relato pessoal é explicado só como fuga ao tema",
+      "o_que_aconteceu": "Na redação narrativa (M5), o motivo do zero e o 'Como evitar na próxima' falam só de tema ('Leia o tema com calma...'). Que o problema também era contar a própria história em vez de defender uma opinião aparece só no cartão C2 da folha e no recado escrito pela professora (simulada). Não verificado se um relato dentro do tema também zeraria.",
+      "o_que_a_persona_esperava": "Que o motivo dissesse claramente: a redação do Enem não pode ser uma história pessoal.",
+      "impacto": "Sem o recado da professora, a aluna aprenderia só a 'ler o tema' e repetiria o relato pessoal.",
+      "passos": [
+        "Abrir a redação narrativa devolvida",
+        "Ler 'Por que a nota foi zero' e 'Como evitar na próxima'",
+        "Rolar até o cartão C2"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-03-zero-narrativo-topo.png",
+        "capturas/aluno-03/M8-04-zero-narrativo-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-zero-como-evitar",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-014",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Nota zero ao lado de 'Acertos 5, Erros 0'",
+      "o_que_aconteceu": "Na redação sobre celular (M4), logo abaixo de 0/1000 e de todas as competências com 0, aparece o resumo 'Acertos 5, Atenção 1, Erros 0'. A frase que explica que os comentários não mudam a nota fica mais abaixo.",
+      "o_que_a_persona_esperava": "Entender de cara por que tem acertos e mesmo assim zero.",
+      "impacto": "Confusão sobre como a nota é calculada; a persona acha que pode ser erro do sistema.",
+      "passos": [
+        "Abrir a redação sobre celular devolvida",
+        "Olhar o topo da tela"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-01-zero-fuga-topo.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-filtro",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-015",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Texto para contestar o zero fala de foto cortada mesmo em zero por tema",
+      "o_que_aconteceu": "Em 'Não concorda com o zero?' aparece 'Se a foto cortou uma parte...' e o botão 'Escrevi o texto inteiro e acho que o zero está errado: pedir revisão', mesmo quando o zero foi por tema e o texto foi colado.",
+      "o_que_a_persona_esperava": "Um convite simples para conversar com a professora sobre o motivo.",
+      "impacto": "Pequena confusão; a persona não sabe se pode pedir revisão.",
+      "passos": [
+        "Abrir uma redação zerada por tema",
+        "Rolar até 'Não concorda com o zero?'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-02-zero-fuga-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-pedir-zero",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-016",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Orientações com frases truncadas e termos explicados só longe do comentário",
+      "o_que_aconteceu": "Em C5 aparece 'Para chegar a 160: Acrescente: o que faz (ação), um detalhamento.' Os cartões da folha usam 'repertório', 'tese', 'conectivo', 'meio de execução explícito' e 'agente definido' sem explicação no próprio cartão; a explicação das competências fica na parte de baixo da página.",
+      "o_que_a_persona_esperava": "Uma frase completa dizendo o que escrever a mais.",
+      "impacto": "A persona entende a ideia geral (desenvolver argumentos, completar a proposta), mas não sabe o que fazer com 'meio de execução' ou 'agente'.",
+      "passos": [
+        "Abrir a devolutiva da redação de M2",
+        "Ler os cartões da folha e o bloco C5"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M7-03-devolutiva-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-proximo-nivel-c5",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-017",
+      "missao": "M9",
+      "etapa_proposta": "transversal",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Explicação das 5 competências só no fim da devolutiva e da tela pós-envio",
+      "o_que_aconteceu": "Existe 'O que são as 5 competências?' (bloco recolhido, linguagem clara), mas só no fim da devolutiva e na tela depois de enviar. Não há item no menu, nem na tela Enviar redação, nem em 'Privacidade e uso de IA'.",
+      "o_que_a_persona_esperava": "Encontrar a explicação antes de escrever, no menu ou perto do tema.",
+      "impacto": "A aluna iniciante escreve sem saber o que é avaliado e só descobre depois da nota.",
+      "passos": [
+        "Abrir o menu e procurar ajuda",
+        "Abrir Enviar redação e Privacidade",
+        "Abrir uma devolutiva e rolar até o fim"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M9-01-menu.png",
+        "capturas/aluno-03/M9-02-glossario-fechado.png",
+        "capturas/aluno-03/M9-03-glossario-aberto.png",
+        "capturas/aluno-03/M9-04-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-glossario",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-018",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Devolutiva mostra o nome de outra pessoa e 'enviada agora'",
+      "o_que_aconteceu": "O topo da devolutiva diz 'Helena Campos, 3º A · enviada agora', mesmo depois da devolução. A persona é a Josiane, do cursinho comunitário.",
+      "o_que_a_persona_esperava": "Ver o próprio nome e a data em que mandou.",
+      "impacto": "Reforça a dúvida de M1: a nota é mesmo dela?",
+      "passos": [
+        "Abrir Minhas redações",
+        "Tocar numa redação devolvida",
+        "Ler o topo"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M7-03-devolutiva-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=redacao-aluno",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 3,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

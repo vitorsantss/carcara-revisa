@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { alunoEnviaFolhaExemplo, professorAprovaPendentes, selecionarTrecho } from "./helpers";
+import { alunoEnviaFolhaExemplo, devolver, professorAprovaPendentes, selecionarTrecho, trocarPapel } from "./helpers";
 
 test.describe("Fluxo completo: aluno envia, professor revisa, aluno recebe", () => {
   test("mesma redação vista pelo aluno e pelo professor em cada etapa", async ({ page }) => {
@@ -11,18 +11,23 @@ test.describe("Fluxo completo: aluno envia, professor revisa, aluno recebe", () 
       await expect(page.getByTestId("aluno-duvidas")).toContainText("3 palavras");
     });
 
-    await test.step("troca para a visão do professor na mesma redação", async () => {
-      await page.getByTestId("visao-professor").click();
+    await test.step("aluno não tem acesso à visão do professor", async () => {
+      await expect(page.getByTestId("visao-toggle")).toHaveCount(0);
+      await expect(page.getByTestId("revisao")).toHaveCount(0);
+    });
+
+    await test.step("professor abre a mesma redação", async () => {
+      await trocarPapel(page, "professor");
       await expect(page.getByTestId("revisao")).toBeVisible();
       await expect(page.getByTestId("etapa-em_revisao")).toHaveAttribute("data-state", "atual");
       await expect(page.getByTestId("revisao-devolver")).toBeDisabled();
     });
 
     await test.step("o aluno ainda não vê marcações enquanto o professor revisa", async () => {
-      await page.getByTestId("visao-aluno").click();
+      await trocarPapel(page, "aluno");
       await expect(page.getByTestId("aluno-status")).toHaveText("Em revisão");
       await expect(page.locator('[data-testid^="marca-"]')).toHaveCount(0);
-      await page.getByTestId("visao-professor").click();
+      await trocarPapel(page, "professor");
     });
 
     await test.step("professor recusa uma correção automática", async () => {
@@ -47,15 +52,17 @@ test.describe("Fluxo completo: aluno envia, professor revisa, aluno recebe", () 
       await professorAprovaPendentes(page);
       await page.getByTestId("nota-c3").selectOption("120");
       await expect(page.getByTestId("nota-total")).toHaveText("760");
-      await page.getByTestId("revisao-devolver").click();
+      await devolver(page);
     });
 
     await test.step("aluno vê a devolutiva com a nota do professor e os comentários", async () => {
+      await trocarPapel(page, "aluno");
       await expect(page.getByTestId("redacao-page")).toHaveAttribute("data-visao", "aluno");
       await expect(page.getByTestId("devolutiva")).toBeVisible();
       await expect(page.getByTestId("devolutiva-nota-total")).toContainText("760");
       await expect(page.getByTestId("etapa-devolvida")).toHaveAttribute("data-state", "atual");
-      await expect(page.locator('[data-testid^="comentario-"][data-tipo]').filter({ hasText: "Professor" })).toHaveCount(1);
+      await expect(page.locator('[data-testid^="comentario-"][data-autoria="professor"]')).toHaveCount(1);
+      await expect(page.getByTestId("devolutiva-assinatura")).toContainText("Marina Costa");
       await expect(page.locator('[data-testid^="marca-"][data-status="recusada"]')).toHaveCount(0);
     });
   });

@@ -1,0 +1,154 @@
+{
+  "persona_id": "aluno-03-josiane",
+  "fase": 3,
+  "executado_em": "2026-10-17T13:53:09-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Galaxy S8 (emulado no Playwright/Chromium, 360x740, pt-BR, America/Sao_Paulo; fonte 150% aproximada com CSS html{font-size:150%} nas telas da aluna)",
+    "rede": "4g-oscilando (CDP Network.emulateNetworkConditions alternando a cada 8 s entre 4 Mbps/70 ms e 350 kbps/450 ms)",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Tirei 760? Mas essa não é a minha redação, é aquele texto do Umberto Eco que a leitura inventou.",
+        "Os quadrinhos de cada competência eu entendi: 'Para chegar a 160: desenvolva cada argumento com causa, consequência e exemplo.'",
+        "'Repertório identificado', 'conectivo', 'meio de execução explícito'... o que é isso?"
+      ],
+      "achados": ["A-101", "A-102", "A-106"]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 65,
+      "interacoes": 2,
+      "abandono_em": null,
+      "falas": [
+        "Zero nas duas. Pelo menos explica: 'Em vez de contar sua história, defenda uma opinião sobre o tema'. Isso eu entendi.",
+        "'Possível fuga total ao tema'? Possível? Então fugi ou não fugi?",
+        "Zero, mas tem 5 acertos em verde. Fiquei confusa, mas ali embaixo diz que os comentários não mudam a nota.",
+        "Não me senti humilhada. Dá vontade de tentar de novo."
+      ],
+      "achados": ["A-103", "A-104"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "No menu não tem ajuda.",
+        "Achei! 'O que são as 5 competências?' no finalzinho da correção. Explica tudo com palavra simples.",
+        "Mas eu só vi porque já tinha uma redação corrigida. Antes de escrever, não tinha."
+      ],
+      "achados": ["A-105"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-101",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Devolutiva dá nota 760 a um texto que a aluna não escreveu",
+      "o_que_aconteceu": "A redação da M2 (foto cursiva) foi devolvida com 760/1000, 'Corrigida e assinada por Prof. Marina Costa'. A folha marcada e as justificativas são todas sobre o texto lido errado (Umberto Eco, 'Dessarte...'), não sobre o que ela escreveu à mão. A revisão da professora foi simulada pelo orquestrador, que aprovou as sugestões automáticas sem abrir a foto.",
+      "o_que_a_persona_esperava": "Correção da redação dela, mesmo que a nota fosse menor.",
+      "impacto": "A nota é injusta e não mostra o que ela precisa melhorar. Ela pode achar que escreve muito melhor do que escreve, ou desconfiar de tudo.",
+      "passos": ["Fase 1: enviar cursiva-dificil.jpg sem reescrever", "Professor (simulado): aprovar marcações e devolver", "Aluna: Minhas redações > abrir a redação 'O escritor italiano Umberto Eco...'"],
+      "evidencias": ["capturas/aluno-03/M7-01-minhas-redacoes.png", "capturas/aluno-03/M7-02-devolutiva-topo.png", "capturas/aluno-03/M7-03-devolutiva-inteira.png"],
+      "seletor_visivel": "[data-testid=devolutiva-nota-total]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-102",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Comentários da margem usam termos técnicos sem explicação",
+      "o_que_aconteceu": "As notas de cada competência têm explicação simples e 'Para chegar a 200', mas os comentários da folha dizem 'Repertório identificado. Confira se ele sustenta o argumento.', 'Conectivo bem empregado.', 'Meio de execução explícito.', 'Finalidade presente. Confira se há detalhamento.', 'Agente definido.', 'Registro informal.' e 'Sugestão automática aprovada pelo professor', sem explicação ao lado.",
+      "o_que_a_persona_esperava": "Frases como 'aqui você usou bem o \"além disso\"' ou 'aqui faltou dizer para que serve a solução'.",
+      "impacto": "Ela entende as notas, mas não liga o comentário ao que precisa mudar no próprio texto.",
+      "passos": ["Abrir a devolutiva da M2", "Tocar numa marca numerada da folha"],
+      "evidencias": ["capturas/aluno-03/M7-03-devolutiva-inteira.png", "capturas/aluno-03/M7-04-marca-tocada.png"],
+      "seletor_visivel": "[data-testid=devolutiva-margem]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-103",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Zero confirmado aparece como 'Possível fuga total ao tema'",
+      "o_que_aconteceu": "Em 'Por que a nota foi zero' da M4: 'Possível fuga total ao tema: o texto não trata do assunto pedido.' A professora (simulada) confirmou o zero, mas a aluna lê 'possível'. Não diz qual era o assunto pedido nem por que celular de criança não serve.",
+      "o_que_a_persona_esperava": "Uma frase firme: 'você escreveu sobre X, o tema pedia Y'.",
+      "impacto": "Fica a dúvida se o zero é definitivo, e ela não entende onde errou na leitura do tema.",
+      "passos": ["Professor (simulado) confirma o zero da M4 e devolve", "Aluna abre a devolutiva da M4"],
+      "evidencias": ["capturas/aluno-03/M8-M4-topo.png", "capturas/aluno-03/M8-M4-inteira.png"],
+      "seletor_visivel": "[data-testid=devolutiva-zero-motivo]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-104",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Redação zerada mostra acertos em verde e dicas genéricas de reescrita",
+      "o_que_aconteceu": "A M4 zerada mostra 'Acertos 5' ('Tese apresentada na introdução', 'Agente definido'). Na M5, a parte 'Para a reescrita' sugere 'Traga um repertório' e 'Releia procurando concordância', sem ligação com o motivo do zero (relato pessoal). Há o aviso 'Os comentários... não mudam esta nota'.",
+      "o_que_a_persona_esperava": "Que a lista do que fazer começasse pelo motivo do zero.",
+      "impacto": "Mensagem mista: 'acertei, mas tirei zero'. O tom é acolhedor; o bloco 'Como evitar na próxima' orienta bem.",
+      "passos": ["Abrir as devolutivas da M4 e da M5 e rolar até o fim"],
+      "evidencias": ["capturas/aluno-03/M8-M4-inteira.png", "capturas/aluno-03/M8-M5-inteira.png", "capturas/aluno-03/M8-M5-topo.png"],
+      "seletor_visivel": "[data-testid=devolutiva-missoes]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-105",
+      "missao": "M9",
+      "etapa_proposta": "transversal",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Explicação das 5 competências só existe no fim de uma devolutiva",
+      "o_que_aconteceu": "O menu da aluna só tem Enviar redação, Minhas redações e Privacidade e uso de IA. A tela de envio e a de privacidade não falam de competências. A explicação existe ('O que são as 5 competências?', clara e com palavras simples), mas só no fim da devolutiva, depois de ter uma redação corrigida.",
+      "o_que_a_persona_esperava": "Uma ajuda antes de escrever a primeira redação, perto do tema.",
+      "impacto": "Quem está começando, como ela, escreve sem saber o que vai ser avaliado.",
+      "passos": ["Abrir o menu", "Abrir #/aluno/enviar e #/aluno/privacidade", "Abrir a devolutiva da M2 e rolar até o fim"],
+      "evidencias": ["capturas/aluno-03/M9-01-glossario.png", "capturas/aluno-03/M9-02-glossario-aberto.png", "capturas/aluno-03/M1-02-menu.png"],
+      "seletor_visivel": "[data-testid=devolutiva-glossario]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-106",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "Devolutiva com fonte 150% tem rolagem horizontal",
+      "o_que_aconteceu": "Com html em 150%, a largura da página da devolutiva foi a 398 px numa tela de 360 px. A linha 'Corrigida e assinada por Prof. Marina Costa em 17/10' quebra em três colunas apertadas.",
+      "o_que_a_persona_esperava": "Rolar só para baixo.",
+      "impacto": "Menor: dá para ler, mas a tela fica balançando para o lado.",
+      "passos": ["Aplicar fonte 150%", "Abrir a devolutiva da M2"],
+      "evidencias": ["capturas/aluno-03/M7-02-devolutiva-topo.png", "capturas/aluno-03/M7-03-devolutiva-inteira.png"],
+      "seletor_visivel": "[data-testid=devolutiva]",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 3,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    { "missao": "M7", "motivo": "Não houve professora real: a revisão e a devolução das três redações foram simuladas pelo orquestrador com 'Entrar como Professor' (aprovou as sugestões automáticas, confirmou os zeros sugeridos de M4 e M5, sem recado), e a aluna voltou na mesma sessão." },
+    { "missao": "M8", "motivo": "Limitação de emulação: fonte 150% aproximada com CSS; as redações de M4 e M5 foram enviadas como texto digitado ('Colar texto'), porque a leitura das fotos devolveu outro texto." }
+  ]
+}

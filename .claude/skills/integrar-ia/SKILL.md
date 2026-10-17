@@ -9,20 +9,22 @@ Leia antes: `docs/adr/0001-correcao-assistida-com-professor-no-comando.md`, `doc
 
 ## Contrato
 
-A UI depende só destas interfaces (`src/services/correcao.ts`). Não altere a assinatura sem ADR.
+A UI depende só destas interfaces (`src/services/correcao.ts`). Não altere a assinatura sem ADR (última mudança: ADR-0009).
 
 ```ts
 interface ServicoTranscricao {
-  transcrever(imagem: File | "exemplo"): Promise<ResultadoTranscricao>;
+  transcrever(imagens: Array<File | "exemplo">): Promise<ResultadoTranscricao>; // frente, verso…
 }
 interface ServicoCorrecao {
-  corrigir(texto: string, tema: string): Promise<ResultadoCorrecao>;
+  corrigir(texto: string, proposta: Proposta, nomesDoAluno?: string[]): Promise<ResultadoCorrecao>;
 }
 ```
 
 `ResultadoTranscricao`: `{ texto, duvidas: [{ lido, sugestoes[] }] }`.
 
-`ResultadoCorrecao`: `{ motivoZero, avaliacao: { 1..5: { nota, confianca, proximoPasso } }, marcacoes: [{ competencia, tipo, trecho, comentario, sugestao?, confianca }] }`.
+`ResultadoCorrecao`: `{ motivoZero, alertas?, avaliacao: { 1..5: { nota, confianca, justificativa, proximoPasso } }, marcacoes: [{ competencia, tipo, trecho, comentario, sugestao?, confianca }] }`.
+
+`motivoZero` é sempre uma sugestão: o professor confirma ou anula (ADR-0009). `alertas` usa `TipoAlerta` e nunca carrega trecho da redação. A `proposta` traz `motivadores` (para detectar cópia) e `nucleoDoTema` (para fuga ao tema).
 
 A IA devolve `trecho` como citação literal. Os offsets (`inicio`, `fim`) são calculados pelo app em `localizarTrechos`. Nunca confie em offsets vindos do modelo.
 

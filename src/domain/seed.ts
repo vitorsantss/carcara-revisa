@@ -34,6 +34,13 @@ export const PROPOSTA: Proposta = {
   tema: "Os desafios para combater a desinformação nas redes sociais no Brasil",
   turmaIds: ["t-3a", "t-3b"],
   prazo: "2026-10-24",
+  motivadores: [
+    "Uma pesquisa recente mostrou que sete em cada dez brasileiros já acreditaram em uma notícia falsa compartilhada nas redes sociais.",
+    "Notícias falsas se espalham seis vezes mais rápido do que as verdadeiras, porque despertam emoções fortes como medo e indignação.",
+    "A educação midiática ensina a checar a fonte, a data e o autor de uma informação antes de compartilhá-la.",
+  ],
+  nucleoDoTema: ["desinforma", "noticias falsas", "noticia falsa", "fake news", "boato", "checagem", "checar", "informacao falsa", "informacoes falsas", "mentira"],
+  diasParaDevolutiva: 3,
 };
 
 export const USUARIO_ALUNO = "a-helena";
@@ -55,7 +62,7 @@ export const CALIBRAGEM_INICIAL: Calibragem = {
   "5|erro": { casos: 10, concordancia: 9 },
 };
 
-const av = (n: number, conf: number, passo: string): AvaliacaoCompetencia => ({ nota: n, confianca: conf, proximoPasso: passo });
+const av = (n: number, conf: number, justificativa: string, passo: string): AvaliacaoCompetencia => ({ nota: n, confianca: conf, justificativa, proximoPasso: passo });
 const comps = (...x: AvaliacaoCompetencia[]) =>
   Object.fromEntries(x.map((v, i) => [i + 1, v])) as Record<Competencia, AvaliacaoCompetencia>;
 
@@ -80,19 +87,19 @@ export const TRANSCRICAO_EXEMPLO: ResultadoTranscricao = {
 export const CORRECAO_EXEMPLO: ResultadoCorrecao = {
   motivoZero: null,
   avaliacao: comps(
-    av(160, 0.8, "Troque “compartilhar-las” por “compartilhá-las”."),
-    av(160, 0.75, "Retome a ideia de Umberto Eco no 2º parágrafo."),
-    av(160, 0.7, "Acrescente um exemplo ao 3º parágrafo."),
-    av(160, 0.7, "Prefira “Portanto” a “Dessarte” na conclusão."),
-    av(160, 0.65, "Diga como os projetos funcionariam (ex.: uma aula por semana com notícias reais)."),
+    av(160, 0.8, "Um desvio na posição do pronome (“compartilhar-las”); o restante segue a norma.", "Troque “compartilhar-las” por “compartilhá-las”."),
+    av(160, 0.75, "Repertório reconhecido (Umberto Eco) e ligado ao tema, mas citado só na introdução.", "Retome a ideia de Umberto Eco no 2º parágrafo."),
+    av(160, 0.7, "Tese clara com dois eixos; o 3º parágrafo afirma sem exemplo que comprove.", "Acrescente um exemplo ao 3º parágrafo."),
+    av(160, 0.7, "Conectivos variados entre parágrafos; “Dessarte” é correto, mas soa artificial.", "Prefira “Portanto” a “Dessarte” na conclusão."),
+    av(160, 0.65, "Agente, ação, meio e finalidade presentes; falta o detalhamento de um deles.", "Diga como os projetos funcionariam (ex.: uma aula por semana com notícias reais)."),
   ),
   marcacoes: [
-    { competencia: 2, tipo: "acerto", trecho: "O escritor italiano Umberto Eco afirmou", comentario: "Repertório legitimado e pertinente ao tema.", confianca: 0.85 },
+    { competencia: 2, tipo: "acerto", trecho: "O escritor italiano Umberto Eco afirmou", comentario: "Repertório reconhecido (autor conhecido) e ligado ao tema.", confianca: 0.85 },
     { competencia: 3, tipo: "acerto", trecho: "Esse quadro se mantém por causa da baixa leitura crítica da população e da omissão das escolas diante do tema.", comentario: "Tese clara, com dois eixos.", confianca: 0.86 },
     { competencia: 1, tipo: "erro", trecho: "compartilhar-las", comentario: "Com verbo terminado em -r, o pronome vira “-la”.", sugestao: "compartilhá-las", confianca: 0.95 },
     { competencia: 3, tipo: "acerto", trecho: "o leitor transforma uma manchete chamativa em verdade", comentario: "Argumento que explica o mecanismo do problema.", confianca: 0.72 },
     { competencia: 4, tipo: "acerto", trecho: "Além disso, a escola", comentario: "Conectivo adequado entre parágrafos.", confianca: 0.9 },
-    { competencia: 1, tipo: "atencao", trecho: "mas não sabem avaliar", comentario: "Quebra de paralelismo com “sabendo usar”.", sugestao: "sabendo usar as redes, mas sem saber avaliar", confianca: 0.55 },
+    { competencia: 1, tipo: "atencao", trecho: "mas não sabem avaliar", comentario: "As duas partes da frase deveriam ter a mesma forma: “sabendo usar” pede “sem saber avaliar”.", sugestao: "sabendo usar as redes, mas sem saber avaliar", confianca: 0.55 },
     { competencia: 4, tipo: "atencao", trecho: "Dessarte", comentario: "Correto, mas raro; pode soar artificial.", sugestao: "Portanto", confianca: 0.5 },
     { competencia: 5, tipo: "acerto", trecho: "cabe às escolas", comentario: "Agente definido.", confianca: 0.85 },
     { competencia: 5, tipo: "acerto", trecho: "por meio de projetos interdisciplinares", comentario: "Meio de execução explícito.", confianca: 0.88 },
@@ -106,14 +113,14 @@ const horasAtras = (h: number) => new Date(Date.now() - h * 36e5).toISOString();
 const ANA: ResultadoCorrecao = {
   motivoZero: null,
   avaliacao: comps(
-    av(120, 0.8, "Corrija “os usuário” e “Houveram” e troque “a gente” por um termo formal."),
-    av(160, 0.75, "Diga o que a pesquisa encontrou e como isso prova seu argumento."),
-    av(120, 0.6, "Reescreva o 3º parágrafo: causa, consequência e um exemplo."),
-    av(120, 0.7, "Troque o segundo “Além disso” por “Somado a isso”."),
-    av(160, 0.65, "Detalhe o agente ou o meio (ex.: em parceria com as secretarias estaduais)."),
+    av(120, 0.8, "Quatro desvios: concordância (“os usuário”), “Houveram”, “à partir” e registro informal.", "Corrija “os usuário” e “Houveram” e troque “a gente” por um termo formal."),
+    av(160, 0.75, "Dois repertórios pertinentes (Bauman e pesquisa Reuters); a pesquisa aparece sem o dado.", "Diga o que a pesquisa encontrou e como isso prova seu argumento."),
+    av(120, 0.6, "Tese clara, mas o 3º parágrafo termina sem desenvolver o argumento.", "Reescreva o 3º parágrafo: causa, consequência e um exemplo."),
+    av(120, 0.7, "Conectivos presentes, com “Além disso” repetido em frases seguidas.", "Troque o segundo “Além disso” por “Somado a isso”."),
+    av(160, 0.65, "Proposta com agente, ação, meio e finalidade; falta um detalhamento.", "Detalhe o agente ou o meio (ex.: em parceria com as secretarias estaduais)."),
   ),
   marcacoes: [
-    { competencia: 2, tipo: "acerto", trecho: "o sociólogo Zygmunt Bauman descreve uma sociedade marcada pela fluidez das relações", comentario: "Repertório legitimado e pertinente ao tema.", confianca: 0.85 },
+    { competencia: 2, tipo: "acerto", trecho: "o sociólogo Zygmunt Bauman descreve uma sociedade marcada pela fluidez das relações", comentario: "Repertório reconhecido (autor conhecido) e ligado ao tema.", confianca: 0.85 },
     { competencia: 3, tipo: "acerto", trecho: "os desafios para combater a desinformação no Brasil estão ligados, sobretudo, à falta de educação midiática e à lógica dos algoritmos das plataformas digitais", comentario: "Tese clara, com dois eixos que organizam o texto.", confianca: 0.9 },
     { competencia: 2, tipo: "atencao", trecho: "Segundo pesquisa do Instituto Reuters", comentario: "Repertório pertinente, mas sem o dado que sustenta o argumento.", sugestao: "Cite o achado da pesquisa e o ano.", confianca: 0.55 },
     { competencia: 4, tipo: "acerto", trecho: "Dessa forma, quando", comentario: "Conectivo adequado ligando causa e consequência.", confianca: 0.8 },
@@ -138,14 +145,14 @@ const TEXTO_ANA = [
 const BRUNO: ResultadoCorrecao = {
   motivoZero: null,
   avaliacao: comps(
-    av(160, 0.85, "Corrija “tem” para “têm” no 3º parágrafo."),
-    av(120, 0.6, "Retome o direito à informação no desenvolvimento."),
-    av(160, 0.75, "Acrescente um caso concreto de conteúdo que continuou no ar."),
-    av(160, 0.8, "Ligue as frases do 3º parágrafo com um conectivo de consequência."),
-    av(160, 0.7, "Detalhe como a lei seria fiscalizada."),
+    av(160, 0.85, "Um desvio de concordância verbal (“tem” no lugar de “têm”).", "Corrija “tem” para “têm” no 3º parágrafo."),
+    av(120, 0.6, "Repertório reconhecido (Constituição), mas não volta a ser usado nos argumentos.", "Retome o direito à informação no desenvolvimento."),
+    av(160, 0.75, "Tese com dois eixos e argumentos coerentes; falta um caso concreto no 3º parágrafo.", "Acrescente um caso concreto de conteúdo que continuou no ar."),
+    av(160, 0.8, "Boa articulação entre parágrafos; dentro do 3º parágrafo as frases ficam soltas.", "Ligue as frases do 3º parágrafo com um conectivo de consequência."),
+    av(160, 0.7, "Agente, ação, meio e finalidade presentes; falta detalhar a fiscalização.", "Detalhe como a lei seria fiscalizada."),
   ),
   marcacoes: [
-    { competencia: 2, tipo: "atencao", trecho: "A Constituição Federal de 1988 garante a todos o direito à informação.", comentario: "Repertório legitimado, mas pouco aproveitado no texto.", sugestao: "Retome o direito à informação no desenvolvimento.", confianca: 0.58 },
+    { competencia: 2, tipo: "atencao", trecho: "A Constituição Federal de 1988 garante a todos o direito à informação.", comentario: "Repertório reconhecido, mas pouco usado nos argumentos.", sugestao: "Retome o direito à informação no desenvolvimento.", confianca: 0.58 },
     { competencia: 3, tipo: "acerto", trecho: "Esse cenário é causado pela velocidade dos aplicativos de mensagem e pela ausência de responsabilização das plataformas.", comentario: "Tese com dois eixos bem definidos.", confianca: 0.88 },
     { competencia: 3, tipo: "acerto", trecho: "o leitor tende a confiar no remetente e não na fonte", comentario: "Argumento com autoria: explica o mecanismo do problema.", confianca: 0.7 },
     { competencia: 4, tipo: "acerto", trecho: "Ademais,", comentario: "Conectivo adequado entre parágrafos.", confianca: 0.92 },
@@ -163,13 +170,13 @@ const TEXTO_BRUNO = [
 ].join("\n");
 
 const DAVI: ResultadoCorrecao = {
-  motivoZero: "Texto com até 7 linhas: pelo edital, a nota é zero.",
+  motivoZero: "Texto com até 7 linhas: pelas regras do Enem, a nota é zero.",
   avaliacao: comps(
-    av(0, 0.9, "Escreva entre 20 e 30 linhas."),
-    av(0, 0.9, "Desenvolva dois argumentos com causa e consequência."),
-    av(0, 0.9, "Planeje introdução, dois parágrafos de argumento e conclusão."),
-    av(0, 0.9, "Use conectivos para ligar as ideias."),
-    av(0, 0.9, "Diga quem faz, o quê, como, para quê e um detalhe."),
+    av(0, 0.9, "Texto com até 7 linhas: pelas regras do Enem, todas as competências ficam com zero.", "Escreva entre 20 e 30 linhas."),
+    av(0, 0.9, "Texto com até 7 linhas: pelas regras do Enem, todas as competências ficam com zero.", "Desenvolva dois argumentos com causa e consequência."),
+    av(0, 0.9, "Texto com até 7 linhas: pelas regras do Enem, todas as competências ficam com zero.", "Planeje introdução, dois parágrafos de argumento e conclusão."),
+    av(0, 0.9, "Texto com até 7 linhas: pelas regras do Enem, todas as competências ficam com zero.", "Use conectivos para ligar as ideias."),
+    av(0, 0.9, "Texto com até 7 linhas: pelas regras do Enem, todas as competências ficam com zero.", "Diga quem faz, o quê, como, para quê e um detalhe."),
   ),
   marcacoes: [
     { competencia: 2, tipo: "acerto", trecho: "Muitas pessoas acreditam em tudo que veem na internet", comentario: "Você identificou bem uma causa do problema.", confianca: 0.7 },

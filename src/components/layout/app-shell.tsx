@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
   BarChart3, BookOpen, Building2, ClipboardList, FilePen, GraduationCap, Inbox, Menu, Settings,
-  Sparkles, Users, UserRound, X,
+  ShieldCheck, Sparkles, Users, UserRound, X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navegar, type Rota } from "@/lib/router";
@@ -31,6 +31,7 @@ export const MENU: GrupoMenu[] = [
     itens: [
       { rota: "/aluno/enviar", titulo: "Enviar redação", icone: FilePen, testId: "nav-aluno-enviar" },
       { rota: "/aluno/redacoes", titulo: "Minhas redações", icone: ClipboardList, testId: "nav-aluno-redacoes" },
+      { rota: "/aluno/privacidade", titulo: "Privacidade e uso de IA", icone: ShieldCheck, testId: "nav-aluno-privacidade" },
     ],
   },
   {
@@ -102,7 +103,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
         )}
       >
         <div className="flex items-center justify-between px-5 pt-5 pb-4">
-          <a href={papel === "aluno" ? "#/aluno/enviar" : "#/professor/fila"} className="flex items-center gap-2 font-extrabold tracking-tight text-white" data-testid="brand">
+          <a href={papel === "aluno" ? "#/aluno/enviar" : "#/professor/fila"} className="flex items-center gap-2 font-extrabold tracking-tight text-sidebar-strong" data-testid="brand">
             <span className="flex gap-0.5" aria-hidden="true">
               <i className="h-4 w-1.5 rounded-sm bg-acerto" />
               <i className="h-4 w-1.5 rounded-sm bg-atencao" />
@@ -110,7 +111,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
             </span>
             Carcará Revisa
           </a>
-          <button className="md:hidden cursor-pointer" aria-label="Fechar menu" onClick={() => setAberto(false)} data-testid="sidebar-fechar">
+          <button className="-mr-2 grid size-9 cursor-pointer place-items-center rounded-lg hover:bg-sidebar-hover md:hidden" aria-label="Fechar menu" onClick={() => setAberto(false)} data-testid="sidebar-fechar">
             <X className="size-5" />
           </button>
         </div>
@@ -123,7 +124,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
             data-testid="papel-toggle"
             value={papel}
             onValueChange={trocarPapel}
-            className="w-full border-white/10 bg-white/5 [&>button]:flex-1 [&>button]:justify-center [&>button]:text-sidebar-foreground [&>button[data-state=on]]:bg-highlight [&>button[data-state=on]]:text-brand-900"
+            className="w-full border-sidebar-border bg-sidebar-hover [&>button]:flex-1 [&>button]:justify-center [&>button]:text-sidebar-foreground [&>button[data-state=on]]:bg-highlight [&>button[data-state=on]]:text-brand-900"
             items={[
               { value: "aluno", label: "Aluno", testId: "papel-aluno" },
               { value: "professor", label: "Professor", testId: "papel-professor" },
@@ -146,13 +147,13 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
                         data-testid={it.testId}
                         aria-current={ativo ? "page" : undefined}
                         className={cn(
-                          "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-sidebar-foreground/85 hover:bg-white/5",
-                          ativo && "bg-sidebar-active text-white",
+                          "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-sidebar-foreground/85 transition-colors hover:bg-sidebar-hover hover:text-sidebar-strong",
+                          ativo && "bg-sidebar-active text-sidebar-strong",
                         )}
                       >
                         <it.icone className="size-4 opacity-80" />
                         <span className="flex-1">{it.titulo}</span>
-                        {it.pendente && <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-sidebar-muted">em breve</span>}
+                        {it.pendente && <span className="rounded bg-sidebar-border px-1.5 py-0.5 text-[10px] text-sidebar-muted">em breve</span>}
                       </a>
                     </li>
                   );
@@ -162,19 +163,19 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
           ))}
         </nav>
 
-        <div className="flex items-center gap-3 border-t border-white/10 px-4 py-4" data-testid="usuario-atual">
+        <div className="flex items-center gap-3 border-t border-sidebar-border px-4 py-4" data-testid="usuario-atual">
           <Avatar nome={usuario.replace("Prof. ", "")} />
           <div className="min-w-0">
-            <div className="truncate text-sm font-semibold text-white">{usuario}</div>
+            <div className="truncate text-sm font-semibold text-sidebar-strong">{usuario}</div>
             <div className="truncate text-xs text-sidebar-muted">{INSTITUICAO.nome}</div>
           </div>
         </div>
       </aside>
-      {aberto && <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={() => setAberto(false)} aria-hidden="true" />}
+      {aberto && <div className="fixed inset-0 z-30 bg-overlay md:hidden" onClick={() => setAberto(false)} aria-hidden="true" />}
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header data-print="hide" className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b bg-background/85 px-4 backdrop-blur md:px-8">
-          <button className="md:hidden cursor-pointer" aria-label="Abrir menu" onClick={() => setAberto(true)} data-testid="sidebar-abrir">
+          <button className="-ml-2 grid size-9 cursor-pointer place-items-center rounded-lg hover:bg-muted md:hidden" aria-label="Abrir menu" onClick={() => setAberto(true)} data-testid="sidebar-abrir">
             <Menu className="size-5" />
           </button>
           <h1 className="truncate text-base font-bold" data-testid="pagina-titulo">{titulo}</h1>

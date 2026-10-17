@@ -7,6 +7,7 @@ import { FilaPage, MinhasRedacoesPage } from "@/features/fila/fila-page";
 import { RedacaoPage } from "@/features/redacao/redacao-page";
 import { BastidoresPage } from "@/features/bastidores/bastidores-page";
 import { PendentePage, TELAS_PENDENTES } from "@/features/pendente/pendente-page";
+import { PrivacidadePage } from "@/features/privacidade/privacidade-page";
 import type { Papel } from "@/domain/types";
 
 function Rotas() {
@@ -18,6 +19,9 @@ function Rotas() {
   if (a === "aluno" && b === "redacoes") {
     titulo = "Minhas redações";
     pagina = <MinhasRedacoesPage />;
+  } else if (a === "aluno" && b === "privacidade") {
+    titulo = "Privacidade e uso de IA";
+    pagina = <PrivacidadePage />;
   } else if (a === "professor" && b === "fila") {
     titulo = "Fila de correção";
     pagina = <FilaPage />;

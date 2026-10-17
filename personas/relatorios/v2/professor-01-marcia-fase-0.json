@@ -1,0 +1,143 @@
+{
+  "persona_id": "professor-01-marcia",
+  "fase": 0,
+  "executado_em": "2026-10-17T13:50:40-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome (Chromium via Playwright), viewport 1366x768, pt-BR, America/Sao_Paulo",
+    "rede": "wifi-domestico (sem limitação de banda; servidor local)",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 5,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Entrei e caí numa tela de aluno, com o nome de uma tal de Helena Campos. Professor sou eu.",
+        "Cliquei em Professor e virei a Prof. Marina Costa, do Colégio Horizonte. Cadê a Márcia? Cadê a estadual?",
+        "Minhas turmas: 'em breve'. E quando abro aparece 'Entidade: Turma, id, anoLetivo, instituicaoId'. Isso é para mim?",
+        "As únicas turmas que eu achei estão escondidas num filtro da fila: 3º A e 3º B. Só uma escola."
+      ],
+      "achados": ["PROF01-F0-001", "PROF01-F0-002", "PROF01-F0-003", "PROF01-F0-004", "PROF01-F0-005"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "PROF01-F0-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há como ter turmas de duas escolas nem saber em qual escola se está",
+      "o_que_aconteceu": "A conta de professor mostra uma única instituição fixa ('Colégio Horizonte') no rodapé da barra lateral, sem seletor de escola. 'Minhas turmas' está marcada 'em breve' e abre uma tela 'Pendente de implementação'. As únicas turmas visíveis (3º A, 3º B) aparecem só no filtro 'Todas as turmas' da fila de correção. Nenhuma tela menciona escola estadual ou municipal.",
+      "o_que_a_persona_esperava": "Ver as turmas agrupadas por escola (estadual e municipal) e um indicador claro de qual escola está ativa.",
+      "impacto": "A persona não consegue separar as 180 redações da estadual dos alunos da municipal; risco de misturar turmas e notas entre escolas.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Clicar em 'Professor' em 'Entrar como'",
+        "Clicar em 'Minhas turmas'",
+        "Voltar para 'Fila de correção' e abrir o filtro 'Todas as turmas'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-02-professor.png",
+        "capturas/professor-01/M1-03-minhas-turmas.png",
+        "capturas/professor-01/M1-07-fila-turmas.png"
+      ],
+      "seletor_visivel": "role=link[name='Minhas turmas']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "PROF01-F0-002",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Telas 'em breve' mostram termos de programador (Entidade, id, instituicaoId, professorIds[])",
+      "o_que_aconteceu": "Ao abrir 'Minhas turmas' e 'Visão geral', a tela exibe 'Pendente de implementação', 'Entidade: Turma', 'id', 'nome', 'anoLetivo', 'instituicaoId', 'professorIds[]' e 'Dados de exemplo'.",
+      "o_que_a_persona_esperava": "Um aviso simples, em português de gente, de que a função ainda não existe e quando chega.",
+      "impacto": "A persona sente que está mexendo em algo inacabado e que não foi feito para ela; reduz a confiança antes de começar a corrigir.",
+      "passos": [
+        "Entrar como Professor",
+        "Clicar em 'Minhas turmas'",
+        "Clicar em 'Visão geral'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-03-minhas-turmas.png",
+        "capturas/professor-01/M1-05-visao-geral.png"
+      ],
+      "seletor_visivel": "text='Pendente de implementação'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "PROF01-F0-003",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "A conta não é da professora: nome fixo 'Prof. Marina Costa' sem como alterar",
+      "o_que_aconteceu": "Ao entrar como Professor, a identificação no rodapé é 'Prof. Marina Costa · Colégio Horizonte'. Clicar no nome não abre nada. Esse mesmo nome é o que aparece depois como assinatura da devolutiva.",
+      "o_que_a_persona_esperava": "Entrar com o próprio nome, já que a correção sai assinada.",
+      "impacto": "A persona questiona de quem é a assinatura que vai para o aluno; autoria fica confusa desde a entrada.",
+      "passos": [
+        "Entrar como Professor",
+        "Clicar no nome no rodapé da barra lateral"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-02-professor.png",
+        "capturas/professor-01/M1-04-clique-usuario.png"
+      ],
+      "seletor_visivel": "text='Prof. Marina Costa'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "PROF01-F0-004",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "A plataforma abre como aluno e qualquer pessoa troca para professor sem senha",
+      "o_que_aconteceu": "A página inicial abre na visão de aluno ('Helena Campos'). Um seletor 'Entrar como Aluno / Professor' troca de papel com um clique, sem senha, e dá acesso às redações de todos os alunos na fila.",
+      "o_que_a_persona_esperava": "Uma entrada de professora com login, separada da do aluno.",
+      "impacto": "A persona teme que um aluno troque para 'Professor' e veja as redações e notas dos colegas.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Clicar em 'Professor' em 'Entrar como'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-01-entrada.png",
+        "capturas/professor-01/M1-02-professor.png"
+      ],
+      "seletor_visivel": "role=button[name='Professor']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "PROF01-F0-005",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Menu 'Bastidores' visível para a professora, com 'modelo', 'confiança' e 'calibragem'",
+      "o_que_aconteceu": "A barra lateral do professor tem o grupo 'EQUIPE > Bastidores'. A tela diz 'Alunos e professores não veem esta tela', mas abre normalmente e mostra 'confiança', 'calibragem', 'pré-aprovado', 'Nenhuma redação treina modelo', 'Modelo de dados' e 'docs/MODELAGEM.md'.",
+      "o_que_a_persona_esperava": "Não ver telas de equipe técnica, ou ver uma explicação em linguagem de professora.",
+      "impacto": "Vocabulário técnico que a persona não entende; a frase contraditória ('professores não veem') aumenta a desconfiança.",
+      "passos": [
+        "Entrar como Professor",
+        "Clicar em 'Bastidores'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-06-bastidores.png"
+      ],
+      "seletor_visivel": "role=link[name='Bastidores']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

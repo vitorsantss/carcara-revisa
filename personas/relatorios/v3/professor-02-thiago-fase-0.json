@@ -1,0 +1,78 @@
+{
+  "persona_id": "professor-02-thiago",
+  "fase": 0,
+  "executado_em": "2026-10-17T15:07:29-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome 1920x1080",
+    "rede": "sem-limitacao",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "bloqueada",
+      "duracao_segundos": 2,
+      "interacoes": 5,
+      "abandono_em": "Propostas (Pendente de implementação)",
+      "falas": [
+        "Minhas turmas: em breve. Propostas: em breve. Então eu não configuro nada, eu só recebo um tema que alguém escolheu por mim.",
+        "O tema aparece no topo da fila, mas os motivadores eu nem vejo daqui. Como eu sei o que o Filtro está comparando?",
+        "A tela de Propostas promete 'comparação com os motivadores para detectar cópia'. Promessa não é recurso."
+      ],
+      "achados": ["A-001", "A-002"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Professor não consegue criar turma nem cadastrar tema e textos motivadores",
+      "o_que_aconteceu": "No perfil Professor, 'Minhas turmas' e 'Propostas' estão marcadas como 'em breve' e abrem uma tela 'Pendente de implementação' com apenas um exemplo estático (3º A · 4 alunos; tema da desinformação com prazo 2026-10-24). Não há formulário, botão de criar nem campo para os motivadores. A turma e a proposta já vêm prontas no ambiente.",
+      "o_que_a_persona_esperava": "Criar a turma do cursinho, cadastrar o tema da proposta e colar os textos motivadores, com prazo.",
+      "impacto": "A missão de preparação não pode ser feita. Não dá para usar a plataforma com o tema da semana do cursinho.",
+      "passos": [
+        "Entrar como Professor na barra lateral",
+        "Clicar em 'Minhas turmas'",
+        "Clicar em 'Propostas'"
+      ],
+      "evidencias": [
+        "capturas/professor-02/F0-M1-02-turmas-pendente.png",
+        "capturas/professor-02/F0-M1-03-propostas-pendente.png"
+      ],
+      "seletor_visivel": "role=link[name='Propostas em breve']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Professor não vê os textos motivadores que o Filtro usa para detectar cópia",
+      "o_que_aconteceu": "Na fila, o tema aparece como texto simples, sem link. Os motivadores só aparecem na tela do aluno ('Textos motivadores'). Nada no lado do professor diz que o tema e os motivadores alimentam o Filtro; isso só se deduz depois, quando a redação com cópia chega com o alerta 'Há frases copiadas dos textos motivadores'.",
+      "o_que_a_persona_esperava": "Ver e conferir, a partir da fila ou da proposta, o tema e os motivadores que entram na checagem de fuga ao tema e de cópia.",
+      "impacto": "O professor não consegue verificar contra o que o Filtro compara, o que reduz a confiança nos alertas de cópia.",
+      "passos": [
+        "Entrar como Professor",
+        "Abrir 'Fila de correção'",
+        "Tentar clicar no tema exibido abaixo de 'Redações para corrigir'"
+      ],
+      "evidencias": [
+        "capturas/professor-02/F0-M1-04-fila-tema-fixo.png",
+        "capturas/professor-02/F0-M1-03-propostas-pendente.png"
+      ],
+      "seletor_visivel": "text='Os desafios para combater a desinformação nas redes sociais no Brasil'",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": null
+  },
+  "cenarios_nao_executados": []
+}

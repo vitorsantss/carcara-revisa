@@ -1,7 +1,7 @@
 import * as React from "react";
-import type { Calibragem, Competencia, Marcacao, Papel, Redacao, RegraAprendida, StatusMarcacao } from "@/domain/types";
-import { CALIBRAGEM_INICIAL, redacoesIniciais } from "@/domain/seed";
-import { chaveCalibragem, regraDaRecusa } from "@/domain/regras";
+import type { Calibragem, Competencia, Marcacao, Papel, Redacao, RegraAprendida, SituacaoZero, StatusMarcacao } from "@/domain/types";
+import { CALIBRAGEM_INICIAL, USUARIO_PROFESSOR, redacoesIniciais } from "@/domain/seed";
+import { chaveCalibragem, podeDevolver, regraDaRecusa } from "@/domain/regras";
 
 export interface EstadoApp {
   papel: Papel;
@@ -19,8 +19,15 @@ type Acao =
   | { type: "editar_marcacao"; redacaoId: string; marcacaoId: string; patch: Partial<Marcacao> }
   | { type: "excluir_marcacao"; redacaoId: string; marcacaoId: string }
   | { type: "definir_nota"; redacaoId: string; competencia: Competencia; nota: number }
+  | { type: "justificar_nota"; redacaoId: string; competencia: Competencia; justificativa: string }
+  | { type: "decidir_zero"; redacaoId: string; situacao: Exclude<SituacaoZero, "sugerido">; justificativa?: string }
+  | { type: "definir_mensagem_zero"; redacaoId: string; mensagem: string }
+  | { type: "definir_recado"; redacaoId: string; recado: string }
   | { type: "devolver"; redacaoId: string }
-  | { type: "iniciar_revisao"; redacaoId: string };
+  | { type: "devolver_varias"; redacaoIds: string[] }
+  | { type: "iniciar_revisao"; redacaoId: string }
+  | { type: "pedir_revisao"; redacaoId: string; competencia?: Competencia; mensagem: string }
+  | { type: "reabrir"; redacaoId: string };
 
 const PESO: Record<string, number> = { aprovada: 1, editada: 0.5, recusada: 0 };
 
@@ -94,11 +101,42 @@ function reducer(s: EstadoApp, a: Acao): EstadoApp {
       return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, marcacoes: r.marcacoes.filter((x) => x.id !== a.marcacaoId) }));
     case "definir_nota":
       return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, notasProfessor: { ...r.notasProfessor, [a.competencia]: a.nota } }));
+    case "justificar_nota":
+      return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, justificativasProfessor: { ...r.justificativasProfessor, [a.competencia]: a.justificativa } }));
+    case "decidir_zero":
+      return atualizarRedacao(s, a.redacaoId, (r) =>
+        r.motivoZero ? { ...r, situacaoZero: a.situacao, justificativaZero: a.justificativa ?? r.justificativaZero } : r,
+      );
+    case "definir_mensagem_zero":
+      return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, justificativaZero: a.mensagem || undefined }));
+    case "definir_recado":
+      return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, recadoProfessor: a.recado }));
     case "devolver":
-      return atualizarRedacao(s, a.redacaoId, (r) => ({ ...r, etapa: "devolvida" }));
+      return atualizarRedacao(s, a.redacaoId, devolver);
+    case "devolver_varias":
+      return { ...s, redacoes: s.redacoes.map((r) => (a.redacaoIds.includes(r.id) ? devolver(r) : r)) };
+    case "pedir_revisao":
+      return atualizarRedacao(s, a.redacaoId, (r) => ({
+        ...r,
+        pedidosRevisao: [
+          ...(r.pedidosRevisao ?? []),
+          { id: `${r.id}-pedido-${Date.now()}`, competencia: a.competencia, mensagem: a.mensagem, criadoEm: new Date().toISOString(), atendido: false },
+        ],
+      }));
+    case "reabrir":
+      return atualizarRedacao(s, a.redacaoId, (r) => ({
+        ...r,
+        etapa: "em_revisao",
+        pedidosRevisao: (r.pedidosRevisao ?? []).map((p) => ({ ...p, atendido: true })),
+      }));
     case "iniciar_revisao":
       return atualizarRedacao(s, a.redacaoId, (r) => (r.etapa === "enviada" ? { ...r, etapa: "em_revisao" } : r));
   }
+}
+
+function devolver(r: Redacao): Redacao {
+  if (!podeDevolver(r)) return r;
+  return { ...r, etapa: "devolvida", revisorId: USUARIO_PROFESSOR, devolvidaEm: new Date().toISOString() };
 }
 
 function estadoInicial(): EstadoApp {

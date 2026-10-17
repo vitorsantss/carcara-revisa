@@ -1,0 +1,241 @@
+{
+  "persona_id": "aluno-02-gabriel",
+  "fase": 1,
+  "executado_em": "2026-10-17T13:56:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Pixel 5 (emulação Playwright/Chromium, 393x851, touch). Limitações: fotos são JPGs mockados gerados pelo agente; upload via input de arquivo, sem câmera real; conta logada no app é 'Helena Campos', não 'Gabriel Martins'. Fixtures da persona ausentes: JPGs mockados gerados pelo agente; como o app ignora o conteúdo da imagem (A-101), M3, M4 e M5 usaram Colar texto com textos mockados.",
+    "rede": "sem-limitacao",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 1,
+      "interacoes": 1,
+      "abandono_em": null,
+      "falas": [
+        "Já tem o aviso embaixo do botão, antes de eu mandar qualquer coisa. Um toque em 'Saiba mais' e está tudo lá: quem vê, se treina modelo, por quanto tempo guarda.",
+        "Não treina modelo e o professor é quem dá a nota. Entendi de primeira. Só 'na versão para escolas o prazo segue a escola' ainda é meio vago."
+      ],
+      "achados": []
+    },
+    {
+      "id": "M1",
+      "status": "concluida",
+      "duracao_segundos": 7,
+      "interacoes": 10,
+      "abandono_em": null,
+      "falas": [
+        "Do toque em 'Enviar para correção' até a confirmação: menos de um segundo (0,9 s). Isso é mais rápido que o app do MEC.",
+        "A confirmação diz o que vem: correção automática, professor revisa e assina, previsão até 20/10. Isso eu gostei.",
+        "Pera, esse texto do Umberto Eco não é o que eu escrevi. Minha introdução começa com a Constituição de 1988."
+      ],
+      "achados": [
+        "A-101"
+      ]
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 10,
+      "abandono_em": null,
+      "falas": [
+        "Opa, avisou: 'Você já enviou este mesmo texto'. Mas só depois que eu confirmei as três palavras amarelas de novo.",
+        "Em Minhas redações ficaram dois cards iguais, mesma hora, sem nada dizendo que é repetido."
+      ],
+      "achados": [
+        "A-101",
+        "A-105"
+      ]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Pegou: 'Algumas frases são iguais às dos textos motivadores'. Mas quais? Não destacou nenhuma.",
+        "Deixou enviar e a tela de acompanhamento mostra 'Pontos que o professor vai conferir'. Pelo menos não zerou no automático."
+      ],
+      "achados": [
+        "A-106"
+      ]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Texto com cara de ChatGPT, 'abordagem holística', 'multifacetado'... e nenhum aviso.",
+        "A página de privacidade diz que a plataforma não acusa ninguém e quem avalia é o professor. Pelo menos é honesto. Mas então depende de o professor perceber."
+      ],
+      "achados": [
+        "A-104"
+      ]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 9,
+      "interacoes": 21,
+      "abandono_em": null,
+      "falas": [
+        "Assinei 'Gabriel Martins - Turma Medicina B' no fim. No Enem isso zera. Aqui só falou que o texto parece terminar no meio da frase. Errado nas duas coisas.",
+        "Testei com o nome que está na conta, 'Helena Campos', numa linha sozinha: aí sim avisou e ofereceu 'Remover a linha'. Então só pega o nome exato da conta?",
+        "Pus o meu nome no fim da última frase: nada."
+      ],
+      "achados": [
+        "A-102",
+        "A-103"
+      ]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-101",
+      "missao": "M1",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Transcrição mostra um texto que não é o da foto enviada",
+      "o_que_aconteceu": "A foto boa-foto-dia.jpg (mock com redação que começa 'A Constituição Federal de 1988...') virou na conferência um texto diferente, começando com 'O escritor italiano Umberto Eco afirmou...'. O mesmo texto apareceu no segundo envio (M2). A leitura da letra parece simulada e ignora o conteúdo da imagem.",
+      "o_que_a_persona_esperava": "Ver o meu próprio texto transcrito, com dúvidas só nas palavras de leitura difícil.",
+      "impacto": "A nota que vou receber é de um texto que não escrevi. Sem isso resolvido, o resto da avaliação perde o sentido. Registrado como comportamento do serviço de leitura simulado desta versão.",
+      "passos": [
+        "Abrir #/aluno/enviar no Pixel 5",
+        "Tocar em 'Imagens frente e verso' e escolher boa-foto-dia.jpg",
+        "Ler o texto em 'Confira o texto lido da sua foto'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M1-2-transcricao.png",
+        "capturas/aluno-02/M2-1-transcricao-repetida.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-102",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Assinatura com nome do aluno não é detectada se não for o nome exato da conta",
+      "o_que_aconteceu": "Com a última linha 'Gabriel Martins - Turma Medicina B', nenhum aviso de identificação apareceu (só o aviso de texto incompleto). Com 'Gabriel Martins.' no fim da última frase, nenhum aviso. Com 'Helena Campos' (nome da conta logada) numa linha sozinha, apareceu 'Encontramos o que parece ser seu nome ou uma assinatura. No Enem, isso zera a redação.' e o botão 'Remover a linha', que funcionou. A redação assinada foi enviada sem nenhum alerta de zero.",
+      "o_que_a_persona_esperava": "Aviso para qualquer nome próprio isolado no fim, assinatura, turma ou apelido, já que no Enem qualquer identificação zera.",
+      "impacto": "Aluno que assina com nome abreviado, apelido ou com a turma treina um hábito que zera no Enem e a plataforma não avisa. A página de privacidade promete que 'linhas com nome, assinatura, e-mail ou telefone são apontadas antes do envio'.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Colar texto já digitado'",
+        "Colar redação terminando com a linha 'Gabriel Martins - Turma Medicina B' e tocar em 'Continuar'",
+        "Observar os avisos; repetir com 'Helena Campos' na última linha para comparar"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M5-1-assinatura-gabriel.png",
+        "capturas/aluno-02/M5-5-nome-na-ultima-frase.png",
+        "capturas/aluno-02/M5-2-assinatura-nome-da-conta.png",
+        "capturas/aluno-02/M5-4-enviada-com-nome.png"
+      ],
+      "seletor_visivel": "data-testid=envio-avisos",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-103",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "Aviso falso de texto incompleto quando a última linha é uma assinatura",
+      "o_que_aconteceu": "A redação completa, terminada por uma linha de assinatura sem ponto final, recebeu 'Seu texto parece terminar no meio de uma frase. Faltou fotografar alguma parte ou o verso da folha?'. O aviso some quando a linha é removida.",
+      "o_que_a_persona_esperava": "Um aviso de identificação, que era o problema real.",
+      "impacto": "O aviso aponta a causa errada e desvia a atenção do risco de zero.",
+      "passos": [
+        "Colar texto terminando com 'Gabriel Martins - Turma Medicina B'",
+        "Tocar em 'Continuar'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M5-1-assinatura-gabriel.png"
+      ],
+      "seletor_visivel": "data-testid=envio-aviso-texto_incompleto",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-104",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Texto com marcas de IA passa sem nenhum sinal; política existe mas fica fora do fluxo",
+      "o_que_aconteceu": "A redação colada com linguagem típica de IA ('cenário multifacetado', 'abordagem holística') foi enviada sem aviso. A política de IA existe em 'Privacidade e uso de IA' ('A redação precisa ser escrita por você... A plataforma não acusa ninguém de usar IA') mas não aparece na tela de envio, só o aviso de privacidade.",
+      "o_que_a_persona_esperava": "Ao menos um lembrete da política de IA na hora de enviar.",
+      "impacto": "Fica claro que a responsabilidade é do professor. Eu acho a postura honesta, mas o aluno que não abrir a página não fica sabendo.",
+      "passos": [
+        "Tocar em 'Colar texto já digitado'",
+        "Colar redação gerada por IA e tocar em 'Continuar'",
+        "Tocar em 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M4-1-sem-aviso.png",
+        "capturas/aluno-02/M6-2-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=envio-enviar",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-105",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Aviso de texto repetido só aparece depois de reconferir as dúvidas, e a lista não marca a duplicata",
+      "o_que_aconteceu": "No segundo envio da mesma foto, o aviso 'Você já enviou este mesmo texto. Enviar de novo cria outra correção do mesmo texto.' só apareceu depois que confirmei de novo as 3 palavras amarelas. Em 'Minhas redações' os dois envios aparecem como cards idênticos (mesmo trecho, mesmo horário), sem indicação de repetição.",
+      "o_que_a_persona_esperava": "Aviso logo ao ler a foto e um selo 'repetida' na lista.",
+      "impacto": "Gastei toques confirmando palavras de um texto que eu ia descartar. Na lista, não sei qual é qual.",
+      "passos": [
+        "Enviar boa-foto-dia.jpg uma vez",
+        "Voltar a 'Enviar redação' e escolher a mesma foto",
+        "Confirmar as 3 palavras em amarelo",
+        "Abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M2-1-transcricao-repetida.png",
+        "capturas/aluno-02/M2-2-aviso-repetido.png",
+        "capturas/aluno-02/F1-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "data-testid=envio-aviso-texto_repetido",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-106",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Aviso de cópia dos motivadores não diz quais frases foram copiadas",
+      "o_que_aconteceu": "A redação com frases inteiras dos motivadores gerou 'Algumas frases são iguais às dos textos motivadores. No Enem, frases copiadas não contam para a nota.' Nenhuma frase foi destacada no texto. O envio foi permitido e a tela seguinte lista o ponto em 'Pontos que o professor vai conferir'.",
+      "o_que_a_persona_esperava": "As frases copiadas destacadas, para eu reescrever antes de enviar.",
+      "impacto": "Sei que tem problema, mas preciso caçar sozinho onde está.",
+      "passos": [
+        "Tocar em 'Colar texto já digitado'",
+        "Colar texto com frases dos motivadores e tocar em 'Continuar'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M3-1-aviso-copia.png",
+        "capturas/aluno-02/M3-2-enviada.png"
+      ],
+      "seletor_visivel": "data-testid=envio-aviso-copia_motivadores",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

@@ -1,0 +1,76 @@
+{
+  "persona_id": "professor-02-thiago",
+  "fase": 0,
+  "executado_em": "2026-10-17T12:20:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome 1920x1080",
+    "rede": "sem-limitacao",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "nao_concluida",
+      "duracao_segundos": 60,
+      "interacoes": 6,
+      "abandono_em": "Menu Professor > Minhas turmas e Propostas: ambas mostram 'Pendente de implementação'",
+      "falas": [
+        "Cadê o botão de criar turma? 'Em breve'. Ok.",
+        "Propostas também 'em breve'. Então eu não tenho onde colocar os textos motivadores, e o Filtro vai comparar cópia com o quê?",
+        "E por que eu sou 'Helena Campos, Colégio Horizonte'? Eu dou aula num cursinho."
+      ],
+      "achados": ["A-001", "A-002"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Não é possível criar turma nem cadastrar tema e textos motivadores",
+      "o_que_aconteceu": "Os itens 'Minhas turmas' e 'Propostas' do menu levam a telas 'Pendente de implementação'. A tela de Propostas lista como futuro 'Tema e textos motivadores' e 'Comparação com os motivadores para detectar cópia'. A única proposta é a de exemplo ('Os desafios para combater a desinformação nas redes sociais no Brasil', prazo 2026-10-24), sem motivadores visíveis em nenhum lugar.",
+      "o_que_a_persona_esperava": "Criar a turma do cursinho, cadastrar o tema e colar os textos motivadores, com um aviso claro de que o Filtro vai usá-los para detectar fuga ao tema e cópia.",
+      "impacto": "A missão não pode ser feita. Sem motivadores cadastrados, a detecção de cópia (testada na fase 2) não tem base de comparação.",
+      "passos": [
+        "Abrir #/professor/fila como Professor",
+        "Clicar em 'Minhas turmas' (em breve) no menu",
+        "Clicar em 'Propostas' (em breve) no menu"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M1-turmas.png",
+        "capturas/professor-02/M1-propostas.png"
+      ],
+      "seletor_visivel": "role=link[name='Propostas em breve']",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Instituição e usuário fixos (Helena Campos, Colégio Horizonte), sem configuração",
+      "o_que_aconteceu": "O rodapé do menu mostra sempre 'Helena Campos · Colégio Horizonte'. 'Configurações' da instituição também está 'Pendente de implementação' (limiar 95% em 30 casos aparece só como dado de exemplo).",
+      "o_que_a_persona_esperava": "Ver o próprio nome e o cursinho, ou ao menos poder trocar a instituição e ajustar o limiar de pré-aprovação.",
+      "impacto": "Professor de cursinho não se reconhece no produto; não dá para avaliar a configuração do limiar de calibragem.",
+      "passos": [
+        "Abrir o app como Professor",
+        "Clicar em 'Configurações' (em breve) no menu Instituição"
+      ],
+      "evidencias": [
+        "capturas/professor-02/M1-configuracoes.png"
+      ],
+      "seletor_visivel": "role=link[name='Configurações em breve']",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

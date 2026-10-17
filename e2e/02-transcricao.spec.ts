@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { trocarPapel } from "./helpers";
 
 test.describe("Importação e conferência da transcrição", () => {
   test("três formas de importar estão disponíveis", async ({ page }) => {
@@ -50,7 +51,7 @@ test.describe("Importação e conferência da transcrição", () => {
     await expect(page.getByTestId("transcricao-resumo")).toHaveText("Confira o texto antes de enviar.");
     await page.getByTestId("envio-enviar").click();
     await expect(page.getByTestId("aluno-aguardando")).toBeVisible();
-    await page.getByTestId("visao-professor").click();
+    await trocarPapel(page, "professor");
     await expect(page.locator('[data-testid^="marca-"]').first()).toBeVisible();
   });
 

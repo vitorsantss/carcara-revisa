@@ -1,0 +1,121 @@
+{
+  "persona_id": "professor-01-marcia",
+  "fase": 0,
+  "executado_em": "2026-10-17T12:48:01-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Desktop Chrome (Chromium via Playwright), viewport 1366x768, pt-BR, America/Sao_Paulo",
+    "rede": "wifi-domestico (localhost, sem limitação de banda)",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 212,
+      "interacoes": 5,
+      "abandono_em": null,
+      "falas": [
+        "Prof. Marina Costa? Eu sou a Márcia. Começou bem.",
+        "Minhas turmas: 'Pendente de implementação'. E isso aqui embaixo, 'professorIds[]', é para mim?",
+        "Cadê a escola estadual? Só tem 'Colégio Horizonte'. E a municipal, eu escolho onde?",
+        "'Alunos e professores não veem esta tela.' Mas eu estou vendo."
+      ],
+      "achados": ["A-001", "A-002", "A-003", "A-004"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há como ver nem alternar entre turmas de duas escolas; 'Minhas turmas' não está implementada",
+      "o_que_aconteceu": "A conta mostra uma única instituição ('Colégio Horizonte') no rodapé do menu. 'Minhas turmas' abre uma tela 'Pendente de implementação' com '3º A · 4 alunos' e '3º B · 2 alunos' como dados de exemplo. Clicar no nome do usuário não abre nada. A única forma de ver turmas é o filtro 'Todas as turmas / 3º A / 3º B' da fila, sem indicar a escola.",
+      "o_que_a_persona_esperava": "Ver as cinco turmas de 3º ano da estadual e as quatro da municipal, separadas por escola, com um seletor claro de 'em qual escola estou agora'.",
+      "impacto": "A missão de preparação não se completa: a professora não consegue confirmar que as turmas dela estão ali nem em qual escola está trabalhando.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Clicar em 'Professor' no seletor 'Entrar como'",
+        "Clicar em 'Minhas turmas' no menu",
+        "Clicar no nome do usuário no rodapé do menu"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-03-minhas-turmas.png",
+        "capturas/professor-01/M1-04-usuario-clicado.png"
+      ],
+      "seletor_visivel": "role=link[name='Minhas turmas']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "A conta de professor aparece com outro nome ('Prof. Marina Costa')",
+      "o_que_aconteceu": "Ao entrar como Professor, o rodapé do menu mostra 'Prof. Marina Costa · Colégio Horizonte'. Não há tela de entrada nem de perfil para ajustar.",
+      "o_que_a_persona_esperava": "Ver o próprio nome, porque é o nome que vai assinar a devolutiva.",
+      "impacto": "Gera desconfiança logo no primeiro contato e reforça a dúvida sobre autoria da correção.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Clicar em 'Professor' no seletor 'Entrar como'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-02-professor-fila.png"
+      ],
+      "seletor_visivel": "text='Prof. Marina Costa'",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-003",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Jargão técnico exposto à professora: 'Entidade', 'professorIds[]', 'Bastidores', 'calibragem', 'modelo'",
+      "o_que_aconteceu": "As telas pendentes listam 'Entidade: Turma', 'id', 'anoLetivo', 'instituicaoId', 'professorIds[]', 'Calibragem agregada'. O item 'Bastidores' (grupo 'Equipe') está no menu da professora e mostra 'Modelo de dados', 'docs/MODELAGEM.md', 'Concordância geral 86% em 261 decisões', 'pré-aprovado', 'mais cautelosa', embora diga 'Alunos e professores não veem esta tela'.",
+      "o_que_a_persona_esperava": "Linguagem de sala de aula; telas internas da equipe fora do menu dela.",
+      "impacto": "A professora sente que está num sistema feito para técnicos e passa a desconfiar dos números.",
+      "passos": [
+        "Entrar como Professor",
+        "Clicar em 'Minhas turmas'",
+        "Clicar em 'Visão geral'",
+        "Clicar em 'Bastidores'"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-03-minhas-turmas.png",
+        "capturas/professor-01/M1-05-instituicao.png",
+        "capturas/professor-01/M1-06-bastidores.png"
+      ],
+      "seletor_visivel": "role=link[name='Bastidores']",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-004",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Seletor 'Entrar como Aluno / Professor' sem login, visível para qualquer um",
+      "o_que_aconteceu": "A primeira tela abre como aluna ('Enviar redação', usuária Helena Campos). Para chegar à fila é preciso clicar em 'Professor' no seletor do menu. Não há senha nem identificação.",
+      "o_que_a_persona_esperava": "Entrar com o próprio usuário e cair direto na fila de correção.",
+      "impacto": "Pequeno no protótipo, mas a professora pergunta se um aluno também pode clicar em 'Professor'.",
+      "passos": [
+        "Abrir http://localhost:5173/"
+      ],
+      "evidencias": [
+        "capturas/professor-01/M1-01-entrada.png"
+      ],
+      "seletor_visivel": "role=button[name='Professor']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": null
+  },
+  "cenarios_nao_executados": []
+}

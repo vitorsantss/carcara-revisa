@@ -1,0 +1,385 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 1,
+  "executado_em": "2026-10-17T15:10:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "parcial",
+      "duracao_segundos": 67,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Pera, carregou ou não carregou? Ficou quase um minuto pra abrir.",
+        "Cadê o cadastro? Já entrou como Helena Campos, eu sou a Ana Clara.",
+        "Isso aqui de 'Entrar como Professor' é pra mim ou pra professora?",
+        "Achei a parte de menor de idade só lá no 'Privacidade'. Pelo menos diz que dá pra começar e completar depois."
+      ],
+      "achados": ["A-101", "A-102", "A-106"]
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 100,
+      "interacoes": 14,
+      "abandono_em": null,
+      "falas": [
+        "Gostei da dica da foto, mas aqui em casa a luz é amarela mesmo.",
+        "Leu rápido! Pera... Umberto Eco? Eu não escrevi isso. Minha redação não é essa.",
+        "As palavras amarelas eu consegui arrumar fácil, mas o resto do texto não é o meu.",
+        "Pra corrigir eu ia ter que digitar a redação inteira no celular. Não dá."
+      ],
+      "achados": ["A-103", "A-104"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 33,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "A foto saiu torta e cortou o canto, mas ele mostrou o texto inteirinho. Como assim?",
+        "Não avisou nada de que faltou pedaço. Voltei porque era o mesmo texto de antes."
+      ],
+      "achados": ["A-105"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 20,
+      "interacoes": 13,
+      "abandono_em": null,
+      "falas": [
+        "Caiu a internet. Ah, pelo menos disse que meu texto continua aqui.",
+        "Toquei duas vezes, mas não mandou duplicado. E ainda avisou que eu já tinha mandado esse texto.",
+        "Fui ver em Minhas redações se tinha ido e quando voltei a foto tinha sumido. Vou ter que fazer tudo de novo."
+      ],
+      "achados": ["A-107"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 35,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Mandei a foto de seis linhas e ele leu uma redação enorme. Isso tá errado.",
+        "Colando o texto ele avisou: até 7 linhas é zero. Isso eu entendi.",
+        "Depois de enviar só aparece 'Aguardando professor'. E o zero? Vai zerar ou não?"
+      ],
+      "achados": ["A-109", "A-110", "A-113"]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 40,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Mandei a folha em branco sem querer e ele achou um texto inteiro nela?!",
+        "Com a foto bem clarinha ele perguntou se eu tinha fotografado o lado certo. Com a luz da cozinha, não.",
+        "Toquei em 'Escolher outra foto' e voltou pra folha em branco com texto. Hã?"
+      ],
+      "achados": ["A-111", "A-112"]
+    },
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 10,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Agora sim: 'Chegou ao professor. A correção ainda não começou. Previsão: até 20/10.' Entendi.",
+        "A explicação das 5 competências tá com palavra que eu entendo."
+      ],
+      "achados": ["A-110"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-101",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Sem cadastro nem data de nascimento: menoridade não é percebida",
+      "o_que_aconteceu": "O app abriu direto com a usuária 'Helena Campos, Colégio Horizonte'. Não há tela de criar conta, campo de data de nascimento nem pedido de consentimento ou vínculo do responsável. A única menção a menores está no fim da página 'Privacidade e uso de IA': 'Quem tem menos de 18 anos precisa do consentimento de um responsável. Na versão para escolas, isso entra no cadastro da turma, e você pode começar a usar e completar depois.'",
+      "o_que_a_persona_esperava": "Criar a conta com o meu nome e a minha idade e ver, ali mesmo, o que precisa do responsável e se posso completar depois.",
+      "impacto": "Não foi possível executar a missão como escrita; a plataforma não sabe que a aluna tem 17 anos e a explicação sobre o responsável fica escondida numa página que ela não lê.",
+      "passos": [
+        "Abrir http://localhost:5173/",
+        "Tocar no menu (ícone de três linhas)",
+        "Ver o rodapé do menu com 'Helena Campos'",
+        "Tocar em 'Privacidade e uso de IA' e rolar até 'Menores de 18 anos'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-01-abertura.png",
+        "capturas/aluno-01/M1-02-menu.png",
+        "capturas/aluno-01/M1-03-privacidade.png"
+      ],
+      "seletor_visivel": "data-testid=usuario-atual",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-102",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Botão 'Entrar como Professor' visível para a aluna",
+      "o_que_aconteceu": "No menu, logo no topo, aparece 'ENTRAR COMO: Aluno | Professor', sem senha. Na fase 3, ao tocar em 'Professor' no mesmo aparelho, abriu a tela de revisão da professora sobre a mesma redação, com percentuais de 'certeza' da máquina.",
+      "o_que_a_persona_esperava": "Ver só as minhas coisas de aluna; tela de professor não deveria estar a um toque.",
+      "impacto": "Gera dúvida ('isso é pra mim?') e a sensação de que qualquer um poderia ver as redações da turma. Entendo que é demonstração, mas a aluna não sabe disso.",
+      "passos": [
+        "Abrir o menu",
+        "Ver 'ENTRAR COMO' com os botões 'Aluno' e 'Professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-02-menu.png"
+      ],
+      "seletor_visivel": "role=button[name='Professor']",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-103",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Texto lido não corresponde à foto enviada",
+      "o_que_aconteceu": "A foto (folha pautada, luz amarela) tinha uma redação sobre violência contra a mulher. Em ~1 s a tela 'Confira o texto lido da sua foto' mostrou outra redação, sobre desinformação, começando com 'O escritor italiano Umberto Eco afirmou...'. 'Ver foto' mostra a minha folha logo acima do texto diferente. Só 3 palavras vieram em amarelo; o resto aparece como se tivesse sido lido com certeza. Para consertar, só reescrevendo os 1002 caracteres no 'Corrigir o texto'.",
+      "o_que_a_persona_esperava": "Ver as minhas palavras, com no máximo algumas trocadas para eu arrumar.",
+      "impacto": "Enviei porque reescrever tudo no celular não dava; a redação que foi corrigida não é a minha. Gera nota injusta (ver fase 3).",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Tirar foto da folha' e escolher foto-noite-luz-amarela.jpg (mock)",
+        "Tocar em 'Ver foto' e comparar com o texto abaixo",
+        "Tocar em 'Corrigir o texto'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M2-02-processando.png",
+        "capturas/aluno-01/M2-04-ver-foto.png",
+        "capturas/aluno-01/M2-05-duvida.png",
+        "capturas/aluno-01/M2-06-editor.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-104",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Dica pede luz branca, mas foto escura e amarelada passa sem aviso",
+      "o_que_aconteceu": "Antes do envio aparece 'Para a foto sair boa: folha inteira no quadro, de cima, sem sombra e com luz branca'. A foto com luz amarela, bordas escuras e lateral direita cortada foi aceita sem nenhum comentário sobre qualidade. O envio em si não mostrou barra de progresso de upload: só 'Lendo a folha…' por menos de 1 s (a leitura é local nesta versão, então o tempo de upload em 3G não pôde ser medido).",
+      "o_que_a_persona_esperava": "Um aviso tipo 'a foto ficou escura, tente perto da janela' antes de seguir.",
+      "impacto": "Na cozinha de casa só tem luz amarela; sem retorno, eu não sei se a foto está boa o bastante.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Ler a dica de foto",
+        "Enviar foto-noite-luz-amarela.jpg"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-01-abertura.png",
+        "capturas/aluno-01/M2-04-ver-foto.png"
+      ],
+      "seletor_visivel": "data-testid=envio-dicas-foto",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-105",
+      "missao": "M3",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Foto torta e cortada aceita calada, com texto 'completo'",
+      "o_que_aconteceu": "A foto inclinada, com o fim das linhas cortado à direita, gerou na conferência um texto de quatro parágrafos completo, com conclusão, igual ao da M2. Nenhum aviso de inclinação ou de texto faltando. O botão 'Enviar para correção' fica desativado até confirmar as palavras amarelas, e 'Voltar' descartou a foto sem perguntar.",
+      "o_que_a_persona_esperava": "Um aviso de que a folha saiu cortada e de que a conclusão podia ter ficado de fora.",
+      "impacto": "Eu acharia que a foto estava boa. Se o corte pegasse a conclusão, perderia a proposta de intervenção sem saber.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Imagens frente e verso' e escolher foto-torta-cortada.jpg (mock)",
+        "Ler o texto da conferência e tocar em 'Ver foto'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M3-01-transcricao.png",
+        "capturas/aluno-01/M3-03-ver-foto.png"
+      ],
+      "seletor_visivel": "data-testid=transcricao",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-106",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Primeira abertura em 3G demora ~47 s e baixa ~3,4 MB",
+      "o_que_aconteceu": "Com 3G emulado (400 kbps, 400 ms), a primeira carga de http://localhost:5173/ levou 47,2 s até a tela de envio aparecer, com 45 requisições e ~3,4 MB. O total da sessão chegou a ~4,4 MB. Ressalva: o app roda em servidor de desenvolvimento (Vite), que não empacota os arquivos; a versão final tende a ser bem menor.",
+      "o_que_a_persona_esperava": "Abrir em poucos segundos, como o app do MEC.",
+      "impacto": "Em 47 s eu já teria fechado e aberto de novo, gastando o pacote de dados.",
+      "passos": [
+        "Ativar 3G instável",
+        "Abrir http://localhost:5173/ pela primeira vez"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-01-abertura.png"
+      ],
+      "seletor_visivel": "data-testid=envio-page",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-107",
+      "missao": "M4",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 3,
+      "titulo": "Sem internet o texto fica, mas some ao sair da tela; sem reenvio quando volta",
+      "o_que_aconteceu": "Offline, ao tocar duas vezes em 'Enviar para correção' apareceu em vermelho 'Sem internet agora. Seu texto continua aqui: tente enviar de novo quando a conexão voltar.' Nada foi duplicado e ainda veio o aviso 'Você já enviou este mesmo texto'. Com a rede de volta, não houve aviso nem reenvio automático. Fui a 'Minhas redações' ver se tinha ido (só havia a da M2) e, ao voltar a 'Enviar redação', a foto e as palavras conferidas tinham sumido.",
+      "o_que_a_persona_esperava": "Que mandasse sozinho quando a internet voltasse, ou pelo menos guardasse o rascunho até eu voltar.",
+      "impacto": "Tive que refazer foto e conferência. Com o Wi-Fi caindo quando chove, isso vai acontecer sempre.",
+      "passos": [
+        "Escolher foto em 'Tirar foto da folha'",
+        "Desligar a rede",
+        "Confirmar as 3 palavras amarelas e tocar duas vezes em 'Enviar para correção'",
+        "Religar a rede e abrir 'Minhas redações'",
+        "Voltar em 'Enviar redação'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M4-03-offline-apos-enviar.png",
+        "capturas/aluno-01/M4-05-minhas-redacoes.png",
+        "capturas/aluno-01/M4-06-volta-enviar.png"
+      ],
+      "seletor_visivel": "role=button[name='Enviar para correção']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-109",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Foto de seis linhas vira redação completa; aviso de zero só aparece colando texto",
+      "o_que_aconteceu": "A foto com só seis linhas escritas gerou na conferência a mesma redação de quatro parágrafos (Umberto Eco), sem aviso de texto curto. Ao voltar e usar 'Colar texto' com as seis linhas, apareceu antes do envio: 'Seu texto tem até 7 linhas. No Enem, redações com até 7 linhas recebem nota zero.'",
+      "o_que_a_persona_esperava": "O mesmo aviso de risco de zero ao enviar pela foto, que é como eu sempre envio.",
+      "impacto": "Pela foto, eu enviaria achando que estava tudo certo e o risco de zero ficaria escondido (ou a redação seria corrigida como se fosse longa).",
+      "passos": [
+        "Em 'Enviar redação', tocar em 'Tirar foto da folha' e escolher seis-linhas.jpg (mock)",
+        "Ler a conferência",
+        "Tocar em 'Voltar', depois em 'Colar texto', colar 6 linhas e tocar em 'Continuar'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-01-foto-seis-linhas.png",
+        "capturas/aluno-01/M5-04-conferir.png"
+      ],
+      "seletor_visivel": "data-testid=envio-aviso-texto_curto",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-110",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Depois de enviar, o risco de zero não aparece mais no status",
+      "o_que_aconteceu": "Após enviar o texto de 6 linhas, a tela da redação e a lista em 'Minhas redações' (também uma hora depois) mostram só 'Aguardando professor. Chegou ao professor. A correção ainda não começou. Previsão: até 20/10', igual à redação longa.",
+      "o_que_a_persona_esperava": "Algo como 'Seu texto está curto e pode zerar; o professor vai confirmar'.",
+      "impacto": "Fico três dias sem saber se vou levar zero, que é o meu maior medo.",
+      "passos": [
+        "Enviar o texto de 6 linhas por 'Colar texto'",
+        "Ver a tela da redação",
+        "Avançar o relógio 1 h e abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-05-apos-envio.png",
+        "capturas/aluno-01/M7-01-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "data-testid=aluno-status",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-111",
+      "missao": "M6",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Folha em branco com luz amarela vira redação inteira, sem 'tem certeza?'",
+      "o_que_aconteceu": "A foto do verso em branco (folha pautada, luz amarela da cozinha) foi 'lida' como a redação completa de quatro parágrafos, com 3 palavras amarelas, pronta para enviar. Uma segunda foto de folha em branco com luz branca mostrou 'Essa foto parece estar em branco. Não encontramos texto na imagem. Você fotografou o lado certo da folha?', com 'Escolher outra foto' e 'Continuar com esta'.",
+      "o_que_a_persona_esperava": "A pergunta 'tem certeza?' também com a foto que eu realmente tiro, à noite.",
+      "impacto": "Eu poderia mandar uma folha em branco como redação, com texto que não escrevi. Vira tentativa injusta (ou zero) sem eu perceber.",
+      "passos": [
+        "Em 'Enviar redação', tocar em 'Tirar foto da folha' e escolher folha-em-branco.jpg (mock, luz amarela)",
+        "Ver a conferência com texto",
+        "Voltar e repetir com folha-em-branco-luz-branca.jpg (mock)"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M6-01-folha-branco.png",
+        "capturas/aluno-01/M6-02-folha-branco-luz-branca.png",
+        "capturas/aluno-01/M6-04-qual-foto.png"
+      ],
+      "seletor_visivel": "data-testid=envio-folha-em-branco",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-112",
+      "missao": "M6",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "'Escolher outra foto' volta para a folha em branco anterior com texto lido",
+      "o_que_aconteceu": "No aviso de folha em branco, tocar em 'Escolher outra foto' levou para a conferência com '1 folha' mostrando a foto em branco de luz amarela (enviada antes e descartada com 'Voltar') e a redação inteira lida abaixo. Na emulação não abriu escolha de nova foto que eu tenha visto.",
+      "o_que_a_persona_esperava": "Abrir a câmera ou a galeria de novo, com a tela limpa.",
+      "impacto": "Confunde: parece que a folha em branco virou redação de vez.",
+      "passos": [
+        "Enviar folha-em-branco.jpg, tocar em 'Voltar'",
+        "Enviar folha-em-branco-luz-branca.jpg",
+        "No aviso, tocar em 'Escolher outra foto'",
+        "Tocar em 'Ver foto'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M6-02-folha-branco-luz-branca.png",
+        "capturas/aluno-01/M6-03-trocar.png",
+        "capturas/aluno-01/M6-04-qual-foto.png"
+      ],
+      "seletor_visivel": "role=button[name='Escolher outra foto']",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-113",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 1,
+      "titulo": "Texto colado: cada quebra de linha vira parágrafo",
+      "o_que_aconteceu": "As 6 linhas coladas (um único parágrafo no papel) apareceram como 6 parágrafos separados na conferência e na tela da redação.",
+      "o_que_a_persona_esperava": "Que o parágrafo ficasse como eu escrevi.",
+      "impacto": "Pequeno, mas o texto fica diferente da folha.",
+      "passos": [
+        "Tocar em 'Colar texto'",
+        "Colar 6 linhas com quebra de linha e tocar em 'Continuar'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-04-conferir.png"
+      ],
+      "seletor_visivel": "data-testid=envio-colar-textarea",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    { "missao": "M1", "motivo": "Não existe tela de criar conta nem campo de data de nascimento; o app abre logado como 'Helena Campos'. Foi observado só o que existe (menu e página de Privacidade)." },
+    { "missao": "M2", "motivo": "Tempo de upload em 3G não mensurável: a leitura da foto é local/simulada (menos de 1 s, sem tráfego de rede). Fixtures da persona ausentes; usados .jpg mockados gerados pelo agente." },
+    { "missao": "M7", "motivo": "'Sair e voltar' simulado com page.clock (+1 h) na mesma aba, sem recarregar, porque o estado é só em memória e recarregar apaga tudo." }
+  ]
+}

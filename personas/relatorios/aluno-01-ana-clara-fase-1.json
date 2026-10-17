@@ -1,0 +1,404 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 1,
+  "executado_em": "2026-10-17T12:55:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M1",
+      "status": "nao_concluida",
+      "duracao_segundos": 67,
+      "interacoes": 2,
+      "abandono_em": "Tela inicial: não existe cadastro, o app já abre logado como 'Helena Campos'",
+      "falas": [
+        "Pera, carregou ou não carregou?",
+        "Quem é Helena Campos? Eu sou a Ana Clara.",
+        "Não pediu minha idade nem nada da minha mãe. Então quem vê minha foto?"
+      ],
+      "achados": ["A-001", "A-002", "A-006"]
+    },
+    {
+      "id": "M2",
+      "status": "parcial",
+      "duracao_segundos": 12,
+      "interacoes": 15,
+      "abandono_em": null,
+      "falas": [
+        "Umberto Eco? Eu não escrevi isso. Cadê meu texto do grupo da família?",
+        "Tirei de novo pela galeria e veio o mesmo texto.",
+        "Só dá pra mexer nas palavras amarelas, o resto não muda.",
+        "Vou mandar assim mesmo pra ver o que acontece."
+      ],
+      "achados": ["A-003", "A-004", "A-005"]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "A foto cortou a última linha e ele nem reclamou.",
+        "Apareceu o mesmo texto de antes, inteirinho."
+      ],
+      "achados": ["A-007"]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 9,
+      "interacoes": 13,
+      "abandono_em": null,
+      "falas": [
+        "A internet caiu e ele disse que chegou. Chegou mesmo?",
+        "Pelo menos o botão travou e não mandou duas vezes."
+      ],
+      "achados": ["A-008"]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 9,
+      "abandono_em": null,
+      "falas": [
+        "Mandei a foto de seis linhas e apareceu uma redação enorme.",
+        "Colei o texto curto e ele só disse 'Sua redação chegou'. Ninguém falou que pode dar zero."
+      ],
+      "achados": ["A-009", "A-010"]
+    },
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 5,
+      "abandono_em": null,
+      "falas": [
+        "Mandei o verso da folha, em branco, e ele 'leu' uma redação inteira!",
+        "Não perguntou se eu tinha certeza. Voltei sem enviar."
+      ],
+      "achados": ["A-011"]
+    },
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 9,
+      "interacoes": 8,
+      "abandono_em": null,
+      "falas": [
+        "Tem quatro redações com o mesmo nome. Qual é qual?",
+        "'Aguardando professor', mas até quando?",
+        "Isso aqui é pra mim ou pra professora? Tem nota 800 e botão de aprovar.",
+        "Fechei e abri de novo e sumiu tudo."
+      ],
+      "achados": ["A-012", "A-013", "A-014"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "cadastro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há cadastro, data de nascimento nem consentimento do responsável",
+      "o_que_aconteceu": "O app abriu direto na tela 'Enviar redação' com uma usuária já logada. Não existe tela de criar conta, campo de data de nascimento, pedido de vínculo ou consentimento de responsável, nem explicação de quem vê a foto e a redação. O único aviso é o rodapé 'Linhas com nome, e-mail ou telefone são removidas antes do envio. A redação não é usada para treinar modelos.'",
+      "o_que_a_persona_esperava": "Criar a conta, informar que tem 17 anos e ser avisada, com palavras simples, se precisava de autorização da mãe e quem ia ver a foto.",
+      "impacto": "A plataforma não percebe que a aluna é menor de idade; nenhuma das perguntas de M1 pôde ser respondida. Uma menor envia foto e texto sem qualquer consentimento registrado.",
+      "passos": [
+        "Abrir http://localhost:5173/#/",
+        "Procurar 'Criar conta', 'Cadastro' ou 'data de nascimento' na tela e no menu"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M1-01-primeira-tela.png",
+        "capturas/aluno-01/M1-02-menu-aberto.png"
+      ],
+      "seletor_visivel": "[data-testid=usuario-atual]",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Aluna aparece logada com o nome de outra pessoa e com opção 'Entrar como Professor'",
+      "o_que_aconteceu": "O menu mostra 'Helena Campos, Colégio Horizonte' como usuária atual e um seletor 'Entrar como: Aluno | Professor', além dos menus de Professor, Instituição e Bastidores.",
+      "o_que_a_persona_esperava": "Ver o próprio nome e só as opções de aluna.",
+      "impacto": "A persona acha que está na conta de outra pessoa e fica insegura sobre quem vê as redações.",
+      "passos": [
+        "Abrir http://localhost:5173/#/",
+        "Tocar no menu (ícone de três linhas)"
+      ],
+      "evidencias": ["capturas/aluno-01/M1-02-menu-aberto.png"],
+      "seletor_visivel": "[data-testid=papel-professor]",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-003",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "A transcrição ignora a foto e mostra uma redação que a aluna não escreveu",
+      "o_que_aconteceu": "A foto mostra uma redação que começa com 'A desinformação nas redes sociais virou um problema sério no Brasil... grupo da família'. A tela 'Confira a transcrição' mostrou outro texto, que começa com 'O escritor italiano Umberto Eco afirmou...'. Na segunda tentativa, pela galeria, veio exatamente o mesmo texto. O mesmo texto também apareceu para a foto cortada (M3), para a foto de seis linhas (M5) e para a folha em branco (M6).",
+      "o_que_a_persona_esperava": "Ver o próprio texto transcrito, talvez com algumas palavras erradas.",
+      "impacto": "A aluna não consegue enviar a própria redação pela foto. Se enviar, a correção e a nota são de um texto que não é dela.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Tirar foto da folha' e escolher foto-noite-luz-amarela.jpg",
+        "Ler a tela 'Confira a transcrição'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M2-03-transcricao.png",
+        "capturas/aluno-01/M2-03b-transcricao-inteira.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-004",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "friccao",
+      "severidade": 3,
+      "titulo": "Só as palavras em amarelo podem ser corrigidas; o resto da transcrição não é editável",
+      "o_que_aconteceu": "A tela pede para tocar nas 3 palavras em amarelo e oferece sugestão, 'manter' ou campo para digitar. Tocar em outras palavras não faz nada. 'Voltar' leva ao início do envio, sem opção de corrigir o texto todo ou trocar a foto mantendo o que já foi conferido. O botão 'Enviar para correção' fica desabilitado até conferir as três palavras.",
+      "o_que_a_persona_esperava": "Poder corrigir qualquer palavra lida errado, ou dizer 'esse texto não é o meu' e refazer.",
+      "impacto": "Com leitura errada fora das palavras amarelas, a aluna não tem como corrigir, só enviar errado ou desistir.",
+      "passos": [
+        "Enviar foto em #/aluno/enviar",
+        "Tocar numa palavra sem destaque amarelo",
+        "Tocar numa palavra amarela e escolher a sugestão"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M2-04-editor-duvida.png",
+        "capturas/aluno-01/M2-05-tudo-conferido.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao-duvida-0]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-005",
+      "missao": "M2",
+      "etapa_proposta": "envio",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Nenhuma orientação de como fotografar antes da foto",
+      "o_que_aconteceu": "A tela de envio só tem os botões 'Tirar foto da folha', 'Imagem da galeria', 'Colar texto' e 'Usar folha de exemplo'. Não há dica de luz, enquadramento ou de pegar a folha inteira. A leitura mostrou 'Lendo a folha…' e respondeu em menos de 1 segundo.",
+      "o_que_a_persona_esperava": "Uma dica rápida de como tirar a foto com a lâmpada amarela da cozinha.",
+      "impacto": "Fotos escuras ou cortadas, comuns no contexto da persona, entram sem qualquer cuidado.",
+      "passos": ["Abrir #/aluno/enviar", "Observar a tela antes de tocar em 'Tirar foto da folha'"],
+      "evidencias": [
+        "capturas/aluno-01/M2-01-tela-enviar.png",
+        "capturas/aluno-01/M2-02-lendo-a-folha.png"
+      ],
+      "seletor_visivel": "[data-testid=envio-importar-camera]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-006",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Primeira abertura levou cerca de 65 s e 3,1 MB em 3G emulado",
+      "o_que_aconteceu": "Com a rede limitada a 400 kbps e 400 ms de latência, o app levou 64,7 s e 42 requisições (cerca de 3,1 MB) até aparecer a tela inicial. Ressalva: medido no servidor de desenvolvimento (Vite dev, sem bundle), que pode não representar a versão de produção.",
+      "o_que_a_persona_esperava": "Abrir em poucos segundos, como o app do MEC.",
+      "impacto": "A persona acha que travou, toca de novo ou desiste, e gasta dados do pré-pago.",
+      "passos": ["Ativar 3G emulado", "Abrir http://localhost:5173/#/", "Esperar a tela 'Enviar redação'"],
+      "evidencias": ["capturas/aluno-01/M1-01-primeira-tela.png"],
+      "seletor_visivel": "[data-testid=app-shell]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-007",
+      "missao": "M3",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Foto torta e com a última linha cortada é aceita sem nenhum aviso",
+      "o_que_aconteceu": "A foto inclinada, com o fim da conclusão cortado, gerou a mesma transcrição completa das outras fotos. Nenhum aviso de texto faltando, nem antes nem depois de enviar.",
+      "o_que_a_persona_esperava": "Um aviso tipo 'parece que faltou o final da folha, tire outra foto'.",
+      "impacto": "Uma redação sem a proposta de intervenção seria enviada sem a aluna saber, e poderia perder pontos de C5 ou cair em texto insuficiente.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Tirar foto da folha' e escolher foto-torta-cortada.jpg",
+        "Conferir as palavras amarelas e tocar em 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M3-01-transcricao-foto-cortada.png",
+        "capturas/aluno-01/M3-02-apos-envio.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao-resumo]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-008",
+      "missao": "M4",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Sem internet, o app confirma 'Sua redação chegou' sem avisar da queda",
+      "o_que_aconteceu": "A rede foi desligada logo depois de escolher a foto, por cerca de 7 s. A transcrição apareceu, o envio mostrou 'Enviando…' e abriu a tela 'Sua redação chegou. O professor está corrigindo.' Em nenhum momento houve aviso de falta de conexão. Ponto positivo: o botão ficou desabilitado durante o 'Enviando…', então o segundo toque não gerou envio duplicado (a lista ficou com 3 redações, uma por envio). Não houve requisição de rede no envio, então não foi possível testar perda real da foto.",
+      "o_que_a_persona_esperava": "Um aviso 'sem internet, vamos enviar quando voltar' ou um erro com opção de tentar de novo.",
+      "impacto": "A aluna acredita que a redação chegou à professora mesmo sem conexão, o que pode não ser verdade num sistema real.",
+      "passos": [
+        "Abrir #/aluno/enviar e escolher foto-noite-luz-amarela.jpg",
+        "Desligar a rede",
+        "Conferir as palavras amarelas e tocar duas vezes em 'Enviar para correção'",
+        "Religar a rede e abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M4-02-sem-rede-transcricao.png",
+        "capturas/aluno-01/M4-03-sem-rede-enviando.png",
+        "capturas/aluno-01/M4-04-sem-rede-apos-envio.png",
+        "capturas/aluno-01/M4-05-lista-apos-queda.png"
+      ],
+      "seletor_visivel": "[data-testid=envio-status]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-009",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Foto de seis linhas vira transcrição de 169 palavras",
+      "o_que_aconteceu": "A foto com seis linhas manuscritas gerou a mesma transcrição longa (169 palavras, quatro parágrafos) das outras fotos. Para testar a regra de texto insuficiente, a persona teve de voltar e usar 'Colar texto'.",
+      "o_que_a_persona_esperava": "Ver as suas seis linhas e algum aviso de que o texto é curto.",
+      "impacto": "Pela foto, a regra de texto insuficiente não tem como ser aplicada: a redação curta seria corrigida como se fosse completa.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Imagem da galeria' e escolher seis-linhas.jpg"
+      ],
+      "evidencias": ["capturas/aluno-01/M5-01-foto-seis-linhas-transcricao.png"],
+      "seletor_visivel": "[data-testid=transcricao]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-010",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Aluna não é avisada do risco de zero ao enviar texto de seis linhas",
+      "o_que_aconteceu": "Com as seis linhas coladas, a tela 'Confira a transcrição' disse só 'Confira o texto antes de enviar.' Depois de enviar: 'Aguardando professor. Sua redação chegou. O professor está corrigindo.' Nenhuma menção a texto insuficiente ou risco de zero. Na fila do professor, vista depois pelo orquestrador, essa mesma redação aparece com a etiqueta 'risco de nota zero'.",
+      "o_que_a_persona_esperava": "Um aviso antes de enviar: 'seu texto tem menos de 7 linhas e pode tirar zero'.",
+      "impacto": "A aluna perde a chance de completar o texto antes de enviar e só descobre o zero na devolutiva.",
+      "passos": [
+        "Abrir #/aluno/enviar e tocar em 'Colar texto'",
+        "Colar seis linhas e tocar em 'Continuar'",
+        "Tocar em 'Enviar para correção'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M5-03-transcricao-seis-linhas.png",
+        "capturas/aluno-01/M5-04-apos-envio.png",
+        "capturas/aluno-01/ORQ-01-fila-professor.png"
+      ],
+      "seletor_visivel": "[data-testid=aluno-aguardando]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-011",
+      "missao": "M6",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Folha em branco gera uma redação inteira e não há 'tem certeza?'",
+      "o_que_aconteceu": "A foto da folha pautada vazia gerou a mesma transcrição completa (169 palavras), com 3 palavras amarelas para conferir. Não apareceu nenhuma pergunta do tipo 'a folha parece vazia, tem certeza?'. A persona percebeu e tocou em 'Voltar', sem enviar. Se tivesse conferido as palavras, o envio seria liberado.",
+      "o_que_a_persona_esperava": "Um aviso de que a foto estava em branco.",
+      "impacto": "Um erro bobo (fotografar o verso) vira uma redação inventada enviada em nome da aluna, com nota de um texto que não existe.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Tocar em 'Tirar foto da folha' e escolher folha-em-branco.jpg"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M6-01-folha-em-branco-transcricao.png",
+        "capturas/aluno-01/M6-02-voltou-sem-enviar.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-012",
+      "missao": "M7",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Lista de redações indistinguível e status sem previsão",
+      "o_que_aconteceu": "Uma hora depois, 'Minhas redações' mostrava quatro itens iguais: 'Os desafios para combater a desinformação nas redes sociais no Brasil | Enviada há 1 h | Aguardando professor'. Não há miniatura, início do texto nem horário exato para diferenciar. Não existe previsão de quando a correção chega. Logo após enviar, a tela já dizia 'O professor está corrigindo', antes de qualquer professor abrir a redação.",
+      "o_que_a_persona_esperava": "Saber qual redação é qual e ter uma previsão, tipo 'até amanhã'.",
+      "impacto": "A persona não sabe em que pé está cada correção, que é um dos motivos dela desistir.",
+      "passos": [
+        "Enviar várias redações",
+        "Adiantar o relógio em 1 hora",
+        "Abrir 'Minhas redações' pelo menu"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M7-01-minhas-redacoes-1h-depois.png",
+        "capturas/aluno-01/M7-02-detalhe-redacao.png"
+      ],
+      "seletor_visivel": "[data-testid=minha-redacao-etapa]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-013",
+      "missao": "M7",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Aluna abre 'Visão do professor' e vê a correção automática não revisada, com notas e botões de aprovar",
+      "o_que_aconteceu": "Na página da própria redação, ainda 'Aguardando professor', a aluna tocou em 'Visão do professor'. Abriu a tela 'Revisão' com notas por competência editáveis (C1 a C5 = 160, Total 800), marcações automáticas pendentes e cards com 'Aprovar', 'Recusar', 'Editar' e o botão 'Devolver ao aluno'. Só de abrir, a etapa mudou para 'Em revisão' e a lista passou a mostrar 'Em revisão' para essa redação. A persona não tocou em aprovar.",
+      "o_que_a_persona_esperava": "Que esse botão não existisse para ela.",
+      "impacto": "A aluna vê marcações e uma nota que a professora ainda não aprovou, e o status fica falso ('Em revisão' sem professor nenhum). Os botões de aprovar ficaram visíveis para ela.",
+      "passos": [
+        "Abrir 'Minhas redações' e tocar numa redação aguardando professor",
+        "Tocar em 'Visão do professor'",
+        "Voltar para 'Visão do aluno' e abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M7-03-aluna-abre-visao-professor.png",
+        "capturas/aluno-01/M7-03b-aluna-visao-professor-inteira.png",
+        "capturas/aluno-01/M7-04-lista-depois-de-espiar.png"
+      ],
+      "seletor_visivel": "[data-testid=visao-professor]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-014",
+      "missao": "M7",
+      "etapa_proposta": "transversal",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Ao fechar e abrir de novo, todas as redações enviadas somem",
+      "o_que_aconteceu": "Simulando fechar a aba e voltar (nova aba no mesmo navegador), 'Minhas redações' mostrou 'Você ainda não enviou redações. Enviar a primeira'. As quatro redações enviadas não aparecem mais. Ressalva: a persistência está fora do escopo atual do produto; registro o que a persona viu.",
+      "o_que_a_persona_esperava": "Ver as redações que já mandou.",
+      "impacto": "Perda total do que a aluna enviou, do ponto de vista dela.",
+      "passos": [
+        "Enviar redações",
+        "Abrir uma nova aba em #/aluno/redacoes"
+      ],
+      "evidencias": ["capturas/aluno-01/M7-05-nova-aba-lista-vazia.png"],
+      "seletor_visivel": "[data-testid=minhas-redacoes-vazio]",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 1,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [
+    { "missao": "M1", "motivo": "Não existe tela de cadastro: não foi possível informar a data de nascimento nem testar o fluxo de responsável (pedir e-mail/telefone, completar depois)." },
+    { "missao": "M2", "motivo": "Tempo de upload em 3G não mensurável: o app não fez nenhuma requisição de rede ao ler a foto nem ao enviar (leitura simulada em cerca de 0,8 s e envio em 0,5 s), então a limitação de rede não afetou o envio." },
+    { "missao": "M4", "motivo": "Perda da foto por queda de rede no meio do upload não reproduzível: não há upload real. Testado apenas o comportamento da tela com o aparelho offline e o toque duplo." },
+    { "missao": "M7", "motivo": "'Sair e voltar uma hora depois' aproximado com relógio adiantado em 1 h na mesma aba (o estado só existe em memória); o fechamento da aba foi simulado com uma nova aba." },
+    { "missao": "transversal", "motivo": "Fixtures de imagem eram mockadas (folhas pautadas renderizadas em HTML); a duração das missões é tempo de script automatizado, não de uma pessoa real lendo." }
+  ]
+}

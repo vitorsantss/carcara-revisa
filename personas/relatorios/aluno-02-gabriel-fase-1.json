@@ -1,0 +1,338 @@
+{
+  "persona_id": "aluno-02-gabriel",
+  "fase": 1,
+  "executado_em": "2026-10-17T12:45:01-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Pixel 5 (Playwright devices['Pixel 5'], locale pt-BR, America/Sao_Paulo)",
+    "rede": "sem-limitacao",
+    "build": "94c047f-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M6",
+      "status": "concluida",
+      "duracao_segundos": 2,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "Política de dados é isso? Uma frase cinza no rodapé?",
+        "Não tem link, não diz por quanto tempo guarda nem quem vê. Entendi o que ela promete, não o que ela faz."
+      ],
+      "achados": [
+        "A-009"
+      ]
+    },
+    {
+      "id": "M1",
+      "status": "concluida",
+      "duracao_segundos": 4,
+      "interacoes": 9,
+      "abandono_em": null,
+      "falas": [
+        "Pera, essa não é a minha redação. Eu não citei Umberto Eco.",
+        "Enviou em menos de um segundo, ótimo. Mas 'assim que ele terminar' é quando? Hoje? Semana que vem?"
+      ],
+      "achados": [
+        "A-001",
+        "A-002",
+        "A-003"
+      ]
+    },
+    {
+      "id": "M2",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 13,
+      "abandono_em": null,
+      "falas": [
+        "Mandei a mesma foto de novo e ninguém reclamou. Vamos ver se a nota bate."
+      ],
+      "achados": [
+        "A-004"
+      ]
+    },
+    {
+      "id": "M3",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "A foto dos motivadores virou de novo o texto do Umberto Eco. Vou colar o texto.",
+        "Copiei o Texto I três vezes e o sistema chamou 'Segundo pesquisa recente' de repertório. Sério?"
+      ],
+      "achados": [
+        "A-001",
+        "A-005",
+        "A-010"
+      ]
+    },
+    {
+      "id": "M4",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Não achei nada sobre IA em lugar nenhum. Nem um aviso.",
+        "Texto de IA com 680 sugerido, sem um alerta. Então o que impede todo mundo de fazer isso?"
+      ],
+      "achados": [
+        "A-006"
+      ]
+    },
+    {
+      "id": "M5",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 11,
+      "abandono_em": null,
+      "falas": [
+        "Diz que remove linha com nome. Meu nome está ali, na última linha, e foi enviado assim.",
+        "No Enem isso zera. Aqui a nota sugerida é 720."
+      ],
+      "achados": [
+        "A-007",
+        "A-008"
+      ]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-001",
+      "missao": "M1",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Transcrição ignora a foto enviada e mostra o texto de outra redação",
+      "o_que_aconteceu": "Enviei boa-foto-dia.jpg (redação sobre Constituição/Bauman). A tela 'Confira a transcrição' mostrou um texto diferente (Umberto Eco, 'compartilhar-las') e pediu para confirmar 3 palavras que eu não escrevi ('multidao', 'encaminhamenlo', 'leern'). O mesmo texto apareceu para copia-motivadores.jpg, texto-gerado-ia.jpg e com-assinatura.jpg.",
+      "o_que_a_persona_esperava": "Ver a transcrição da minha própria folha, com dúvidas só onde minha letra é ambígua.",
+      "impacto": "A redação corrigida e a nota (800) não são do meu texto. Só percebi porque li; um aluno apressado aceitaria. Para M3 a M5 precisei usar 'Colar texto'.",
+      "passos": [
+        "Abrir #/aluno/enviar no celular",
+        "Tocar 'Imagem da galeria' e escolher boa-foto-dia.jpg",
+        "Ler a transcrição",
+        "Repetir com copia-motivadores.jpg"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M1-01-transcricao.png",
+        "capturas/aluno-02/M3-01-foto-motivadores-transcricao-trocada.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao]",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-002",
+      "missao": "M1",
+      "etapa_proposta": "envio",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Confirmação não informa prazo da devolutiva",
+      "o_que_aconteceu": "O envio levou cerca de 0,6 s até a tela 'Sua redação chegou'. O texto diz 'O professor está corrigindo. Você recebe a devolutiva ... assim que ele terminar.' Não há prazo nem previsão.",
+      "o_que_a_persona_esperava": "Uma estimativa ('até 48 h', 'em média 2 dias') e se vou ser avisado.",
+      "impacto": "Fico abrindo o app para checar. Concorrentes dão nota na hora.",
+      "passos": [
+        "Resolver as 3 dúvidas",
+        "Tocar 'Enviar para correção'",
+        "Ler o cartão 'Aguardando professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M1-03-confirmacao.png"
+      ],
+      "seletor_visivel": "[data-testid=aluno-aguardando]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-003",
+      "missao": "M1",
+      "etapa_proposta": "transversal",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Tela da redação mostra outro aluno como autor",
+      "o_que_aconteceu": "Logado como Aluno, todas as minhas redações aparecem como 'Helena Campos · 3º A', e o rodapé do menu mostra 'Helena Campos, Colégio Horizonte'. Eu sou Gabriel, de cursinho.",
+      "o_que_a_persona_esperava": "Meu nome ou nenhum nome.",
+      "impacto": "Parece que estou vendo a redação de outra pessoa; reforça a dúvida de A-001.",
+      "passos": [
+        "Enviar uma redação",
+        "Ver o cabeçalho da tela de confirmação"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M1-03-confirmacao.png",
+        "capturas/aluno-02/M6-02-menu-lateral.png"
+      ],
+      "seletor_visivel": "[data-testid=usuario-atual]",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-004",
+      "missao": "M2",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 2,
+      "titulo": "Envio repetido do mesmo texto não é detectado",
+      "o_que_aconteceu": "Enviei a mesma foto como nova redação. Nenhum aviso na transcrição nem na confirmação; 'Minhas redações' lista duas entradas idênticas ('Enviada agora', 'Aguardando professor').",
+      "o_que_a_persona_esperava": "Um aviso 'você já enviou este texto' ou a opção de ligar como reescrita.",
+      "impacto": "Gasta tempo do professor e me deixa sem saber se as duas serão corrigidas igual.",
+      "passos": [
+        "Enviar boa-foto-dia.jpg (M1)",
+        "Enviar boa-foto-dia.jpg de novo",
+        "Abrir 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M2-01-transcricao-sem-aviso.png",
+        "capturas/aluno-02/M2-03-minhas-redacoes.png"
+      ],
+      "seletor_visivel": "[data-testid=envio-enviar]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-005",
+      "missao": "M3",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Cópia dos textos motivadores passa sem aviso e ganha nota",
+      "o_que_aconteceu": "O app não mostra motivadores; inventei um Texto I e um Texto II plausíveis e colei uma redação que repete o Texto I três vezes. Nenhum aviso antes ou depois do envio. Pela 'Visão do professor' vi nota sugerida 600, e 'Segundo pesquisa recente' (frase do Texto II) marcado como Acerto de repertório C2.",
+      "o_que_a_persona_esperava": "Aviso de cópia da prova, linhas desconsideradas ou risco de nota zero, como no Inep.",
+      "impacto": "Nota sugerida injusta: cópia é premiada como repertório.",
+      "passos": [
+        "Tocar 'Colar texto'",
+        "Colar texto que repete os motivadores",
+        "Enviar",
+        "Tocar 'Visão do professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M3-02-colar-motivadores.png",
+        "capturas/aluno-02/M3-04-visao-professor-acessivel-ao-aluno.png"
+      ],
+      "seletor_visivel": "[data-testid=envio-enviar]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-006",
+      "missao": "M4",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não há política nem aviso sobre texto gerado por IA",
+      "o_que_aconteceu": "Não achei menção a IA na tela de envio, no menu nem na confirmação. Colei uma redação escrita no estilo de IA ('Na contemporaneidade...', 'cenário multifacetado'): nenhum sinal; nota sugerida 680.",
+      "o_que_a_persona_esperava": "Uma regra clara sobre uso de IA pelo aluno e, no mínimo, um alerta ao professor.",
+      "impacto": "Se qualquer texto de IA passa, a nota não mede a minha escrita; perco confiança na comparação com colegas.",
+      "passos": [
+        "Abrir 'Enviar redação' e procurar menção a IA",
+        "Colar texto-gerado-ia",
+        "Enviar",
+        "Tocar 'Visão do professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M4-01-colar-texto-ia.png",
+        "capturas/aluno-02/M4-02-confirmacao-sem-aviso.png",
+        "capturas/aluno-02/M4-03-visao-professor-nota-auto.png"
+      ],
+      "seletor_visivel": "[data-testid=envio-colar-textarea]",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-007",
+      "missao": "M5",
+      "etapa_proposta": "envio",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Linha com o nome do aluno não é removida, apesar da promessa",
+      "o_que_aconteceu": "O rodapé diz 'Linhas com nome, e-mail ou telefone são removidas antes do envio'. Colei a redação com 'Gabriel Martins - Cursinho Pré-Med BH - turma 2B' no fim: a linha continuou na transcrição, foi enviada e aparece na folha e na revisão.",
+      "o_que_a_persona_esperava": "A linha removida ou destacada antes do envio, como prometido.",
+      "impacto": "Meu nome vai junto com o texto, ao contrário do que o app afirma; a promessa de privacidade não é confiável.",
+      "passos": [
+        "Tocar 'Colar texto'",
+        "Colar redação com nome no rodapé",
+        "Conferir transcrição",
+        "Enviar e ver a folha"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M5-01-nome-na-transcricao.png",
+        "capturas/aluno-02/M5-02-nome-na-folha-enviada.png"
+      ],
+      "seletor_visivel": "[data-testid=transcricao]",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-008",
+      "missao": "M5",
+      "etapa_proposta": "filtro",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Identificação do aluno no texto não é tratada como risco de nota zero",
+      "o_que_aconteceu": "Com o nome no fim do texto, não houve alerta para mim nem marcação na revisão; nota sugerida 720, igual à mesma redação sem nome.",
+      "o_que_a_persona_esperava": "Aviso de que identificação zera no Enem.",
+      "impacto": "Eu treinaria um hábito que zera a prova real.",
+      "passos": [
+        "Enviar redação com nome no rodapé",
+        "Tocar 'Visão do professor'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M5-03-visao-professor-nome-sem-alerta.png"
+      ],
+      "seletor_visivel": "[data-testid=nota-total]",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-009",
+      "missao": "M6",
+      "etapa_proposta": "transversal",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Política de dados resumida a uma frase sem link",
+      "o_que_aconteceu": "A única informação é o rodapé da tela de envio: remove linhas com nome e não usa a redação para treinar modelos. Não é link; o menu e o avatar não levam a termos ou privacidade. Nada sobre prazo de guarda, quem vê ou a foto.",
+      "o_que_a_persona_esperava": "Página de termos/privacidade com retenção, acesso (professor, escola, equipe) e destino da foto.",
+      "impacto": "Não consigo decidir com informação se envio; e A-007 mostra que a frase não se cumpre.",
+      "passos": [
+        "Abrir #/aluno/enviar",
+        "Abrir o menu lateral",
+        "Tocar no usuário",
+        "Tocar no texto do rodapé"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M6-01-tela-envio.png",
+        "capturas/aluno-02/M6-02-menu-lateral.png",
+        "capturas/aluno-02/M6-04-aviso-rodape.png"
+      ],
+      "seletor_visivel": "text=A redação não é usada para treinar modelos",
+      "relacionado_a_decisao_em_aberto": "dados_alunos"
+    },
+    {
+      "id": "A-010",
+      "missao": "M3",
+      "etapa_proposta": "revisao_professor",
+      "tipo": "defeito",
+      "severidade": 3,
+      "titulo": "Aluno abre a 'Visão do professor' da própria redação",
+      "o_que_aconteceu": "Na tela da minha redação, logado como Aluno, existe o botão 'Visão do professor'. Ele mostra as marcações automáticas pendentes com confiança (55%, 60%, 70%), a nota sugerida por competência e os botões Aprovar, Recusar, Editar e 'Devolver ao aluno'. Depois disso, a redação passou a aparecer como 'Em revisão' em 'Minhas redações' sem nenhum professor ter mexido. Não cliquei em Aprovar.",
+      "o_que_a_persona_esperava": "Só ver o que o professor aprovou.",
+      "impacto": "Vejo correção não revisada como se fosse resultado; os botões sugerem que eu poderia aprovar minha própria correção (não testado); o status fica errado.",
+      "passos": [
+        "Enviar uma redação",
+        "Na confirmação, tocar 'Visão do professor'",
+        "Voltar a 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-02/M3-04-visao-professor-acessivel-ao-aluno.png",
+        "capturas/aluno-02/M10-01-historico.png"
+      ],
+      "seletor_visivel": "[data-testid=visao-professor]",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": null,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": [],
+  "observacoes_do_executor": [
+    "Fixtures geradas pelo executor: JPEGs de folha pautada com redações fictícias. O app ignorou o conteúdo das imagens (A-001); M3, M4 e M5 foram repetidas via 'Colar texto' com os mesmos textos fictícios.",
+    "O app não mostra textos motivadores; os motivadores de M3 foram inventados pelo executor.",
+    "Durações e contagens medidas no script automatizado; um humano levaria mais tempo. Tempo de envio (toque em 'Enviar para correção' até a confirmação): M1 606 ms, M2 596 ms.",
+    "O que funcionou: o envio fica bloqueado até as dúvidas de leitura serem resolvidas, as dúvidas têm sugestões de um toque, e o aviso 'Seus próprios erros de escrita continuam no texto' é claro."
+  ]
+}

@@ -19,6 +19,22 @@ export async function alunoEnviaFolhaExemplo(page: Page): Promise<string> {
   return url.hash.split("/")[2].split("?")[0];
 }
 
+/** Troca o papel pelo seletor "Entrar como" da barra lateral (abre o menu no celular). */
+export async function trocarPapel(page: Page, papel: "aluno" | "professor") {
+  const abrir = page.getByTestId("sidebar-abrir");
+  if (await abrir.isVisible()) await abrir.click();
+  await page.getByTestId(`papel-${papel}`).click();
+  await expect(page.getByTestId(`papel-${papel}`)).toHaveAttribute("aria-pressed", "true");
+  if (page.url().includes("/redacoes/")) await expect(page.getByTestId("redacao-page")).toHaveAttribute("data-visao", papel);
+}
+
+/** Professor devolve a redação aberta, passando pela confirmação. */
+export async function devolver(page: Page) {
+  await page.getByTestId("revisao-devolver").click();
+  await page.getByTestId("revisao-devolver-confirmar").click();
+  await expect(page.getByTestId("revisao-resumo")).toContainText("Devolvida");
+}
+
 /** Professor aprova todas as correções automáticas pendentes. */
 export async function professorAprovaPendentes(page: Page) {
   const aprovar = page.getByTestId("card-aprovar");

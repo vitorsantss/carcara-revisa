@@ -1,0 +1,268 @@
+{
+  "persona_id": "aluno-03-josiane",
+  "fase": 3,
+  "executado_em": "2026-10-17T12:48:49-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Galaxy S8 (Playwright devices['Galaxy S8'], 360x740, pt-BR, America/Sao_Paulo)",
+    "rede": "4g-oscilando (CDP Network.emulateNetworkConditions alternando a cada 5 s entre 4 Mbps/80 ms, 400 kbps/400 ms e 1,5 Mbps/150 ms)",
+    "build": "94c047f-dirty"
+  },
+  "observacoes_de_execucao": [
+    "A revisão da professora foi SIMULADA pelo orquestrador, não pela persona: na mesma sessão, pelo seletor 'Entrar como Professor', foram aprovadas sem alteração todas as marcações automáticas das redações de M2 (7), M4 (5) e M5 (2), e cada uma foi devolvida. A professora não recusou, editou nem criou marcações, nem mexeu nas notas. Capturas SIM-PROF-*.",
+    "A fase 3 aconteceu na mesma sessão de navegador da fase 1, com a fonte em 150% (injeção de CSS), que é como a Josiane usa o celular. Durante a simulação da professora a fonte voltou a 100%.",
+    "Durações e interações foram medidas pelo script automatizado (tempo de máquina).",
+    "Em M9, o toque em 'Bastidores' na sessão principal falhou porque o item estava encoberto por outros itens do menu enquanto ele rolava (captura M9-ERRO). A parte final de M9 (ler 'Bastidores') foi concluída numa sessão curta separada, com a fonte em 150%; Bastidores não depende das redações enviadas."
+  ],
+  "missoes": [
+    {
+      "id": "M7",
+      "status": "concluida",
+      "duracao_segundos": 5,
+      "interacoes": 5,
+      "abandono_em": null,
+      "falas": [
+        "760! Mas esse texto do Umberto Eco nem é meu... então essa nota é de quem?",
+        "C1, C2, C3... toquei no C2 e não abriu nada. Competência 2? O que é isso?",
+        "'Repertório identificado. Confira se ele sustenta o argumento.' Confira quem? Eu?",
+        "Do que eu entendi: tenho que explicar melhor os argumentos e olhar acento. Mas não sei o que é 'repertório'."
+      ],
+      "achados": ["B-001", "B-002", "B-003", "B-009", "B-010"]
+    },
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 6,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Não zerou. 600 na do celular, então o assunto estava certo, né?",
+        "A da minha história ganhou 560 e ainda falou que tinha 'tese'. Achei que tinha ido bem.",
+        "O jeito de falar não me desanimou, é educado. Mas não falou o que eu errei de verdade.",
+        "'Garanta agente, ação, meio, finalidade e um detalhamento.' Não sei fazer isso, ninguém explicou."
+      ],
+      "achados": ["B-004", "B-005", "B-006"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 12,
+      "interacoes": 6,
+      "abandono_em": null,
+      "falas": [
+        "Procurei 'ajuda' no menu e não tem.",
+        "Esse 'Bastidores' diz que aluno não vê essa tela. Então não era pra eu estar aqui...",
+        "Não achei em lugar nenhum o que são as cinco competências."
+      ],
+      "achados": ["B-007", "B-008"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "B-001",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 3,
+      "titulo": "Devolutiva usa C1 a C5 e termos do Enem sem nenhuma explicação visível",
+      "o_que_aconteceu": "A nota aparece como 'C1 160, C2 160, C3 120, C4 160, C5 160'. Os comentários usam 'Repertório identificado', 'Tese apresentada na introdução', 'Conectivo bem empregado', 'Meio de execução explícito', 'Finalidade presente'. O nome das competências existe só como dica de mouse (atributo title: 'Norma culta', 'Tema e repertório', 'Projeto de texto', 'Coesão', 'Proposta de intervenção'), que não aparece com toque no celular. Tocar em 'C2' não abriu nada.",
+      "o_que_a_persona_esperava": "Tocar em C2 e ler em palavras simples o que aquilo avalia.",
+      "impacto": "Josiane não consegue dizer o que precisa melhorar. Era exatamente o que faria ela desistir.",
+      "passos": [
+        "Entrar como aluna, abrir 'Minhas redações'",
+        "Abrir a redação com 'Devolutiva pronta' (M2)",
+        "Tocar em 'C2 160'",
+        "Ler os comentários da margem"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M7-02-devolutiva-topo.png",
+        "capturas/aluno-03/M7-03-devolutiva-inteira.png",
+        "capturas/aluno-03/M7-04-toque-em-C2.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-nota-c2",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-002",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Comentários escritos para a professora chegam à aluna ('Confira se…', 'Correção automática')",
+      "o_que_aconteceu": "A aluna recebe 'Repertório identificado. Confira se ele sustenta o argumento.' e 'Finalidade presente. Confira se há detalhamento.', com o rótulo 'Correção automática' em cada comentário.",
+      "o_que_a_persona_esperava": "Comentários falando com ela, dizendo o que fazer.",
+      "impacto": "Ela não sabe se o pedido é para ela, e 'automática' a faz duvidar se a professora leu mesmo.",
+      "passos": ["Abrir a devolutiva de M2", "Ler os comentários #1 e #6"],
+      "evidencias": ["capturas/aluno-03/M7-03-devolutiva-inteira.png"],
+      "seletor_visivel": "data-testid=comentario-autor",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "B-003",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "Devolutiva e nota 760 são sobre o texto lido errado da foto, não sobre o que a aluna escreveu",
+      "o_que_aconteceu": "A devolutiva de M2 traz o texto sobre Umberto Eco que a leitura da foto inventou, com 'encaminhamenlo' e 'leern' mantidos, e nota 760/1000. A redação real da Josiane (sobre EJA) não aparece em lugar nenhum.",
+      "o_que_a_persona_esperava": "Uma nota sobre a redação dela.",
+      "impacto": "Nota injusta e devolutiva inútil para ela. Ela pode acreditar que tirou 760.",
+      "passos": [
+        "Enviar cursiva-dificil.jpg na fase 1 e confirmar as palavras amarelas",
+        "Professora (simulada) aprova e devolve",
+        "Abrir a devolutiva em 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M2-02-transcricao.png",
+        "capturas/aluno-03/M7-03-devolutiva-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-folha",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "B-004",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Redação fora do tema recebe 600 pontos e nenhuma menção ao tema",
+      "o_que_aconteceu": "A redação sobre celular e crianças (tema: desinformação nas redes) voltou com 600/1000 (C1 160, C2 120, C3 120, C4 120, C5 80), 4 acertos, 1 atenção e 0 erros. Nenhum comentário fala do tema. Houve 'Tese apresentada na introdução' como acerto.",
+      "o_que_a_persona_esperava": "Ser avisada de que escreveu sobre outro assunto e que isso pode zerar.",
+      "impacto": "Ela sai achando que entendeu o tema. Na prova real, pode zerar.",
+      "passos": [
+        "Enviar o texto fora do tema na fase 1",
+        "Professora (simulada) aprova as marcações e devolve",
+        "Abrir a devolutiva em 'Minhas redações'"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-01-devolutiva-M4-topo.png",
+        "capturas/aluno-03/M8-02-devolutiva-M4-inteira.png",
+        "capturas/aluno-03/SIM-PROF-02-revisao-M4.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-nota-total",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "B-005",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "lacuna",
+      "severidade": 4,
+      "titulo": "Relato pessoal recebe 560 e elogio de 'tese', sem explicar que não é dissertação",
+      "o_que_aconteceu": "A redação narrativa voltou com 560/1000, 2 acertos ('Tese apresentada na introdução' numa frase da história dela e 'Agente definido' em 'a escola'), 0 atenção e 0 erros. Nada diz que o Enem pede texto dissertativo-argumentativo.",
+      "o_que_a_persona_esperava": "Uma explicação de que contar a própria história não é o tipo de texto pedido.",
+      "impacto": "Reforça o erro mais comum de iniciante. A nota não segue o critério do Enem.",
+      "passos": [
+        "Enviar o texto narrativo na fase 1",
+        "Professora (simulada) aprova e devolve",
+        "Abrir a devolutiva"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M8-01-devolutiva-M5-topo.png",
+        "capturas/aluno-03/M8-02-devolutiva-M5-inteira.png",
+        "capturas/aluno-03/SIM-PROF-02-revisao-M5.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-nota-total",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "B-006",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "'Para a reescrita' tem tom acolhedor, mas usa jargão e siglas",
+      "o_que_aconteceu": "As missões dizem, por exemplo, 'C5 Garanta agente, ação, meio, finalidade e um detalhamento.' e 'C2 Traga um repertório e explique como ele prova seu argumento.' O tom é respeitoso e não culpa, mas os termos não são explicados.",
+      "o_que_a_persona_esperava": "Um passo simples do que fazer na próxima, com exemplo.",
+      "impacto": "Ela se sente orientada no tom, mas não sabe executar.",
+      "passos": ["Abrir a devolutiva de M4 ou M5", "Rolar até 'Para a reescrita'"],
+      "evidencias": [
+        "capturas/aluno-03/M8-02-devolutiva-M4-inteira.png",
+        "capturas/aluno-03/M8-02-devolutiva-M5-inteira.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-missoes",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-007",
+      "missao": "M9",
+      "etapa_proposta": "transversal",
+      "tipo": "lacuna",
+      "severidade": 3,
+      "titulo": "Não existe explicação das cinco competências para a aluna",
+      "o_que_aconteceu": "O menu não tem 'Ajuda'. A devolutiva não explica C1 a C5. A única tela explicativa, 'Bastidores', diz 'Para a equipe… Alunos e professores não veem esta tela' e fala de calibragem e modelo de dados, sem descrever as competências.",
+      "o_que_a_persona_esperava": "Um 'O que é isso?' perto da nota, ou uma página simples sobre as competências.",
+      "impacto": "Sem isso ela não entende a devolutiva nem sabe se está melhorando.",
+      "passos": [
+        "Abrir o menu e procurar ajuda",
+        "Abrir 'Bastidores'",
+        "Voltar à devolutiva e procurar explicação perto das notas"
+      ],
+      "evidencias": [
+        "capturas/aluno-03/M9-01-menu-procurando-ajuda.png",
+        "capturas/aluno-03/M9-04-bastidores.png",
+        "capturas/aluno-03/M7-04-toque-em-C2.png"
+      ],
+      "seletor_visivel": "data-testid=sidebar",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-008",
+      "missao": "M9",
+      "etapa_proposta": "transversal",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "Com fonte 150%, o menu sobrepõe itens ao rolar",
+      "o_que_aconteceu": "O bloco 'Entrar como Aluno/Professor' fica fixo e cobre 'Enviar redação' quando o menu rola. Na sessão principal, o toque em 'Bastidores' foi interceptado por itens de 'Instituição' ('Visão geral', 'Alunos') durante a rolagem.",
+      "o_que_a_persona_esperava": "Rolar o menu e tocar no item que vê.",
+      "impacto": "Toque pode cair em outro item; 'Enviar redação' some atrás do seletor de papel.",
+      "passos": ["Fonte em 150%", "Abrir o menu", "Rolar até o fim e tocar em 'Bastidores'"],
+      "evidencias": [
+        "capturas/aluno-03/M9-01-menu-procurando-ajuda.png",
+        "capturas/aluno-03/M9-02-menu-rolado-sobreposto.png",
+        "capturas/aluno-03/M9-ERRO.png"
+      ],
+      "seletor_visivel": "data-testid=nav-bastidores",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-009",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 2,
+      "titulo": "Com fonte 150%, a etapa 'Devolvida' fica fora da tela e a página rola para o lado",
+      "o_que_aconteceu": "Na página da redação, a linha 'Enviada — Em revisão — Devolvida' mede 495 px numa tela de 360 px. Só aparecem 'Enviada' e 'Em revisão'; 'Devolvida' fica escondida à direita.",
+      "o_que_a_persona_esperava": "Ver que a redação foi devolvida.",
+      "impacto": "Ela não confirma o status sem arrastar a tela para o lado.",
+      "passos": ["Fonte em 150%", "Abrir uma redação devolvida"],
+      "evidencias": ["capturas/aluno-03/M7-02-devolutiva-topo.png"],
+      "seletor_visivel": "data-testid=redacao-etapas",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "B-010",
+      "missao": "M7",
+      "etapa_proposta": "devolutiva",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "'Minhas redações' lista itens idênticos, sem dizer qual é qual",
+      "o_que_aconteceu": "As três redações aparecem como 'Os desafios para combater a desinformação nas redes sociais no Brasil · Enviada agora · Devolutiva pronta', sem trecho inicial, data/hora ou nota, e com o título cortado.",
+      "o_que_a_persona_esperava": "Saber qual é a da letra cursiva, qual é a do celular e qual é a da minha história.",
+      "impacto": "Ela precisa abrir uma por uma para achar a certa.",
+      "passos": ["Abrir 'Minhas redações' depois de enviar várias"],
+      "evidencias": [
+        "capturas/aluno-03/M7-01-minhas-redacoes.png",
+        "capturas/aluno-03/M6-05-minhas-redacoes-fonte-150.png"
+      ],
+      "seletor_visivel": "data-testid=minhas-redacoes-page",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 2,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}

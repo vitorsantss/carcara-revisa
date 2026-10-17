@@ -1,0 +1,158 @@
+{
+  "persona_id": "aluno-01-ana-clara",
+  "fase": 3,
+  "executado_em": "2026-10-17T22:15:00-03:00",
+  "ambiente": {
+    "url_base": "http://localhost:5173",
+    "device": "Moto G4",
+    "rede": "3g-instavel",
+    "build": "63146dc-dirty"
+  },
+  "missoes": [
+    {
+      "id": "M8",
+      "status": "concluida",
+      "duracao_segundos": 5,
+      "interacoes": 4,
+      "abandono_em": null,
+      "falas": [
+        "800! Mas pera, essa correção é do texto do Umberto Eco, não do meu.",
+        "Agora sim entendi o que é cada competência, explicou com palavras normais.",
+        "'Para chegar a 200' é o que eu queria: o que fazer na próxima.",
+        "Tá escrito que a Prof. Marina Costa assinou. Mas em todo comentário diz 'sugestão automática aprovada pelo professor'..."
+      ],
+      "achados": ["A-301", "A-302", "A-303", "A-306"]
+    },
+    {
+      "id": "M9",
+      "status": "concluida",
+      "duracao_segundos": 3,
+      "interacoes": 3,
+      "abandono_em": null,
+      "falas": [
+        "'Texto com até 7 linhas: pelo edital, a nota é zero.' Entendi, foi porque escrevi pouco.",
+        "Gostei do 'como evitar na próxima': pelo menos 8 linhas, o ideal é 20 a 30.",
+        "Mas se é zero, por que tem 4 acertos verdes e dica de repertório?"
+      ],
+      "achados": ["A-302", "A-304"]
+    }
+  ],
+  "achados": [
+    {
+      "id": "A-301",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "defeito",
+      "severidade": 4,
+      "titulo": "A devolutiva corrige e dá nota a um texto que a aluna não escreveu",
+      "o_que_aconteceu": "A devolutiva da redação enviada por foto (M2) mostra 800/1000 e marcações sobre 'Umberto Eco', 'compartilhar-las' e 'Dessarte', trechos que vieram da transcrição errada da fase 1 (A-103), não da redação dela (Orwell e Bauman). 'Por que 160' e 'Para chegar a 200' falam de coisas que ela não escreveu.",
+      "o_que_a_persona_esperava": "Uma correção do texto da própria folha.",
+      "impacto": "A nota e as orientações não servem para ela, e a professora assinou a correção do texto errado. É uma nota injusta. Observação: a revisão da professora foi simulada pelo orquestrador, que aprovou todas as marcações automáticas.",
+      "passos": [
+        "Na fase 1, enviar foto-noite-luz-amarela.jpg sem reescrever a transcrição",
+        "Professor (simulado) aprova as marcações e devolve",
+        "Como aluna, abrir 'Minhas redações' e tocar na redação 'Devolutiva pronta... Nota 800'"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-02-devolutiva-topo.png",
+        "capturas/aluno-01/M8-03-devolutiva-completa.png",
+        "capturas/aluno-01/M2-04-ver-foto.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-folha",
+      "relacionado_a_decisao_em_aberto": "leitura_manuscrito"
+    },
+    {
+      "id": "A-302",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "friccao",
+      "severidade": 2,
+      "titulo": "Alvos pequenos na devolutiva: 'pedir revisão desta nota' com 16 px e números das marcas com fonte de 9 px",
+      "o_que_aconteceu": "No celular de 360 px, os links 'Não concordo: pedir revisão desta nota' têm 16 px de altura. Os números das marcações no texto (1, 2, 3...) usam fonte de 9 px e o tema da redação no topo da folha, 11 px.",
+      "o_que_a_persona_esperava": "Botões e números grandes o bastante para tocar sem dar zoom.",
+      "impacto": "Toques errados e esforço de leitura. No resto, a página cabe na largura sem rolagem para o lado.",
+      "passos": [
+        "Abrir a devolutiva",
+        "Rolar até 'Sua nota, competência por competência'",
+        "Tentar tocar em 'pedir revisão desta nota' ou num número da folha"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-03-devolutiva-completa.png",
+        "capturas/aluno-01/M8-05-marca-tocada.png",
+        "capturas/aluno-01/M9-02-devolutiva-zero-completa.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-pedir-c1",
+      "relacionado_a_decisao_em_aberto": null
+    },
+    {
+      "id": "A-303",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "'Sugestão automática aprovada pelo professor' em todo comentário faz duvidar de que a professora leu",
+      "o_que_aconteceu": "A assinatura 'Corrigida e assinada por Prof. Marina Costa em 17/10' e o 'Recado do Prof. Marina Costa' estão claros. Mas todos os 10 comentários da folha terminam com 'Sugestão automática aprovada pelo professor'.",
+      "o_que_a_persona_esperava": "Perceber que a professora leu de verdade, por exemplo com algum comentário escrito por ela na folha.",
+      "impacto": "A transparência é boa, mas a aluna pode achar que a professora só 'clicou em aprovar'.",
+      "passos": [
+        "Abrir a devolutiva",
+        "Ler os comentários da margem"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-06-assinatura.png",
+        "capturas/aluno-01/M8-05-marca-tocada.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-assinatura",
+      "relacionado_a_decisao_em_aberto": "calibracao_avaliador"
+    },
+    {
+      "id": "A-304",
+      "missao": "M9",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 2,
+      "titulo": "Devolutiva de zero mistura o motivo claro com acertos verdes, dicas sem relação e cinco 'pedir revisão'",
+      "o_que_aconteceu": "O bloco 'Por que a nota foi zero' está claro: 'Texto com até 7 linhas: pelo edital, a nota é zero. Como evitar na próxima: Escreva pelo menos 8 linhas próprias; o ideal é entre 20 e 30, em 4 parágrafos.' Mas a mesma página mostra 'Acertos 4' (por exemplo, 'Agente definido' e 'Conectivo bem empregado'), e 'Para a reescrita' sugere 'Releia o texto procurando concordância e acentuação' e 'Traga um repertório', sem falar de tamanho. Há também cinco links 'pedir revisão desta nota', um por competência, todas com 0.",
+      "o_que_a_persona_esperava": "Uma mensagem só: foi zero por ser curta, e na próxima é preciso escrever pelo menos 8 linhas.",
+      "impacto": "Mensagem confusa e pedidos de revisão sem sentido. Existe um aviso 'Eles ajudam na próxima redação, mas não mudam esta nota', que ameniza.",
+      "passos": [
+        "Professor (simulado) confirma o zero e devolve",
+        "Como aluna, abrir a redação 'Nota 0' em 'Minhas redações'",
+        "Rolar a página toda"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M9-01-devolutiva-zero.png",
+        "capturas/aluno-01/M9-02-devolutiva-zero-completa.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-zero",
+      "relacionado_a_decisao_em_aberto": "regras_nota_zero"
+    },
+    {
+      "id": "A-306",
+      "missao": "M8",
+      "etapa_proposta": "devolutiva",
+      "tipo": "percepcao",
+      "severidade": 1,
+      "titulo": "Alguns termos técnicos sem explicação: 'repertório legitimado', 'colocação pronominal', 'paralelismo', 'edital'",
+      "o_que_aconteceu": "As competências são bem explicadas, com um texto simples sob cada uma e o glossário 'O que são as 5 competências?'. Já as justificativas usam 'Repertório legitimado', 'desvio de colocação pronominal' e 'Quebra de paralelismo'. A devolutiva de zero usa 'pelo edital'.",
+      "o_que_a_persona_esperava": "As mesmas palavras simples das descrições das competências.",
+      "impacto": "Pequeno: a parte 'Para chegar a 200' diz o que fazer, mesmo sem entender o termo.",
+      "passos": [
+        "Abrir a devolutiva",
+        "Ler 'Por que 160' de C1 e C2 e os comentários #3 e #6"
+      ],
+      "evidencias": [
+        "capturas/aluno-01/M8-03-devolutiva-completa.png",
+        "capturas/aluno-01/M8-04-glossario.png"
+      ],
+      "seletor_visivel": "data-testid=devolutiva-justificativa-c2",
+      "relacionado_a_decisao_em_aberto": null
+    }
+  ],
+  "metricas_percebidas": {
+    "confianca_no_sistema": 2,
+    "clareza_da_devolutiva": 4,
+    "recomendaria": false
+  },
+  "cenarios_nao_executados": []
+}
