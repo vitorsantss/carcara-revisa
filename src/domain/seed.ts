@@ -35,6 +35,7 @@ export const ALUNOS: Aluno[] = [
 export const PROPOSTA: Proposta = {
   id: "prop-1",
   tema: "Os desafios para combater a desinformação nas redes sociais no Brasil",
+  temaCurto: "Desinformação nas redes sociais",
   turmaIds: ["t-3a", "t-3b"],
   prazo: "2026-10-24",
   motivadores: [

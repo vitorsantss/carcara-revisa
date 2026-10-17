@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { corDoToken } from "@/lib/cores";
 import { COMPETENCIAS, NOME_COMPETENCIA, type NotasCompetencias } from "@/domain/types";
-import { FONTE_GRAFICO, SVG_FLUIDO, reduzirMovimento, useECharts } from "./use-echarts";
+import { FONTE_GRAFICO, reduzirMovimento, useECharts } from "./use-echarts";
 
 export interface SerieRadar {
   valores: NotasCompetencias;
@@ -32,6 +32,10 @@ interface RadarCompetenciasProps {
 
 const NOME_PADRAO = { principal: "Esta versão", referencia: "Referência" } as const;
 
+/** O ECharts distribui os eixos no sentido anti-horário; invertemos para ler C1 a C5 no sentido horário. */
+const ORDEM_HORARIA = [0, 4, 3, 2, 1];
+const emOrdemHoraria = (valores: readonly number[]) => ORDEM_HORARIA.map((i) => valores[i]);
+
 const descreverSerie = (s: SerieRadar) =>
   `${s.nome ?? NOME_PADRAO[s.variante]}: ${COMPETENCIAS.map((c, i) => `C${c} ${s.valores[i]}`).join(", ")}`;
 
@@ -52,11 +56,11 @@ export function RadarCompetencias({ series, rotulos = true, tamanho = 260, cores
             trigger: "item",
             confine: true,
             formatter: (p: { name: string; value: number[] }) =>
-              [p.name, ...COMPETENCIAS.map((c, i) => `C${c} ${NOME_COMPETENCIA[c]}: <b>${p.value[i]}</b>`)].join("<br/>"),
+              [p.name, ...COMPETENCIAS.map((c, i) => `C${c} ${NOME_COMPETENCIA[c]}: <b>${p.value[ORDEM_HORARIA.indexOf(i)]}</b>`)].join("<br/>"),
           }
         : undefined,
       radar: {
-        indicator: COMPETENCIAS.map((c) => ({ name: `C${c}`, min: 0, max: 200 })),
+        indicator: emOrdemHoraria(COMPETENCIAS).map((c) => ({ name: `C${c}`, min: 0, max: 200 })),
         splitNumber: 5,
         shape: "polygon",
         radius: rotulos ? "68%" : "80%",
@@ -75,7 +79,7 @@ export function RadarCompetencias({ series, rotulos = true, tamanho = 260, cores
             const c = cor(principal ? cores.principal : cores.referencia);
             return {
               name: s.nome ?? NOME_PADRAO[s.variante],
-              value: s.valores,
+              value: emOrdemHoraria(s.valores),
               symbol: principal ? "circle" : "none",
               symbolSize: 9,
               lineStyle: { color: c, width: 2, type: principal ? "solid" : [5, 4] },
@@ -93,8 +97,8 @@ export function RadarCompetencias({ series, rotulos = true, tamanho = 260, cores
       role="img"
       aria-label={`Radar das competências. ${visiveis.map(descreverSerie).join(". ")}.`}
       data-series={visiveis.length}
-      className={cn("mx-auto w-full", SVG_FLUIDO, className)}
-      style={{ maxWidth: tamanho }}
+      className={cn("mx-auto", className)}
+      style={{ width: tamanho, height: tamanho }}
       {...props}
     >
       <div ref={ref} />

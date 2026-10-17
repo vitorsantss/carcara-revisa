@@ -27,3 +27,6 @@ export function iniciais(nome: string): string {
     .map((p) => p[0]?.toUpperCase() ?? "")
     .join("");
 }
+
+/** Diferença com sinal: +40, −40 ou 0. */
+export const comSinal = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : "0");

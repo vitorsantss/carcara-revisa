@@ -68,6 +68,8 @@ export interface Aluno {
 export interface Proposta {
   id: string;
   tema: string;
+  /** Tema em poucas palavras, para títulos, relatórios e stories. */
+  temaCurto: string;
   turmaIds: string[];
   prazo: string;
   /** Textos motivadores da prova. Cópia deles é desconsiderada na correção. */

@@ -8,14 +8,11 @@ echarts.use([RadarChart, LineChart, RadarComponent, GridComponent, TooltipCompon
 
 export type OpcoesGrafico = echarts.EChartsCoreOption;
 
-/** Faz o SVG de tamanho fixo ocupar a largura disponível, mantendo a proporção. */
-export const SVG_FLUIDO = "[&_div:has(>svg)]:!h-auto [&_div:has(>svg)]:!w-full [&_svg]:h-auto [&_svg]:w-full";
-
 export const FONTE_GRAFICO = "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif";
 
 /**
  * Monta um gráfico ECharts em SVG com tamanho fixo: funciona em nós escondidos
- * (impressão) e é capturado pelo html-to-image. O SVG escala pelo viewBox.
+ * (impressão) e é capturado pelo html-to-image.
  * `montar` recebe o contêiner para ler os tokens de cor; `chave` muda quando os dados mudam.
  */
 export function useECharts(largura: number, altura: number, chave: string, montar: (el: HTMLElement) => OpcoesGrafico) {

@@ -132,6 +132,49 @@ export const historicoDoAluno = (redacoes: Redacao[], alunoId: string, propostaI
 export const notasPorCompetencia = (r: Redacao) => COMPETENCIAS.map((c) => notaFinal(r, c)) as NotasCompetencias;
 export const somaDasNotas = (notas: readonly number[]) => notas.reduce((s, n) => s + n, 0);
 
+/** Maior versão devolvida do aluno na proposta, anterior à redação informada. */
+export const versaoAnterior = (redacoes: Redacao[], r: Redacao) =>
+  historicoDoAluno(redacoes, r.alunoId, r.propostaId).filter((x) => x.versao < r.versao).at(-1);
+
+/** Versões devolvidas até a redação informada (inclusive, mesmo que ela ainda não tenha sido devolvida). */
+export const historicoAte = (redacoes: Redacao[], r: Redacao) => [
+  ...historicoDoAluno(redacoes, r.alunoId, r.propostaId).filter((x) => x.versao < r.versao),
+  r,
+];
+
+const competenciaDoIndice = (i: number) => COMPETENCIAS[i];
+
+/** Competência de menor nota; empate fica com a de menor número. */
+export const competenciaMaisFraca = (notas: NotasCompetencias) => competenciaDoIndice(notas.indexOf(Math.min(...notas)));
+
+/** Competência de maior nota; empate fica com a de menor número. */
+export const melhorCompetencia = (notas: NotasCompetencias) => competenciaDoIndice(notas.indexOf(Math.max(...notas)));
+
+export interface InsightsDeEvolucao {
+  avanco: Competencia | null;
+  ganho: number;
+  foco: Competencia;
+}
+
+/** Onde o aluno mais avançou desde a versão anterior e onde focar agora (a menor nota atual). */
+export function insightsDeEvolucao(atual: NotasCompetencias, anterior?: NotasCompetencias | null): InsightsDeEvolucao {
+  const foco = competenciaMaisFraca(atual);
+  if (!anterior) return { avanco: null, ganho: 0, foco };
+  const diferencas = atual.map((v, i) => v - anterior[i]);
+  const ganho = Math.max(...diferencas);
+  return ganho > 0 ? { avanco: competenciaDoIndice(diferencas.indexOf(ganho)), ganho, foco } : { avanco: null, ganho: 0, foco };
+}
+
+const ORDEM_DESTAQUE: Tipo[] = ["acerto", "erro", "atencao"];
+
+/** Comentários para o resumo: um acerto, um erro e uma atenção, nessa ordem, completando pela ordem do texto. */
+export function comentariosPrincipais(marcacoes: Marcacao[], limite = 3) {
+  const visiveis = marcacoes.filter(visivelParaAluno).sort((a, b) => a.inicio - b.inicio);
+  const escolhidos = ORDEM_DESTAQUE.map((t) => visiveis.find((m) => m.tipo === t)).filter((m): m is Marcacao => !!m);
+  const resto = visiveis.filter((m) => !escolhidos.includes(m));
+  return [...escolhidos, ...resto].slice(0, limite);
+}
+
 /** Quem responde por cada comentário diante do aluno. */
 export type Autoria = "professor" | "editada" | "aprovada" | "pre_aprovada";
 export const autoria = (m: Marcacao): Autoria =>

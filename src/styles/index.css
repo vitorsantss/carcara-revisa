@@ -104,8 +104,12 @@
 .mark[data-active="true"] { outline: 2px solid var(--ring); outline-offset: 2px; }
 .mark sup { font-size: 9px; font-weight: 700; margin-left: 1px; user-select: none; color: var(--muted-foreground); }
 
+[data-print="resumo"] { display: none; }
+
 @media print {
   [data-print="hide"] { display: none !important; }
+  html[data-impressao="resumo"] [data-print="tela"] { display: none !important; }
+  html[data-impressao="resumo"] [data-print="resumo"] { display: block !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { background: white; }
   .print-full { max-width: none !important; }
 }

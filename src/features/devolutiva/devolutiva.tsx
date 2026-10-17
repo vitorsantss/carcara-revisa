@@ -9,9 +9,14 @@ import { PROFESSORES, PROPOSTA, USUARIO_PROFESSOR } from "@/domain/seed";
 import type { Competencia, Redacao, Tipo } from "@/domain/types";
 import { COMPETENCIAS, EXPLICACAO_COMPETENCIA, NOME_COMPETENCIA, NOME_TIPO } from "@/domain/types";
 import { GlossarioCompetencias } from "@/features/redacao/glossario";
-import { ROTULO_AUTORIA, autoria, comentarioVisivel, comoEvitarZero, notaAlteradaPeloProfessor, notaFinal, notaTotal, visivelParaAluno, zeroAtivo } from "@/domain/regras";
+import {
+  ROTULO_AUTORIA, autoria, comentarioVisivel, comoEvitarZero, historicoAte, notaAlteradaPeloProfessor, notaFinal, notaTotal, versaoAnterior, visivelParaAluno, zeroAtivo,
+} from "@/domain/regras";
 import { EssayDocument, PontoTipo, bordaTipo } from "@/features/redacao/essay-document";
 import { cn, dataCurta, dataHora } from "@/lib/utils";
+import { imprimir } from "@/lib/impressao";
+import { RadarCard } from "./radar-card";
+import { RelatorioDaVersao } from "./relatorio-da-versao";
 
 const TIPOS: Tipo[] = ["acerto", "atencao", "erro"];
 
@@ -21,6 +26,7 @@ const TIPOS: Tipo[] = ["acerto", "atencao", "erro"];
  * Com `previa`, o professor vê exatamente isto antes de devolver, sem as ações do aluno.
  */
 export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; previa?: boolean }) {
+  const { estado } = useApp();
   const [filtro, setFiltro] = React.useState<string[]>(TIPOS);
   const [ativa, setAtiva] = React.useState<string | null>(null);
   const docRef = React.useRef<HTMLDivElement>(null);
@@ -32,6 +38,7 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
   const contar = (t: Tipo) => visiveis.filter((m) => m.tipo === t).length;
   const professor = PROFESSORES.find((p) => p.id === (redacao.revisorId ?? USUARIO_PROFESSOR))!;
   const zero = zeroAtivo(redacao);
+  const anterior = versaoAnterior(estado.redacoes, redacao);
 
   const posicionar = React.useCallback(() => {
     const margem = margemRef.current;
@@ -85,6 +92,7 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
 
   return (
     <div data-testid="devolutiva" data-previa={previa}>
+      <div data-print="tela">
       <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="text-5xl font-extrabold leading-none tracking-tight tabular-nums" data-testid="devolutiva-nota-total">
@@ -124,12 +132,14 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
             }))}
           />
           {!previa && (
-            <Button variant="outline" onClick={() => window.print()} data-testid="devolutiva-exportar">
-              <Printer /> Exportar PDF
+            <Button variant="outline" onClick={() => imprimir("folha")} data-testid="devolutiva-exportar">
+              <Printer /> Imprimir folha
             </Button>
           )}
         </div>
       </div>
+
+      {!zero && <RadarCard redacao={redacao} anterior={anterior} previa={previa} />}
 
       <div className="mb-5 grid gap-3">
         {zero && (
@@ -217,6 +227,18 @@ export function Devolutiva({ redacao, previa = false }: { redacao: Redacao; prev
       )}
 
       <GlossarioCompetencias className="mt-4" testId="devolutiva-glossario" />
+      </div>
+
+      {!zero && !previa && (
+        <RelatorioDaVersao
+          data-testid="radar-resumo-impressao"
+          titulo={`Minha redação · ${PROPOSTA.temaCurto}`}
+          subtitulo={`Versão ${redacao.versao} · corrigida pelo Prof. ${professor.nome}${redacao.devolvidaEm ? ` em ${dataCurta(redacao.devolvidaEm)}` : ""}`}
+          redacao={redacao}
+          anterior={anterior}
+          historico={historicoAte(estado.redacoes, redacao)}
+        />
+      )}
     </div>
   );
 }

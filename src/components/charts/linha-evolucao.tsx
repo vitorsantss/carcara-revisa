@@ -1,6 +1,5 @@
-import { cn } from "@/lib/utils";
 import { corDoToken } from "@/lib/cores";
-import { FONTE_GRAFICO, SVG_FLUIDO, reduzirMovimento, useECharts } from "./use-echarts";
+import { FONTE_GRAFICO, reduzirMovimento, useECharts } from "./use-echarts";
 
 export interface CoresLinha {
   linha: string;
@@ -41,6 +40,7 @@ export function LinhaEvolucao({ totais, rotulos = true, largura = 260, altura = 
         {
           type: "line",
           silent: true,
+          symbol: "circle",
           lineStyle: { color: corLinha, width: Math.max(2.5, altura / 36) },
           data: totais.map((v, i) => {
             const extremo = i === 0 || i === ultimo;
@@ -72,8 +72,8 @@ export function LinhaEvolucao({ totais, rotulos = true, largura = 260, altura = 
       aria-label={`Evolução da nota: ${descricao}.`}
       data-totais={rotulos ? totais.join(",") : undefined}
       data-rotulos={rotulos}
-      className={cn("w-full", SVG_FLUIDO, className)}
-      style={{ maxWidth: largura }}
+      className={className}
+      style={{ width: largura, height: altura }}
       {...props}
     >
       <div ref={ref} />
