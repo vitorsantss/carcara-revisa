@@ -1,0 +1,69 @@
+/*
+ * Tema da marca. Todas as cores do app saem daqui.
+ * Para trocar a identidade visual, altere só este arquivo.
+ * Paleta provisória: azul-marinho institucional + amarelo de destaque.
+ * Ajuste os valores de --brand-* com as cores oficiais do parceiro.
+ */
+:root {
+  --brand-900: oklch(0.24 0.06 262);
+  --brand-700: oklch(0.36 0.11 262);
+  --brand-500: oklch(0.52 0.16 262);
+  --brand-100: oklch(0.95 0.025 262);
+  --highlight: oklch(0.84 0.16 85);
+
+  --background: oklch(0.985 0.003 262);
+  --foreground: oklch(0.2 0.02 262);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: var(--brand-700);
+  --primary-foreground: oklch(0.98 0.01 262);
+  --secondary: var(--brand-100);
+  --secondary-foreground: var(--brand-900);
+  --muted: oklch(0.965 0.006 262);
+  --muted-foreground: oklch(0.5 0.02 262);
+  --accent: var(--brand-100);
+  --accent-foreground: var(--brand-900);
+  --destructive: oklch(0.58 0.2 27);
+  --border: oklch(0.92 0.008 262);
+  --input: oklch(0.9 0.01 262);
+  --ring: var(--brand-500);
+  --radius: 0.75rem;
+
+  /* semáforo da correção */
+  --acerto: oklch(0.6 0.15 150);
+  --acerto-bg: oklch(0.6 0.15 150 / 0.16);
+  --atencao: oklch(0.72 0.15 75);
+  --atencao-bg: oklch(0.82 0.15 85 / 0.32);
+  --erro: oklch(0.6 0.2 25);
+  --erro-bg: oklch(0.6 0.2 25 / 0.15);
+
+  --sidebar: var(--brand-900);
+  --sidebar-foreground: oklch(0.9 0.02 262);
+  --sidebar-muted: oklch(0.68 0.04 262);
+  --sidebar-active: oklch(0.32 0.08 262);
+  --paper: oklch(1 0 0);
+}
+
+.dark {
+  --background: oklch(0.17 0.02 262);
+  --foreground: oklch(0.94 0.01 262);
+  --card: oklch(0.21 0.025 262);
+  --popover: oklch(0.21 0.025 262);
+  --primary: oklch(0.72 0.12 262);
+  --primary-foreground: oklch(0.18 0.03 262);
+  --secondary: oklch(0.28 0.04 262);
+  --secondary-foreground: oklch(0.94 0.01 262);
+  --muted: oklch(0.25 0.03 262);
+  --muted-foreground: oklch(0.7 0.02 262);
+  --accent: oklch(0.28 0.04 262);
+  --accent-foreground: oklch(0.94 0.01 262);
+  --border: oklch(0.3 0.03 262);
+  --input: oklch(0.32 0.03 262);
+  --acerto-bg: oklch(0.6 0.15 150 / 0.25);
+  --atencao-bg: oklch(0.82 0.15 85 / 0.25);
+  --erro-bg: oklch(0.6 0.2 25 / 0.25);
+  --sidebar: oklch(0.14 0.02 262);
+  --paper: oklch(0.22 0.02 262);
+}
