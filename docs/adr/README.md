@@ -13,3 +13,6 @@ Cada ADR registra uma decisão, o contexto e o que ela custa. Para criar um novo
 | [0007](0007-data-testid-como-contrato-de-teste.md) | data-testid como contrato de teste | Aceito |
 | [0008](0008-cores-por-resultado-e-tokens-de-tema.md) | Cores por resultado e tokens de tema | Aceito |
 | [0009](0009-zero-decidido-pelo-professor-e-servicos-com-proposta.md) | Zero decidido pelo professor e serviços que recebem a proposta | Proposto |
+| [0010](0010-exportacao-de-dados-de-alunos.md) | Exportação de dados de alunos: só o professor da turma, sem texto, com registro | Aceito |
+| [0011](0011-privacidade-no-compartilhamento.md) | Privacidade no compartilhamento: só o aluno, sem texto, nota escondida | Aceito |
+| [0012](0012-graficos-com-echarts.md) | Gráficos com Apache ECharts atrás de componentes próprios | Aceito |
