@@ -1,6 +1,6 @@
 # SPEC-009: Stories para Instagram
 
-- Status: Rascunho
+- Status: Implementada (testes pendentes)
 - Rota: diálogo aberto por `devolutiva-compartilhar` em `/#/redacoes/<id>?visao=aluno`
 - Papel: aluno
 
@@ -25,14 +25,14 @@ O aluno compartilha o próprio progresso com orgulho, sem expor o texto da reda�
 
 ## Critérios de aceite
 
-- Dado a devolutiva, quando o aluno toca em Compartilhar, então o diálogo abre com 3 modelos e "Por evolução" selecionado. → `08` "diálogo abre com três modelos e evolução selecionada"
-- Dado "Mostrar minha nota" desmarcado, então "Por redação" mostra a melhor competência e "Por evolução" só o "+N"; marcado, aparecem o total e os valores. → `08` "nota fica escondida até o aluno marcar"
-- Dado qualquer modelo, então nenhum trecho da redação aparece no story. → `08` "nenhum texto da redação aparece no story"
-- Dado "Salvar imagem", então baixa um PNG de 1080 × 1920. → `08` "salvar imagem baixa PNG 1080 × 1920"
-- Dado um aparelho que compartilha arquivos, então "Postar no story" chama o compartilhamento nativo com o PNG. → `08` "postar usa o compartilhamento nativo quando existe"
-- Dado um aparelho sem compartilhamento, então "Postar no story" baixa a imagem. → `08` "postar cai para download sem compartilhamento nativo"
+- Dado a devolutiva, quando o aluno toca em Compartilhar, então o diálogo abre com 3 modelos e "Por evolução" selecionado. (sem teste: `08-stories.spec.ts` pendente)
+- Dado "Mostrar minha nota" desmarcado, então "Por redação" mostra a melhor competência e "Por evolução" só o "+N"; marcado, aparecem o total e os valores. (sem teste: `08-stories.spec.ts` pendente)
+- Dado qualquer modelo, então nenhum trecho da redação aparece no story. (sem teste: `08-stories.spec.ts` pendente)
+- Dado "Salvar imagem", então baixa um PNG de 1080 × 1920. (sem teste: `08-stories.spec.ts` pendente)
+- Dado um aparelho que compartilha arquivos, então "Postar no story" chama o compartilhamento nativo com o PNG. (sem teste: `08-stories.spec.ts` pendente)
+- Dado um aparelho sem compartilhamento, então "Postar no story" baixa a imagem. (sem teste: `08-stories.spec.ts` pendente)
 - Dado a prévia do professor, então não há "Compartilhar". → `06` "prévia do professor mostra o radar sem exportar nem compartilhar"
-- Regras puras `mensagemMotivadora` e `melhorCompetencia`, inclusive a garantia de não repetir texto da redação. → `src/domain/regras.test.ts`
+- Regras puras `mensagemMotivadora` e `melhorCompetencia`, inclusive a garantia de não repetir texto da redação. (sem teste: testes unitários pendentes)
 
 ## data-testid principais
 

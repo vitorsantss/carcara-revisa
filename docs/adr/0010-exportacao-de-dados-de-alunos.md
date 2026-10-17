@@ -22,4 +22,4 @@ O painel de desempenho (SPEC-008) exporta Excel e PDF com notas de alunos, quase
 
 - Positivas: dá para responder "quem tirou estes dados daqui e quando"; o arquivo não carrega a produção do aluno.
 - Negativas e custos: o registro vive em memória e some ao recarregar, como todo o estado do MVP. Com backend, ele precisa ir para um log de auditoria persistente e imutável.
-- O que precisa mudar se a decisão for revista: `podeExportar`, `linhasExportacao` e a ação `registrar_exportacao`; os testes `07` "Excel da visão Aluno/Turma" verificam o registro.
+- O que precisa mudar se a decisão for revista: `podeExportar`, `linhasExportacao` e a ação `registrar_exportacao`; os testes `07` "Excel da visão Aluno/Turma" (pendentes) devem verificar o registro.

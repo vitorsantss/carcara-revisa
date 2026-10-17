@@ -1,6 +1,6 @@
 # SPEC-008: Desempenho do professor
 
-- Status: Rascunho
+- Status: Implementada (testes pendentes)
 - Rota: `/#/professor/desempenho?visao=aluno&aluno=<id>` e `/#/professor/desempenho?visao=turma` (opcional `&turma=<id>`)
 - Papel: professor
 
@@ -37,14 +37,14 @@ O professor descobre em segundos quem precisa de ajuda e em qual competência a 
 
 ## Critérios de aceite
 
-- Dado o menu "Desempenho", então a tela abre fora do estado pendente. → `07` "menu Desempenho abre o painel"
-- Dado o alternador, quando o professor troca para Turma, então a URL ganha `visao=turma` e a grade aparece. → `07` "alternador guarda a visão na URL"
-- Dado a visão Aluno, quando o professor escolhe outro aluno, então a URL ganha `aluno=<id>` e radar e evolução são dele. → `07` "seletor de aluno troca o aluno na URL"
-- Dado a visão Turma, então cada aluno tem uma linha, cada célula mostra o número, a coluna mais fraca é C5 e a média aparece. → `07` "grade da turma destaca a competência mais fraca"
-- Dado um clique no aluno da grade, então abre a visão Aluno dele. → `07` "clicar no aluno abre a visão individual"
-- Dado "Excel" na visão Aluno ou Turma, então baixa `carcara-3a-<data>.xlsx` e a exportação fica registrada. → `07` "Excel da visão Aluno", `07` "Excel da visão Turma"
-- Dado "PDF", então a impressão mostra só o relatório da visão atual. → `07` "PDF tem layout próprio para Aluno e Turma"
-- Regras puras `mediaDaTurma`, `competenciaMaisFraca`, `evolucaoTotal`, `competenciasAbaixoDaMedia`, `linhasExportacao`, `nomeArquivoExportacao`, `podeExportar`, `alunosEmRisco`. → `src/domain/regras.test.ts`
+- Dado o menu "Desempenho", então a tela abre fora do estado pendente. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado o alternador, quando o professor troca para Turma, então a URL ganha `visao=turma` e a grade aparece. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado a visão Aluno, quando o professor escolhe outro aluno, então a URL ganha `aluno=<id>` e radar e evolução são dele. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado a visão Turma, então cada aluno tem uma linha, cada célula mostra o número, a coluna mais fraca é C5 e a média aparece. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado um clique no aluno da grade, então abre a visão Aluno dele. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado "Excel" na visão Aluno ou Turma, então baixa `carcara-3a-<data>.xlsx` e a exportação fica registrada. (sem teste: `07-desempenho.spec.ts` pendente)
+- Dado "PDF", então a impressão mostra só o relatório da visão atual. (sem teste: `07-desempenho.spec.ts` pendente)
+- Regras puras `mediaDaTurma`, `competenciaMaisFraca`, `evolucaoTotal`, `competenciasAbaixoDaMedia`, `linhasExportacao`, `nomeArquivoExportacao`, `podeExportar`, `alunosEmRisco`. (sem teste: testes unitários pendentes)
 
 ## data-testid principais
 

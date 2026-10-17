@@ -11,10 +11,8 @@ Comportamento esperado de cada fluxo. A spec vem antes do código: ao criar ou m
 | [005](005-fila-de-correcao.md) | Fila de correção | `04-fila-e-navegacao.spec.ts`, `05-achados-das-personas.spec.ts` |
 | [006](006-privacidade.md) | Privacidade e uso de IA | `05-achados-das-personas.spec.ts` |
 | [007](007-radar-de-competencias.md) | Radar de competências na devolutiva | `06-radar-de-competencias.spec.ts` |
-| [008](008-desempenho-do-professor.md) | Desempenho do professor e exportação | `07-desempenho.spec.ts` |
-| [009](009-stories.md) | Stories para Instagram | `08-stories.spec.ts` |
-
-Regras puras novas também têm testes unitários em `src/domain/regras.test.ts` (`npm run test:unit`).
+| [008](008-desempenho-do-professor.md) | Desempenho do professor e exportação | pendente (`07-desempenho.spec.ts`) |
+| [009](009-stories.md) | Stories para Instagram | pendente (`08-stories.spec.ts`) |
 
 ## Formato
 

@@ -10,7 +10,7 @@ Os stories (SPEC-009) levam o progresso do aluno para fora da plataforma, numa r
 ## Decisão
 
 1. **Só o aluno compartilha.** O botão aparece só na devolutiva vista pelo aluno; professor, prévia e instituição não geram story de ninguém.
-2. **Nunca texto de redação.** O story mostra só o tema da proposta, códigos e nomes das competências, notas e frases de modelos fixos (`mensagemMotivadora`). Nem o título escrito pelo aluno entra. Um teste e2e compara o texto do story com o da redação, e um teste unitário garante que a mensagem não repete 4 palavras seguidas do texto (`regraVazaTexto`).
+2. **Nunca texto de redação.** O story mostra só o tema da proposta, códigos e nomes das competências, notas e frases de modelos fixos (`mensagemMotivadora`). Nem o título escrito pelo aluno entra. Os testes previstos (pendentes) comparam o texto do story com o da redação e garantem que a mensagem não repete 4 palavras seguidas do texto (`regraVazaTexto`).
 3. **Nota escondida por padrão.** "Mostrar minha nota" começa desmarcado. Sem ela, os modelos usam a melhor competência e o ganho ("+N"), nunca o total.
 4. A imagem é gerada no próprio aparelho (html-to-image) e entregue pelo compartilhamento nativo ou por download. Nada vai para um servidor.
 

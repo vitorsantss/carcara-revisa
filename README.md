@@ -30,13 +30,32 @@ npm run dev                       # http://localhost:5173
 3. Como professor: recuse uma correção automática, selecione um trecho sem cor e crie uma correção sua, aprove o resto, ajuste uma nota e clique em **Devolver ao aluno**.
 4. A tela volta para a visão do aluno: folha marcada, comentários na margem, filtro por cor e **Exportar PDF** (usa a impressão do navegador e respeita o filtro).
 5. **Fila de correção** mostra a priorização. **Bastidores** explica as regras, a calibragem e a comparação com o limite do Inep.
-6. Os itens "em breve" da sidebar mostram as telas planejadas, com a entidade de dados de cada uma.
+6. Como aluno, abra uma devolutiva em **Minhas redações**: o card **Suas competências** mostra o radar da versão contra a anterior, **Baixar PDF** imprime um resumo e **Compartilhar** gera um story para o Instagram.
+7. Como professor, **Desempenho** mostra cada aluno contra a média da turma e a grade da turma, com exportação em Excel e PDF.
+8. Os itens "em breve" da sidebar mostram as telas planejadas, com a entidade de dados de cada uma.
+
+## Features
+
+| Feature | Onde | Spec |
+| --- | --- | --- |
+| Envio e conferência da transcrição | `/#/aluno/enviar` | [001](docs/specs/001-envio-e-transcricao.md) |
+| Revisão do professor | `/#/redacoes/<id>?visao=professor` | [002](docs/specs/002-revisao-do-professor.md) |
+| Devolutiva com folha marcada | `/#/redacoes/<id>?visao=aluno` | [003](docs/specs/003-devolutiva.md) |
+| Calibragem e regras aprendidas | `/#/bastidores` | [004](docs/specs/004-calibragem.md) |
+| Fila de correção | `/#/professor/fila` | [005](docs/specs/005-fila-de-correcao.md) |
+| Privacidade e uso de IA | `/#/aluno/privacidade` | [006](docs/specs/006-privacidade.md) |
+| Radar de competências e PDF de resumo | devolutiva do aluno | [007](docs/specs/007-radar-de-competencias.md) |
+| Desempenho do professor, Excel e PDF | `/#/professor/desempenho` | [008](docs/specs/008-desempenho-do-professor.md) |
+| Stories para Instagram (PNG 1080 × 1920) | devolutiva do aluno | [009](docs/specs/009-stories.md) |
+
+Reenvio do mesmo aluno para a mesma proposta vira uma nova versão; os gráficos usam só as versões devolvidas.
 
 ## Estrutura
 
 ```
 src/
-  components/ui/        componentes no padrão shadcn (Button, Card, Badge, Input, ToggleGroup…)
+  components/ui/        componentes no padrão shadcn (Button, Card, Badge, Input, ToggleGroup, Dialog, Checkbox…)
+  components/charts/    RadarCompetencias e LinhaEvolucao (ECharts) e GradeTurma
   components/layout/    AppShell: sidebar filtrada pelo papel (aluno vê Aluno; professor vê Professor, Instituição, Equipe)
   domain/               types.ts (modelo de dados), regras.ts (regras de negócio), seed.ts (dados fictícios)
   services/correcao.ts  transcrição e correção SIMULADAS (troque por chamadas à API)
@@ -46,7 +65,9 @@ src/
     fila/               fila do professor e "Minhas redações"
     redacao/            página da redação com o toggle aluno/professor e a folha marcada
     revisao/            revisão do professor (cards, recusa, edição, nova marcação)
-    devolutiva/         devolutiva do aluno (comentários na margem, filtro, PDF)
+    devolutiva/         devolutiva do aluno (comentários na margem, filtro, radar, PDF)
+    desempenho/         painel do professor (aluno x turma, Excel e PDF)
+    stories/            stories para Instagram gerados no aparelho
     bastidores/         explicação das regras para a equipe
     pendente/           telas planejadas, ainda não implementadas
   styles/theme.css      TODAS as cores do app

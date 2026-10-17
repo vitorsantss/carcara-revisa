@@ -2,7 +2,9 @@
 
 Convenção: `tela-elemento[-detalhe]`. Ids com `<...>` recebem o id do registro.
 
-Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `data-situacao`, `data-alterada`, `data-atendido`, `data-previa`, `data-quantidade`, `data-ativa`, `aria-pressed`.
+Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`, `data-conferida`, `data-state`, `data-etapa`, `data-visao`, `data-situacao`, `data-alterada`, `data-atendido`, `data-previa`, `data-quantidade`, `data-ativa`, `data-versao`, `data-valores`, `data-diferenca`, `data-competencia`, `data-competencias`, `data-nota`, `data-mais-fraca`, `data-aluno`, `data-turma`, `data-modelo`, `data-mostra-nota`, `aria-pressed`.
+
+Impressão: `data-print="hide"` some na impressão; com `imprimir("resumo")`, `data-print="tela"` some e `data-print="resumo"` aparece.
 
 ## `components/layout/app-shell.tsx`
 
@@ -30,6 +32,19 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`,
 - `sidebar-fechar`
 - `usuario-atual`
 
+## `components/charts/grade-turma.tsx`
+
+Prefixo padrão `grade` (no relatório impresso, `pdf-grade`).
+
+- `grade-turma`
+- `grade-mais-fraca`
+- `grade-linha-<alunoId>`
+- `grade-aluno-<alunoId>`
+- `grade-celula-<alunoId>-c<n>`
+- `grade-total-<alunoId>`
+- `grade-media`
+- `grade-media-c<n>`
+
 ## `features/bastidores/bastidores-page.tsx`
 
 - `bastidores-calibragem`
@@ -46,6 +61,42 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`,
 - `calibragem-casos`
 - `regra-aprendida`
 
+## `features/desempenho/desempenho-page.tsx`
+
+- `desempenho-page`
+- `desempenho-visao`
+- `desempenho-visao-aluno`
+- `desempenho-visao-turma`
+- `desempenho-visao-aluno-conteudo`
+- `desempenho-visao-turma-conteudo`
+- `desempenho-turma-select`
+- `desempenho-aluno-select`
+- `desempenho-radar`
+- `desempenho-ultima-nota`
+- `desempenho-evolucao-total`
+- `desempenho-evolucao`
+- `desempenho-abaixo`
+- `desempenho-foco`
+- `desempenho-mais-fraca`
+- `desempenho-vazio`
+- `desempenho-exportar-excel`
+- `desempenho-exportar-pdf`
+- `desempenho-exportacoes`
+- `desempenho-pdf-aluno`
+- `desempenho-pdf-turma`
+
+## `features/devolutiva/radar-card.tsx`
+
+- `radar-competencias`
+- `radar-serie-atual`
+- `radar-serie-anterior`
+- `radar-nota-total`
+- `radar-delta`
+- `radar-nota-c<c>`
+- `radar-avanco`
+- `radar-foco`
+- `radar-exportar-pdf`
+
 ## `features/devolutiva/devolutiva.tsx`
 
 - `comentario-<id>`
@@ -54,6 +105,7 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`,
 - `devolutiva-assinatura`
 - `devolutiva-competencia-c<c>`
 - `devolutiva-competencias`
+- `devolutiva-compartilhar`
 - `devolutiva-exportar`
 - `devolutiva-filtro`
 - `devolutiva-filtro-<t>`
@@ -78,12 +130,29 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`,
 - `devolutiva-pedir-zero`
 - `devolutiva-proxima`
 - `devolutiva-proximo-nivel-c<c>`
+- `radar-resumo-impressao`
 - `devolutiva-recado`
 - `devolutiva-zero`
 - `devolutiva-zero-como-evitar`
 - `devolutiva-zero-motivo`
 - `marca-<card>`
 - `missao-c<c>`
+
+## `features/stories/stories-dialog.tsx` e `story.tsx`
+
+- `story-dialog`
+- `story-fechar`
+- `story-redacao`
+- `story-evolucao`
+- `story-mensagem`
+- `story-mostrar-nota`
+- `story-salvar`
+- `story-postar`
+- `story-status`
+- `story-render`
+- `story-numero`
+- `story-legenda`
+- `story-frase`
 
 ## `features/envio/envio-page.tsx`
 
@@ -200,7 +269,7 @@ Atributos auxiliares: `data-status`, `data-tipo`, `data-origem`, `data-autoria`,
 - `redacao-aluno`
 - `redacao-etapas`
 - `redacao-nao-encontrada`
-- `redacao-page`
+- `redacao-page` (`data-versao`)
 
 ## `features/revisao/revisao.tsx`
 

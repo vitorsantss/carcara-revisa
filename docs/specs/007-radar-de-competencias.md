@@ -1,6 +1,6 @@
 # SPEC-007: Radar de competências na devolutiva
 
-- Status: Rascunho
+- Status: Implementada
 - Rota: `/#/redacoes/<id>?visao=aluno` (etapa `devolvida`)
 - Papel: aluno
 
@@ -30,7 +30,7 @@ Ao abrir a devolutiva, o aluno vê de relance em que competência avançou desde
 - Dado "Baixar PDF", então na impressão só o resumo fica visível. → `06` "Baixar PDF imprime só o resumo"
 - Dado uma nova versão enviada, revisada e devolvida, então a devolutiva compara com a versão anterior. → `06` "nova versão devolvida compara com a anterior"
 - Dado a prévia do professor, então o radar aparece sem exportar nem compartilhar. → `06` "prévia do professor mostra o radar sem exportar nem compartilhar"
-- Regras puras `insightsDeEvolucao`, `versaoAnterior` e `comentariosPrincipais`. → `src/domain/regras.test.ts`
+- Regras puras `insightsDeEvolucao`, `versaoAnterior` e `comentariosPrincipais`. (sem teste: testes unitários pendentes)
 
 ## data-testid principais
 
