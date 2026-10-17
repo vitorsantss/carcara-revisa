@@ -20,7 +20,7 @@ interface ItemMenu {
 }
 interface GrupoMenu {
   titulo: string;
-  papel?: Papel;
+  papel: Papel;
   itens: ItemMenu[];
 }
 
@@ -45,6 +45,7 @@ export const MENU: GrupoMenu[] = [
   },
   {
     titulo: "Instituição",
+    papel: "professor",
     itens: [
       { rota: "/pendente/instituicao", titulo: "Visão geral", icone: Building2, pendente: true, testId: "nav-instituicao-geral" },
       { rota: "/pendente/professores", titulo: "Professores", icone: GraduationCap, pendente: true, testId: "nav-instituicao-professores" },
@@ -54,21 +55,40 @@ export const MENU: GrupoMenu[] = [
   },
   {
     titulo: "Equipe",
+    papel: "professor",
     itens: [{ rota: "/bastidores", titulo: "Bastidores", icone: Sparkles, testId: "nav-bastidores" }],
   },
 ];
 
+function papelDaRota(rota: Rota): Papel | undefined {
+  const [inicio] = rota.segmentos;
+  if (inicio === "aluno") return "aluno";
+  if (inicio === "professor" || inicio === "pendente" || inicio === "bastidores") return "professor";
+  if (inicio === "redacoes") return rota.params.get("visao") === "professor" ? "professor" : "aluno";
+  return undefined;
+}
+
 export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo: string; acoes?: React.ReactNode; children: React.ReactNode }) {
   const { estado, despachar } = useApp();
   const [aberto, setAberto] = React.useState(false);
+  const papelDaPagina = papelDaRota(rota);
+  const papel = papelDaPagina ?? estado.papel;
+
+  React.useEffect(() => {
+    if (papelDaPagina && papelDaPagina !== estado.papel) despachar({ type: "definir_papel", papel: papelDaPagina });
+  }, [papelDaPagina, estado.papel, despachar]);
+
   const usuario =
-    estado.papel === "aluno"
+    papel === "aluno"
       ? ALUNOS.find((a) => a.id === USUARIO_ALUNO)!.nome
       : `Prof. ${PROFESSORES.find((p) => p.id === USUARIO_PROFESSOR)!.nome}`;
 
   const trocarPapel = (p: string) => {
     despachar({ type: "definir_papel", papel: p as Papel });
-    if (!rota.path.startsWith("/redacoes")) navegar(p === "aluno" ? "/aluno/enviar" : "/professor/fila");
+    setAberto(false);
+    const [inicio, id] = rota.segmentos;
+    if (inicio === "redacoes" && id) navegar(`/redacoes/${id}?visao=${p}`);
+    else navegar(p === "aluno" ? "/aluno/enviar" : "/professor/fila");
   };
 
   return (
@@ -82,7 +102,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
         )}
       >
         <div className="flex items-center justify-between px-5 pt-5 pb-4">
-          <a href="#/aluno/enviar" className="flex items-center gap-2 font-extrabold tracking-tight text-white" data-testid="brand">
+          <a href={papel === "aluno" ? "#/aluno/enviar" : "#/professor/fila"} className="flex items-center gap-2 font-extrabold tracking-tight text-white" data-testid="brand">
             <span className="flex gap-0.5" aria-hidden="true">
               <i className="h-4 w-1.5 rounded-sm bg-acerto" />
               <i className="h-4 w-1.5 rounded-sm bg-atencao" />
@@ -101,7 +121,7 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
             type="single"
             aria-label="Papel"
             data-testid="papel-toggle"
-            value={estado.papel}
+            value={papel}
             onValueChange={trocarPapel}
             className="w-full border-white/10 bg-white/5 [&>button]:flex-1 [&>button]:justify-center [&>button]:text-sidebar-foreground [&>button[data-state=on]]:bg-highlight [&>button[data-state=on]]:text-brand-900"
             items={[
@@ -112,15 +132,12 @@ export function AppShell({ rota, titulo, acoes, children }: { rota: Rota; titulo
         </div>
 
         <nav className="flex-1 space-y-5 overflow-y-auto px-3 pb-6" aria-label="Menu principal">
-          {MENU.map((g) => (
+          {MENU.filter((g) => g.papel === papel).map((g) => (
             <div key={g.titulo} data-testid={`nav-grupo-${g.titulo.toLowerCase()}`}>
-              <div className="mb-1 flex items-center justify-between px-2 text-[11px] font-semibold uppercase tracking-wider text-sidebar-muted">
-                {g.titulo}
-                {g.papel && g.papel === estado.papel && <span className="size-1.5 rounded-full bg-highlight" aria-label="papel atual" />}
-              </div>
+              <div className="mb-1 px-2 text-[11px] font-semibold uppercase tracking-wider text-sidebar-muted">{g.titulo}</div>
               <ul className="space-y-0.5">
                 {g.itens.map((it) => {
-                  const ativo = rota.path === it.rota || (it.rota === "/professor/fila" && rota.path.startsWith("/redacoes") && estado.papel === "professor");
+                  const ativo = rota.path === it.rota || (it.rota === "/professor/fila" && rota.path.startsWith("/redacoes") && papel === "professor");
                   return (
                     <li key={it.rota}>
                       <a
