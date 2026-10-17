@@ -29,7 +29,7 @@ test.describe("Devolutiva do aluno", () => {
     await marca.click();
     await expect(marca).toHaveAttribute("data-active", "true");
     const id = (await marca.getAttribute("data-testid"))!.replace("marca-", "");
-    await expect(page.getByTestId(`comentario-${id}`)).toHaveClass(/ring-2/);
+    await expect(page.getByTestId(`comentario-${id}`)).toHaveAttribute("data-active", "true");
   });
 
   test("missões de reescrita aparecem", async ({ page }) => {

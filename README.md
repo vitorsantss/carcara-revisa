@@ -85,6 +85,16 @@ As interfaces `ServicoTranscricao` e `ServicoCorrecao` já separam isso: basta t
 - A calibragem guarda só contagens por competência e tipo.
 - Regras aprendidas com as recusas são bloqueadas se repetirem 4 palavras seguidas do texto do aluno (`regraVazaTexto`).
 
+## Documentação para pessoas e agentes de IA
+
+| Onde | O quê |
+| --- | --- |
+| [`CLAUDE.md`](CLAUDE.md) | Guia do repositório para agentes (Claude Code, Codex via `AGENTS.md`): comandos, arquitetura, convenções e invariantes. |
+| [`docs/specs/`](docs/specs/README.md) | Comportamento esperado de cada fluxo, com critérios de aceite ligados aos testes e2e. |
+| [`docs/adr/`](docs/adr/README.md) | Decisões de arquitetura e o porquê de cada uma. |
+| [`docs/MODELAGEM.md`](docs/MODELAGEM.md) | Entidades e relacionamentos. |
+| `.claude/skills/` | Roteiros para tarefas recorrentes: `nova-feature`, `teste-e2e`, `regras-de-correcao`, `integrar-ia`, `tema-da-marca`. |
+
 ## Referências
 
 - Cartilha do Participante, A Redação no Enem (Inep): critérios das 5 competências e motivos de nota zero.

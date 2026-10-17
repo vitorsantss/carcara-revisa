@@ -136,6 +136,7 @@ export function Devolutiva({ redacao }: { redacao: Redacao }) {
               data-card={m.id}
               data-testid={`comentario-${m.id}`}
               data-tipo={m.tipo}
+              data-active={ativa === m.id}
               onClick={() => setAtiva(m.id)}
               className={cn("left-0 right-0 grid cursor-pointer gap-1 border-l-[3px] p-3 transition-[top] lg:absolute", bordaTipo(m.tipo), ativa === m.id && "ring-2 ring-ring")}
             >
